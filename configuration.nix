@@ -14,6 +14,12 @@ in
       (import "${home-manager}/nixos")
     ];
 
+  nix.nixPath = [
+    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+    "nixos-config=/home/katexochen/nixos/configuration.nix"
+    "/nix/var/nix/profiles/per-user/root/channels"
+  ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot = {
     enable = true;
