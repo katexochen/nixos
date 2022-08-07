@@ -120,6 +120,13 @@ in
       enable = true;
       userName = "katexochen";
       userEmail = "49727155+katexochen@users.noreply.github.com";
+      aliases = { };
+      difftastic.enable = true;
+      includes = [{
+        contents = {
+          init.defaultBranch = "main";
+        };
+      }];
     };
 
     programs.vscode = {
