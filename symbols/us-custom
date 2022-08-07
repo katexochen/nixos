@@ -1,0 +1,37 @@
+// shift+backspace as delete
+partial alphanumeric_keys xkb_symbols "backspace_delete"
+{
+	key.type[Group1] = "TWO_LEVEL";
+	key <BKSP> { 
+            symbols[Group1] = [ BackSpace, Delete], 
+            actions[Group1] = [ NoAction(), RedirectKey(keycode=<DELE>, clearmods=Shift) ]
+    };
+};
+
+
+// altGr+space as |
+partial alphanumeric_keys xkb_symbols "space_pipe"
+{
+	key <SPCE> { [ space, space, bar, space ] };  // NoSymbol does not override previous definition, VoidSymbol does.
+};
+
+
+// change z and y
+partial alphanumeric_keys xkb_symbols "zy"
+{
+	key <LatY> { [ z, Z, NoSymbol, NoSymbol ] };
+	key <LatZ> { [ y, Y, NoSymbol, NoSymbol ] };
+};	
+
+
+default alphanumeric_keys xkb_symbols "us-custom"
+{
+	name[Group1]="US custom";
+
+	include "us(basic)"
+	include "level3(ralt_switch)"
+
+	include "us-custom(backspace_delete)"
+	include "us-custom(space_pipe)"
+	include "us-custom(zy)"
+};
