@@ -110,9 +110,9 @@ in
   };
   home-manager.users.katexochen = { pkgs, ... }: {
     home.packages = with pkgs; [
+      discord
       firefox
       go_1_18
-      discord
       nixpkgs-fmt
     ];
 
@@ -125,18 +125,18 @@ in
     programs.vscode = {
       enable = true;
       extensions = with pkgs.vscode-extensions; [
-        golang.go
-        jnoortheen.nix-ide
         # bbenoist.nix
         # brettm12345.nixfmt-vscode
-        james-yu.latex-workshop
-        yzhang.markdown-all-in-one
         # davidanson.vscode-markdownlint
-        github.copilot
+        # github.github-vscode-theme
         # github.vscode-pull-request-github
         eamodio.gitlens
+        github.copilot
+        golang.go
+        james-yu.latex-workshop
+        jnoortheen.nix-ide
         streetsidesoftware.code-spell-checker
-        # github.github-vscode-theme
+        yzhang.markdown-all-in-one
       ];
       userSettings = { };
       keybindings = [ ];
