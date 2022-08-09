@@ -45,10 +45,10 @@ in
     LC_MONETARY = "de_DE.UTF-8";
   };
 
-  console = {
-    font = "Lat2-Terminus16";
-    useXkbConfig = true; # use xkbOptions in tty.
-  };
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   useXkbConfig = true; # use xkbOptions in tty.
+  # };
 
   # Enable the GNOME Desktop Environment.
   services.xserver.enable = true;
@@ -78,6 +78,7 @@ in
       symbolsFile = /home/katexochen/nixos/symbols/de-custom;
     };
   };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -105,14 +106,22 @@ in
   };
 
   home-manager = {
+    # As suggested by https://nix-community.github.io/home-manager/index.html#sec-install-nixos-module
     useUserPackages = true;
     useGlobalPkgs = true;
   };
+
   home-manager.users.katexochen = { pkgs, ... }: {
+
+    home.sessionVariables = {
+      MOZ_ENABLE_WAYLAND = 1;
+      # XDG_CURRENT_DESKTOP = "sway";
+    };
+
     home.packages = with pkgs; [
       discord
-      firefox
       go_1_18
+      firefox-wayland
       nixpkgs-fmt
     ];
 
@@ -148,6 +157,7 @@ in
       userSettings = { };
       keybindings = [ ];
     };
+
   };
 
   # List packages installed in system profile. To search, run:
@@ -158,10 +168,10 @@ in
   ];
 
   # Automatic updates
-  # system.autoUpgrade = {
+  system.autoUpgrade = {
   #   enable = true;
-  #   channel = "https://nixos.org/channels/nixos-22.05";
-  # };
+    channel = "https://nixos.org/channels/nixos-22.05";
+  };
 
   # Automatic garbage collection
   nix.gc = {
