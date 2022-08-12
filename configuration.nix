@@ -50,11 +50,6 @@ in
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
   # Configure keymap in X11
   services.xserver.layout = "us-custom,de-custom";
   services.xserver.xkbOptions = "ctrl:nocaps,grp:win_space_toggle";
@@ -115,14 +110,32 @@ in
 
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
-      # XDG_CURRENT_DESKTOP = "sway";
+      XDG_CURRENT_DESKTOP = "sway";
     };
+
+    fonts.fontconfig.enable = true;
 
     home.packages = with pkgs; [
       discord
       go_1_18
       firefox-wayland
       nixpkgs-fmt
+
+      fira
+      fira-code
+      # # All of the below is for sway
+      alacritty
+      wofi
+      waybar
+      swaylock
+      swayidle
+      xwayland
+      mako
+      kanshi
+      grim
+      slurp
+      wl-clipboard
+      wf-recorder
     ];
 
     programs.git = {
@@ -158,6 +171,65 @@ in
       keybindings = [ ];
     };
 
+    wayland.windowManager.sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+      systemdIntegration = true;
+
+      config = {
+        terminal = "alacritty";
+        menu = "wofi --show run ";
+        bars = [{ command = "waybar"; }];
+      };
+      extraSessionCommands = ''
+        export SDL_VIDEODRIVER=wayland
+        export QT_QPA_PLATFORM=wayland
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+        export _JAVA_AWT_WM_NONREPARENTING=1
+        export MOZ_ENABLE_WAYLAND=1
+      '';
+    };
+
+    programs.alacritty = {
+      enable = true;
+      settings = {
+        env.TERM = "alacritty";
+        window = {
+          decorations = "full";
+          title = "Alacritty";
+          dynamic_title = true;
+          class = {
+            instance = "Alacritty";
+            general = "Alacritty";
+          };
+        };
+        font = {
+          normal = {
+            family = "Fira Code";
+            style = "regular";
+          };
+          bold = {
+            family = "Fira Code";
+            style = "regular";
+          };
+          italic = {
+            family = "Fira Code";
+            style = "regular";
+          };
+          bold_italic = {
+            family = "Fira Code";
+            style = "regular";
+          };
+        };
+        colors = {
+          primary = {
+            background = "#1d1f21";
+            foreground = "#c5c8c6";
+          };
+        };
+      };
+    };
+
   };
 
   # List packages installed in system profile. To search, run:
@@ -167,9 +239,32 @@ in
     htop
   ];
 
+  # Hardware Support for Wayland Sway
+  hardware = {
+    opengl = {
+      enable = true;
+      driSupport = true;
+    };
+  };
+
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+    };
+  };
+
+  # Allow swaylock to unlock the computer for us
+  security.pam.services.swaylock = {
+    text = "auth include login";
+  };
+
   # Automatic updates
   system.autoUpgrade = {
-  #   enable = true;
+    #   enable = true;
     channel = "https://nixos.org/channels/nixos-22.05";
   };
 
