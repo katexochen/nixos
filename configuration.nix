@@ -124,9 +124,7 @@ in
       fira
       fira-code
       # # All of the below is for sway
-      alacritty
       wofi
-      waybar
       swaylock
       swayidle
       xwayland
@@ -177,10 +175,18 @@ in
       systemdIntegration = true;
 
       config = {
-        terminal = "alacritty";
-        menu = "wofi --show run ";
-        bars = [{ command = "waybar"; }];
+        terminal = "${pkgs.alacritty}/bin/alacritty";
+        menu = "${pkgs.wofi}/bin/wofi --show run ";
+        bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
+        modifier = "Mod4";
+        input = {
+          "type:keyboard" = {
+            xkb_layout = "us-custom,de-custom";
+            xkb_options = "ctrl:nocaps,grp:win_space_toggle";
+          };
+        };
       };
+
       extraSessionCommands = ''
         export SDL_VIDEODRIVER=wayland
         export QT_QPA_PLATFORM=wayland
@@ -194,40 +200,19 @@ in
       enable = true;
       settings = {
         env.TERM = "alacritty";
-        window = {
-          decorations = "full";
-          title = "Alacritty";
-          dynamic_title = true;
-          class = {
-            instance = "Alacritty";
-            general = "Alacritty";
-          };
-        };
         font = {
-          normal = {
-            family = "Fira Code";
-            style = "regular";
-          };
-          bold = {
-            family = "Fira Code";
-            style = "regular";
-          };
-          italic = {
-            family = "Fira Code";
-            style = "regular";
-          };
-          bold_italic = {
-            family = "Fira Code";
-            style = "regular";
-          };
+          normal = { family = "Fira Code"; };
+          bold = { family = "Fira Code"; };
+          italic = { family = "Fira Code"; };
+          bold_italic = { family = "Fira Code"; };
         };
-        colors = {
-          primary = {
-            background = "#1d1f21";
-            foreground = "#c5c8c6";
-          };
-        };
+        selection.save_to_clipboard = true;
       };
+    };
+
+    programs.waybar = {
+      enable = true;
+      systemd.target = "sway-session.target";
     };
 
   };
