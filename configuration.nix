@@ -121,8 +121,12 @@ in
       firefox-wayland
       nixpkgs-fmt
 
+      font-awesome
+      dejavu_fonts
       fira
       fira-code
+      fira-code-symbols
+      source-code-pro
       # # All of the below is for sway
       wofi
       swaylock
@@ -200,12 +204,6 @@ in
       enable = true;
       settings = {
         env.TERM = "alacritty";
-        font = {
-          normal = { family = "Fira Code"; };
-          bold = { family = "Fira Code"; };
-          italic = { family = "Fira Code"; };
-          bold_italic = { family = "Fira Code"; };
-        };
         selection.save_to_clipboard = true;
       };
     };
