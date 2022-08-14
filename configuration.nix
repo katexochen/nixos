@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
@@ -60,7 +60,6 @@ in
   # https://nixos.org/manual/nixos/stable/#custom-xkb-layouts
   # https://discourse.nixos.org/t/5269
   # 
-  # Might need to run 'gsettings reset org.gnome.desktop.input-sources sources' and logout/login.
   services.xserver.extraLayouts = {
     us-custom = {
       description = "US custom layout";
@@ -77,9 +76,15 @@ in
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+  };
+
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -108,6 +113,8 @@ in
 
   home-manager.users.katexochen = { pkgs, ... }: {
 
+    home.enableNixpkgsReleaseCheck = true;
+
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
       XDG_CURRENT_DESKTOP = "sway";
@@ -121,13 +128,15 @@ in
       firefox-wayland
       nixpkgs-fmt
 
+      # Fonts
       font-awesome
       dejavu_fonts
       fira
       fira-code
       fira-code-symbols
       source-code-pro
-      # # All of the below is for sway
+
+      # Sway
       wofi
       swaylock
       swayidle
@@ -138,6 +147,7 @@ in
       slurp
       wl-clipboard
       wf-recorder
+      pamixer
     ];
 
     programs.git = {
@@ -177,10 +187,9 @@ in
       enable = true;
       wrapperFeatures.gtk = true;
       systemdIntegration = true;
-
       config = {
         terminal = "${pkgs.alacritty}/bin/alacritty";
-        menu = "${pkgs.wofi}/bin/wofi --show run ";
+        menu = "${pkgs.wofi}/bin/wofi --show run";
         bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
         modifier = "Mod4";
         input = {
@@ -189,8 +198,12 @@ in
             xkb_options = "ctrl:nocaps,grp:win_space_toggle";
           };
         };
+        keybindings = lib.mkOptionDefault {
+          "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer -t";
+          "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer -i 5";
+          "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer -d 5";
+        };
       };
-
       extraSessionCommands = ''
         export SDL_VIDEODRIVER=wayland
         export QT_QPA_PLATFORM=wayland
@@ -203,7 +216,6 @@ in
     programs.alacritty = {
       enable = true;
       settings = {
-        env.TERM = "alacritty";
         selection.save_to_clipboard = true;
       };
     };
@@ -230,13 +242,13 @@ in
     };
   };
 
+  services.dbus.enable = true;
   xdg = {
     portal = {
       enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-      ];
+      wlr.enable = true;
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      gtkUsePortal = true;
     };
   };
 
