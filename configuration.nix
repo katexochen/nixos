@@ -60,6 +60,9 @@ in
   # https://nixos.org/manual/nixos/stable/#custom-xkb-layouts
   # https://discourse.nixos.org/t/5269
   # 
+  # On change, run the following and logout:
+  # gsettings reset org.gnome.desktop.input-sources xkb-options
+  # gsettings reset org.gnome.desktop.input-sources sources
   services.xserver.extraLayouts = {
     us-custom = {
       description = "US custom layout";
@@ -113,6 +116,7 @@ in
 
   home-manager.users.katexochen = { pkgs, ... }: {
 
+    home.stateVersion = "22.05";
     home.enableNixpkgsReleaseCheck = true;
 
     home.sessionVariables = {
@@ -125,7 +129,6 @@ in
     home.packages = with pkgs; [
       discord
       go_1_18
-      firefox-wayland
       nixpkgs-fmt
 
       # Fonts
@@ -135,6 +138,8 @@ in
       fira-code
       fira-code-symbols
       source-code-pro
+      helvetica-neue-lt-std
+      ubuntu_font_family
 
       # Sway
       wofi
@@ -163,6 +168,87 @@ in
           init.defaultBranch = "main";
         };
       }];
+    };
+
+    programs.firefox = {
+      enable = true;
+      package = pkgs.firefox-wayland;
+      profiles = {
+        katexochen = {
+          id = 0;
+          isDefault = true;
+          settings = {
+            "browser.aboutwelcome.enabled" = false;
+            "browser.ctrlTab.sortByRecentlyUsed" = true;
+            "browser.newtabpage.enabled" = false;
+            "browser.shell.checkDefaultBrowser" = false;
+            "browser.startup.homepage" = "https://search.nixos.org/packages";
+            "browser.startup.page" = 3;
+            "browser.tabs.unloadOnLowMemory" = true;
+            "browser.warnOnQuit" = false;
+
+            # Privacy
+            # https://github.com/arcnmx/home/blob/58a00746ecbcfb3eba4b157a7a22641486943c84/cfg/firefox/default.nix
+            "app.shield.optoutstudies.enabled" = true;
+            "beacon.enabled" = false;
+            "breakpad.reportURL" = "";
+            "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
+            "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
+            "browser.newtabpage.activity-stream.feeds.recommendationprovider" = false;
+            "browser.onboarding.enabled" = false;
+            "browser.ping-centre.telemetry" = false;
+            "browser.safebrowsing.blockedURIs.enabled" = false;
+            "browser.safebrowsing.downloads.enabled" = false;
+            "browser.safebrowsing.downloads.remote.enabled" = false;
+            "browser.safebrowsing.malware.enabled" = false;
+            "browser.safebrowsing.phishing.enabled" = false;
+            "browser.search.geoip.url" = "";
+            "browser.search.region" = "CA";
+            "browser.search.suggest.enabled" = false;
+            "browser.search.update" = false;
+            "browser.selfsupport.url" = "";
+            "datareporting.healthreport.uploadEnabled" = false;
+            "datareporting.policy.dataSubmissionEnabled" = false;
+            "datareporting.sessions.current.clean" = true;
+            "device.sensors.enabled" = false;
+            "devtools.onboarding.telemetry.logged" = false;
+            "dom.battery.enabled" = false;
+            "dom.enable_performance" = false;
+            "dom.ipc.plugins.reportCrashURL" = false;
+            "experiments.enabled" = false;
+            "extensions.getAddons.cache.enabled" = false;
+            "extensions.pocket.enabled" = true;
+            "geo.enabled" = false;
+            "geo.wifi.uri" = false;
+            "keyword.enabled" = false;
+            "media.getusermedia.screensharing.enabled" = false;
+            "media.video_stats.enabled" = false;
+            "network.allow-experiments" = false;
+            "privacy.trackingprotection.cryptomining.enabled" = true;
+            "privacy.trackingprotection.enabled" = true;
+            "privacy.trackingprotection.fingerprinting.enabled" = true;
+            "privacy.trackingprotection.introCount" = 20;
+            "services.sync.prefs.sync.browser.safebrowsing.malware.enabled" = false;
+            "services.sync.prefs.sync.browser.safebrowsing.phishing.enabled" = false;
+            "services.sync.prefs.sync.privacy.donottrackheader.value" = false;
+            "social.directories" = "";
+            "social.remote-install.enabled" = false;
+            "social.toast-notifications.enabled" = false;
+            "social.whitelist" = "";
+            "toolkit.telemetry.archive.enabled" = false;
+            "toolkit.telemetry.bhrPing.enabled" = false;
+            "toolkit.telemetry.enabled" = false;
+            "toolkit.telemetry.firstShutdownPing.enabled" = false;
+            "toolkit.telemetry.hybridContent.enabled" = false;
+            "toolkit.telemetry.newProfilePing.enabled" = false;
+            "toolkit.telemetry.reportingpolicy.firstRun" = false;
+            "toolkit.telemetry.server" = "";
+            "toolkit.telemetry.shutdownPingSender.enabled" = false;
+            "toolkit.telemetry.unified" = false;
+            "toolkit.telemetry.updatePing.enabled" = false;
+          };
+        };
+      };
     };
 
     programs.vscode = {
