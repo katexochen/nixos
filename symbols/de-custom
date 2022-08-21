@@ -1,10 +1,9 @@
-default alphanumeric_keys xkb_symbols "de-custom"
+default partial alphanumeric_keys xkb_symbols "de-custom"
 {
 	name[Group1]="DE custom";
 
 	include "de(basic)"
 	include "level3(ralt_switch)"
 	
-	include "us-custom(backspace_delete)"
-	include "us-custom(space_pipe)"
+	// include "us-custom(backspace_delete)"
 };

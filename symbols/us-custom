@@ -1,18 +1,27 @@
-// shift+backspace as delete
-partial alphanumeric_keys xkb_symbols "backspace_delete"
+default partial alphanumeric_keys modifier_keys xkb_symbols "us-custom"
 {
-	key.type[Group1] = "TWO_LEVEL";
-	key <BKSP> { 
-            symbols[Group1] = [ BackSpace, Delete], 
-            actions[Group1] = [ NoAction(), RedirectKey(keycode=<DELE>, clearmods=Shift) ]
-    };
+	name[Group1]="US custom";
+
+	include "us(basic)"
+
+	include "us-custom(zy)"
+	// RedirectKeys function isn't implemented for xkbcommon/sway
+	// https://github.com/xkbcommon/libxkbcommon/issues/18
+	// include "us-custom(backspace_delete)"
+
+	include "level3(ralt_switch)"
 };
 
 
-// altGr+space as |
-partial alphanumeric_keys xkb_symbols "space_pipe"
+// shift+backspace as delete
+// https://askubuntu.com/q/1307192
+partial alphanumeric_keys modifier_keys xkb_symbols "backspace_delete"
 {
-	key <SPCE> { [ space, space, bar, space ] };  // NoSymbol does not override previous definition, VoidSymbol does.
+	key.type[Group1] = "TWO_LEVEL";
+	key <BKSP> { 
+		symbols[Group1] = [ BackSpace, NoSymbol ], 
+		actions[Group1] = [ NoAction(), Redirect(key=<DELE>, clearmods=Shift) ]
+    };
 };
 
 
@@ -22,16 +31,3 @@ partial alphanumeric_keys xkb_symbols "zy"
 	key <LatY> { [ z, Z, NoSymbol, NoSymbol ] };
 	key <LatZ> { [ y, Y, NoSymbol, NoSymbol ] };
 };	
-
-
-default alphanumeric_keys xkb_symbols "us-custom"
-{
-	name[Group1]="US custom";
-
-	include "us(basic)"
-	include "level3(ralt_switch)"
-
-	include "us-custom(backspace_delete)"
-	include "us-custom(space_pipe)"
-	include "us-custom(zy)"
-};
