@@ -142,7 +142,6 @@ in
       ubuntu_font_family
 
       # Sway
-      wofi
       swaylock
       swayidle
       xwayland
@@ -275,7 +274,7 @@ in
       systemdIntegration = true;
       config = {
         terminal = "${pkgs.alacritty}/bin/alacritty";
-        menu = "${pkgs.wofi}/bin/wofi --show run";
+        menu = "${pkgs.rofi}/bin/rofi -show run -show-icons -pid";
         bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
         modifier = "Mod4";
         input = {
@@ -288,6 +287,7 @@ in
           "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer -t";
           "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer -i 5";
           "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer -d 5";
+          "XF86Calculator" = "exec ${pkgs.rofi}/bin/rofi -show calc -modi calc -no-show-mathc -no-sort";
         };
       };
       extraSessionCommands = ''
@@ -305,6 +305,14 @@ in
       settings = {
         selection.save_to_clipboard = true;
       };
+    };
+
+    programs.rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
+      plugins = with pkgs; [
+        rofi-calc
+      ];
     };
 
     programs.waybar = {
