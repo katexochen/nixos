@@ -1,7 +1,6 @@
 * {
 	border: none;
 	border-radius: 0px;
-    font-family: "JetbrainsMono Nerd Font" ;
 	font-size: 14px;
 	color: #0e0c16;
 	min-height: 10px;
@@ -16,8 +15,17 @@ window#waybar.hidden {
 }
 
 #window {
-	opacity: 0.8;
 	background: transparent;
+}
+
+#mode,
+#window,
+#workspaces button {
+	color: rgba(245, 245, 245, 0.4);
+}
+
+#workspaces button * {
+	color: inherit;
 }
 
 #clock,
@@ -29,10 +37,6 @@ window#waybar.hidden {
 #backlight,
 #network,
 #pulseaudio,
-#tags,
-#taskbar,
-#tray,
-#mode,
 #language,
 #idle_inhibitor,
 #mpd {
@@ -40,87 +44,78 @@ window#waybar.hidden {
 	margin-left: 8px;
 	padding: 0px 10px;
 	border-radius: 0px 0px 10px 10px;
-	color: #161320;
-	background-color: rgba(245,245,245, 0.4);
+	background-color: rgba(245, 245, 245, 0.4);
 	/* background-color: rgba(149, 73, 255, 0.323); */
 	/* background-image: linear-gradient(to right, #8360c3, #2ebf91); */
 	/* background-attachment: fixed; */
 }
 
 /* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0px;
+.modules-left>widget:first-child>#workspaces {
+	margin-left: 0px;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0px;
+.modules-right>widget:last-child>#workspaces {
+	margin-right: 0px;
 }
 
-#tags {
-	margin-top: 6px;
-	margin-left: 12px;
-	font-size: 4px;
-	margin-bottom: 0px;
-	border-radius: 10px;
-	background: #161320;
-	transition: none;
+#battery.charging {
+	background-color: rgba(76, 255, 73, 0.53);
 }
 
-#tags button {
-	color: #B5E8E0;
-	background: transparent;
-	font-size: 16px;
-	border-radius: 2px;
+#battery.critical:not(.charging),
+#temperature.critical,
+#cpu.critical,
+#memory.critical {
+	animation-name: critical;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
-#tags button.occupied {
-	color: #F28FAD;
-	background: transparent;
-	font-size: 4px;
+@keyframes critical {
+	to {
+		background-color: rgba(255, 73, 73, 0.53);
+	}
 }
 
-#tags button.focused {
-	color: #ABE9B3;
-    border-top: 2px solid #ABE9B3;
-    border-bottom: 2px solid #ABE9B3;
+#battery.warning:not(.charging),
+#temperature.warning,
+#cpu.warning,
+#memory.warning {
+	animation-name: warning;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
-#tags button:hover {
-	box-shadow: inherit;
-	text-shadow: inherit;
-	color: #FAE3B0;
-    border-color: #E8A2AF;
-    color: #E8A2AF;
+@keyframes warning {
+	to {
+		background-color: rgba(255, 206, 73, 0.53);
+	}
 }
 
-#tags button.focused:hover {
-    color: #E8A2AF;
+#tray>.needs-attention {
+	-gtk-icon-effect: highlight;
 }
 
-#battery.charging, #battery.plugged {
-	color: #161320;
-    background-color: #B5E8E0;
+#tray>.passive {
+	-gtk-icon-effect: dim;
 }
 
-#battery.critical:not(.charging) {
-    background-color: #B5E8E0;
-    color: #161320;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-@keyframes blink {
-    to {
-        background-color: #BF616A;
-        color: #B5E8E0;
-    }
-}
 
 #language {
-    min-width: 16px;
+	min-width: 16px;
 }
 
+tooltip {
+	background-color:rgba(21, 23, 27, 0.85);
+	border-radius: 10px;
+}
+
+tooltip label {
+	color: rgb(235, 235, 235);
+}

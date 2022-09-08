@@ -336,13 +336,13 @@ in
             "sway/window"
           ];
           modules-right = [
+            "tray"
             "pulseaudio"
             "network"
             "cpu"
             "memory"
             "sway/language"
             "clock"
-            "tray"
           ];
 
           "clock" = {
@@ -354,11 +354,20 @@ in
             interval = 2;
             format = "{usage}% ";
             tooltip = false;
+            states = {
+              warning = 70;
+              critical = 90;
+            };
           };
 
           "memory" = {
             interval = 2;
             format = "{}% ";
+            tooltip-format = "{used:0.1f}G / {total:0.1f}G";
+            states = {
+              warning = 70;
+              critical = 90;
+            };
           };
 
           "network" = {
@@ -388,6 +397,22 @@ in
               default = [ "" "" "" ];
             };
             # "on-click" = "pavucontrol";
+          };
+
+          "sway/window" = {
+            format = "{}";
+            max-length = 60;
+            tooltip = false;
+          };
+
+          "sway/mode" = {
+            format = "<span style=\"italic\">{}</span>";
+            tooltip = false;
+          };
+
+          "sway/language" = {
+            on-click = "swaymsg input type:keyboard xkb_switch_layout next";
+            tooltip = false;
           };
 
         };
