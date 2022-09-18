@@ -152,6 +152,7 @@ in
       wl-clipboard
       wf-recorder
       pamixer
+      rofi-power-menu
     ];
 
     programs.git = {
@@ -384,7 +385,7 @@ in
       systemdIntegration = true;
       config = {
         terminal = "${pkgs.alacritty}/bin/alacritty";
-        menu = "${pkgs.rofi}/bin/rofi -show run -show-icons -pid";
+        menu = "${pkgs.rofi}/bin/rofi -show combi -combi-modi drun,power -modi combi,power:'rofi-power-menu --no-symbols' -show-icons -pidf";
         bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
         modifier = "Mod4";
         input = {
