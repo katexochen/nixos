@@ -1,18 +1,18 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
-
-let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
-in
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      (import "${home-manager}/nixos")
-    ];
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
+in {
+  imports = [
+    ./hardware-configuration.nix
+    (import "${home-manager}/nixos")
+  ];
 
   nix.nixPath = [
     "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
@@ -55,23 +55,23 @@ in
   services.xserver.xkbOptions = "ctrl:nocaps,grp:win_space_toggle";
 
   # Custom keyboard layout
-  # 
+  #
   # See:
   # https://nixos.org/manual/nixos/stable/#custom-xkb-layouts
   # https://discourse.nixos.org/t/5269
-  # 
+  #
   # On change, run the following and logout:
   # gsettings reset org.gnome.desktop.input-sources xkb-options
   # gsettings reset org.gnome.desktop.input-sources sources
   services.xserver.extraLayouts = {
     us-custom = {
       description = "US custom layout";
-      languages = [ "eng" ];
+      languages = ["eng"];
       symbolsFile = /home/katexochen/nixos/symbols/us-custom;
     };
     de-custom = {
       description = "DE custom layout";
-      languages = [ "ger" ];
+      languages = ["ger"];
       symbolsFile = /home/katexochen/nixos/symbols/de-custom;
     };
   };
@@ -114,8 +114,7 @@ in
     useGlobalPkgs = true;
   };
 
-  home-manager.users.katexochen = { pkgs, ... }: {
-
+  home-manager.users.katexochen = {pkgs, ...}: {
     home.stateVersion = "22.05";
     home.enableNixpkgsReleaseCheck = true;
 
@@ -162,11 +161,13 @@ in
         sl = "log --pretty=format:'%Cred%h  %Creset%<(40)%s %Cgreen%<(12)%cr %Cblue%an%Creset%C(yellow)%d%Creset' --abbrev-commit";
       };
       difftastic.enable = true;
-      includes = [{
-        contents = {
-          init.defaultBranch = "main";
-        };
-      }];
+      includes = [
+        {
+          contents = {
+            init.defaultBranch = "main";
+          };
+        }
+      ];
     };
 
     programs.firefox = {
@@ -250,52 +251,54 @@ in
 
     programs.vscode = {
       enable = true;
-      extensions = with pkgs.vscode-extensions; [
-        # bbenoist.nix
-        # brettm12345.nixfmt-vscode
-        # davidanson.vscode-markdownlint
-        # github.github-vscode-theme
-        # github.vscode-pull-request-github
-        eamodio.gitlens
-        foxundermoon.shell-format
-        github.copilot
-        golang.go
-        hashicorp.terraform
-        james-yu.latex-workshop
-        jnoortheen.nix-ide
-        kamadorueda.alejandra
-        ms-vscode.cpptools
-        redhat.vscode-yaml
-        streetsidesoftware.code-spell-checker
-        timonwong.shellcheck
-        yzhang.markdown-all-in-one
-        zxh404.vscode-proto3
-      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "theme-bluloco-light";
-          publisher = "uloco";
-          version = "3.7.2";
-          sha256 = "sha256-3Od6NXmu/s6vx4KL0Hcmw/ZZ0eXLIov7Dx//3tHJ6Pw=";
-        }
-        {
-          name = "vscode-emacs-minimum";
-          publisher = "jamesyang999";
-          version = "1.1.1";
-          sha256 = "sha256-qxnAhT2UGTQmPw9XmdBdx0F0NNLAaU1/ES9jiqiRrGI=";
-        }
-        {
-          name = "increment-selection";
-          publisher = "albymor";
-          version = "0.2.0";
-          sha256 = "sha256-iP4c0xLPiTsgD8Q8Kq9jP54HpdnBveKRY31Ro97ROJ8=";
-        }
-        {
-          name = "quicktype";
-          publisher = "quicktype";
-          version = "12.0.46";
-          sha256 = "sha256-NTZ0BujnA+COg5txOLXSZSp8TPD1kZNfZPjnvZUL9lc=";
-        }
-      ];
+      extensions = with pkgs.vscode-extensions;
+        [
+          # bbenoist.nix
+          # brettm12345.nixfmt-vscode
+          # davidanson.vscode-markdownlint
+          # github.github-vscode-theme
+          # github.vscode-pull-request-github
+          eamodio.gitlens
+          foxundermoon.shell-format
+          github.copilot
+          golang.go
+          hashicorp.terraform
+          james-yu.latex-workshop
+          jnoortheen.nix-ide
+          kamadorueda.alejandra
+          ms-vscode.cpptools
+          redhat.vscode-yaml
+          streetsidesoftware.code-spell-checker
+          timonwong.shellcheck
+          yzhang.markdown-all-in-one
+          zxh404.vscode-proto3
+        ]
+        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "theme-bluloco-light";
+            publisher = "uloco";
+            version = "3.7.2";
+            sha256 = "sha256-3Od6NXmu/s6vx4KL0Hcmw/ZZ0eXLIov7Dx//3tHJ6Pw=";
+          }
+          {
+            name = "vscode-emacs-minimum";
+            publisher = "jamesyang999";
+            version = "1.1.1";
+            sha256 = "sha256-qxnAhT2UGTQmPw9XmdBdx0F0NNLAaU1/ES9jiqiRrGI=";
+          }
+          {
+            name = "increment-selection";
+            publisher = "albymor";
+            version = "0.2.0";
+            sha256 = "sha256-iP4c0xLPiTsgD8Q8Kq9jP54HpdnBveKRY31Ro97ROJ8=";
+          }
+          {
+            name = "quicktype";
+            publisher = "quicktype";
+            version = "12.0.46";
+            sha256 = "sha256-NTZ0BujnA+COg5txOLXSZSp8TPD1kZNfZPjnvZUL9lc=";
+          }
+        ];
       userSettings = {
         "C_Cpp.clang_format_fallbackStyle" = "{ BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4 }";
         "C_Cpp.clang_format_style" = "{ BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4 }";
@@ -325,11 +328,11 @@ in
         "go.coverageOptions" = "showUncoveredCodeOnly";
         "go.coverOnSingleTest" = true;
         "go.coverOnSingleTestFile" = true;
-        "go.lintFlags" = [ "--fast" ];
+        "go.lintFlags" = ["--fast"];
         "go.lintTool" = "golangci-lint";
-        "go.testFlags" = [ "-count=1" "-race" "-v" ];
+        "go.testFlags" = ["-count=1" "-race" "-v"];
         "go.testTimeout" = "2m";
-        "gopls" = { "formatting.gofumpt" = true; };
+        "gopls" = {"formatting.gofumpt" = true;};
         "java.saveActions.organizeImports" = true;
         "javascript.updateImportsOnFileMove.enabled" = "always";
         "latex-workshop.latex.recipe.default" = "lastUsed";
@@ -385,7 +388,7 @@ in
       config = {
         terminal = "${pkgs.alacritty}/bin/alacritty";
         menu = "${pkgs.rofi}/bin/rofi -show run -show-icons -pid";
-        bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
+        bars = [{command = "${pkgs.waybar}/bin/waybar";}];
         modifier = "Mod4";
         input = {
           "type:keyboard" = {
@@ -504,7 +507,7 @@ in
               headset = "";
               phone = "";
               portable = "";
-              default = [ "" "" "" ];
+              default = ["" "" ""];
             };
             # "on-click" = "pavucontrol";
           };
@@ -524,12 +527,10 @@ in
             on-click = "swaymsg input type:keyboard xkb_switch_layout next";
             tooltip = false;
           };
-
         };
       };
       style = /home/katexochen/nixos/waybar-style.css;
     };
-
   };
 
   # List packages installed in system profile. To search, run:
@@ -552,7 +553,7 @@ in
     portal = {
       enable = true;
       wlr.enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      extraPortals = with pkgs; [xdg-desktop-portal-gtk];
       gtkUsePortal = true;
     };
   };
@@ -595,6 +596,4 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
-
 }
-
