@@ -89,6 +89,8 @@ in {
   sound.enable = true;
   hardware.pulseaudio.enable = false;
 
+  virtualisation.docker.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -105,6 +107,7 @@ in {
       "networkmanager"
       "lp" # Enable use of printers.
       "scanner" # Enable use of scanners.
+      "docker" # Access to the docker socket.
     ];
   };
 
