@@ -127,8 +127,32 @@ in {
 
     home.packages = with pkgs; [
       discord
+      gh
       go_1_18
       nixpkgs-fmt
+      spotify
+      teams
+      mpv
+
+      # Development
+      cmake
+      docker
+
+      # Cloud
+      azure-cli
+      azure-storage-azcopy
+      google-cloud-sdk
+      k9s
+      kubectl
+      terraform
+
+      # CLI Basics
+      curl
+      file
+      htop
+      jq
+      wget
+      yq
 
       # Fonts
       font-awesome
@@ -532,13 +556,6 @@ in {
       style = /home/katexochen/nixos/waybar-style.css;
     };
   };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    git
-    htop
-  ];
 
   # Hardware Support for Wayland Sway
   hardware = {
