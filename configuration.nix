@@ -160,9 +160,8 @@ in {
       # Fonts
       font-awesome
       dejavu_fonts
-      fira
-      fira-code
-      fira-code-symbols
+      noto-fonts-emoji
+      (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
       source-code-pro
       helvetica-neue-lt-std
       ubuntu_font_family
@@ -333,7 +332,7 @@ in {
         "diffEditor.ignoreTrimWhitespace" = false;
         "editor.acceptSuggestionOnEnter" = "off";
         "editor.bracketPairColorization.enabled" = false;
-        "editor.fontFamily" = "'Droid Sans Mono', 'monospace', monospace, 'Font Awesome 6 Free',  'Font Awesome 6 Free Solid',  'Font Awesome 6 Free Brands'";
+        "editor.fontFamily" = "'Droid Sans Mono', 'monospace', monospace, 'Font Awesome 6 Free', 'Font Awesome 6 Brands', 'FiraCode Nerd Font'";
         "editor.formatOnPaste" = true;
         "editor.formatOnSave" = true;
         "editor.inlineSuggest.enabled" = true;
@@ -447,6 +446,20 @@ in {
       enable = true;
       settings = {
         selection.save_to_clipboard = true;
+      };
+    };
+
+    programs.bash = {
+      enable = true;
+    };
+
+    programs.starship = {
+      enable = true;
+      enableBashIntegration = true;
+      settings = {
+        golang = {
+          symbol = "[  ](regular)";
+        };
       };
     };
 
