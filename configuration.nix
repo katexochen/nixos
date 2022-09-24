@@ -149,11 +149,14 @@ in {
       kubectl
       terraform
 
-      # CLI Basics
+      # CLI
       curl
+      exa
+      fd
       file
       htop
       jq
+      ripgrep
       wget
       yq
 
