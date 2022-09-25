@@ -461,9 +461,18 @@ in {
 
     programs.bash = {
       enable = true;
-
+      historyIgnore = [
+        "cd"
+        "exit"
+        "ls"
+        "shutdown"
+      ];
+      sessionVariables = {
+        EDITOR = "nano";
+      };
       shellAliases = {
         discord = "chromium --app=\"https://discord.com/login\" > /dev/null 2>&1 &";
+        ls = "exa --git -L 3";
       };
     };
 
