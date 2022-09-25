@@ -129,7 +129,6 @@ in {
     fonts.fontconfig.enable = true;
 
     home.packages = with pkgs; [
-      discord
       gh
       go_1_18
       nixpkgs-fmt
@@ -276,6 +275,15 @@ in {
           };
         };
       };
+    };
+
+    programs.chromium = {
+      enable = true;
+      commandLineArgs = [
+        "--enable-features=UseOzonePlatform"
+        "--ozone-platform=wayland"
+        "--enable-features=WebRTCPipeWireCapturer"
+      ];
     };
 
     programs.vscode = {
@@ -454,6 +462,10 @@ in {
 
     programs.bash = {
       enable = true;
+
+      shellAliases = {
+        discord = "chromium --app=\"https://discord.com/login\" > /dev/null 2>&1 &";
+      };
     };
 
     programs.starship = {
