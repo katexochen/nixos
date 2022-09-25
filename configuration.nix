@@ -28,7 +28,7 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_18;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Pick only one of the below networking options.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
