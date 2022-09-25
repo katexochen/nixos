@@ -423,7 +423,7 @@ in {
       systemdIntegration = true;
       config = {
         terminal = "${pkgs.alacritty}/bin/alacritty";
-        menu = "${pkgs.rofi}/bin/rofi -show run -show-icons -pid";
+        menu = "${pkgs.rofi}/bin/rofi -show drun -show-icons -pid";
         bars = [{command = "${pkgs.waybar}/bin/waybar";}];
         modifier = "Mod4";
         input = {
