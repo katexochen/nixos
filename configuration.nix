@@ -26,6 +26,12 @@ in {
     configurationLimit = 30;
   };
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.luks.devices = {
+    crypted = {
+      device = "/dev/disk/by-label/crypted";
+      preLVM = true;
+    };
+  };
 
   # Use latest kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
