@@ -299,11 +299,11 @@ in {
           # bbenoist.nix
           # brettm12345.nixfmt-vscode
           # davidanson.vscode-markdownlint
+          # github.copilot
           # github.github-vscode-theme
           # github.vscode-pull-request-github
           eamodio.gitlens
           foxundermoon.shell-format
-          github.copilot
           golang.go
           hashicorp.terraform
           james-yu.latex-workshop
@@ -340,6 +340,12 @@ in {
             publisher = "quicktype";
             version = "12.0.46";
             sha256 = "sha256-NTZ0BujnA+COg5txOLXSZSp8TPD1kZNfZPjnvZUL9lc=";
+          }
+          {
+            name = "copilot";
+            publisher = "GitHub";
+            version = "1.49.6911";
+            sha256 = "sha256-1wuUFvlet+BtXQtTXZbigfqh9hsAA4Yqr0yCA8CVw5o=";
           }
         ];
       userSettings = {
@@ -638,6 +644,9 @@ in {
       gtkUsePortal = true;
     };
   };
+
+  # Needed to store VS Code auth tokens.
+  services.gnome.gnome-keyring.enable = true;
 
   # Allow swaylock to unlock the computer for us
   security.pam.services.swaylock = {
