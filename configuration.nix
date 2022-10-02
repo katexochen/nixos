@@ -156,6 +156,7 @@ in {
       terraform
 
       # CLI
+      bat
       curl
       exa
       fd
@@ -494,7 +495,9 @@ in {
         EDITOR = "nano";
       };
       shellAliases = {
+        cat = "bat -pp";
         discord = "chromium --app=\"https://discord.com/login\" > /dev/null 2>&1 &";
+        k = "kubectl";
         ls = "exa --git -L 3";
       };
     };
