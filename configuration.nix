@@ -163,6 +163,7 @@ in {
       file
       htop
       jq
+      killall
       ripgrep
       wget
       yq
@@ -532,8 +533,8 @@ in {
           "${mod}+a" = "focus parent";
           "${mod}+Shift+a" = "focus child";
 
-          # "${mod}+Shift+space" = "floating toggle";
-          # "${mod}+space" = "focus mode_toggle";
+          "${mod}+equal" = "floating toggle";
+          "${mod}+Shift+equal" = "focus mode_toggle";
 
           "${mod}+Shift+minus" = "move scratchpad";
           "${mod}+minus" = "scratchpad show";
@@ -558,8 +559,8 @@ in {
 
         modes = {
           "system:  [r]eboot  [p]oweroff  [e]xit" = {
-            r = "exec reboot";
-            p = "exec poweroff";
+            r = "exec systemctl reboot";
+            p = "exec systemctl poweroff";
             e = "exit";
             Return = "mode default";
             Escape = "mode default";
@@ -573,6 +574,32 @@ in {
             Escape = "mode default";
           };
         };
+
+        window.commands = [
+          {
+            command = "inhibit_idle fullscreen";
+            criteria.app_id = "mpv";
+          }
+          {
+            command = "title_format \"%title :: %shell\"";
+            criteria.shell = "xwayland";
+          }
+        ];
+
+        startup = [
+          {
+            # TODO: HM next ver
+            command = let
+              lockCmd = "${pkgs.swaylock}/bin/swaylock -f -i /home/katexochen/nixos/wallpaper/pastel.png";
+            in ''
+              ${pkgs.swayidle}/bin/swayidle \
+              timeout 300 '${lockCmd}' \
+              timeout 360 'swaymsg "output * dpms off"' \
+              resume 'swaymsg "output * dpms on"' \
+              before-sleep '${lockCmd}'
+            '';
+          }
+        ];
       };
       extraSessionCommands = ''
         export SDL_VIDEODRIVER=wayland
