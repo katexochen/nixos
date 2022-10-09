@@ -136,16 +136,20 @@ in {
     fonts.fontconfig.enable = true;
 
     home.packages = with pkgs; [
-      gh
-      go_1_18
+      mpv
       nixpkgs-fmt
       spotify
       teams
-      mpv
 
       # Development
       cmake
       docker
+      gcc
+      gh
+      gnumake
+      go_1_18
+      gopls
+      gotools
 
       # Cloud
       azure-cli
@@ -165,6 +169,7 @@ in {
       jq
       killall
       ripgrep
+      unzip
       wget
       yq
 
@@ -308,9 +313,8 @@ in {
           # davidanson.vscode-markdownlint
           # github.copilot
           # github.github-vscode-theme
-          # github.vscode-pull-request-github
           eamodio.gitlens
-          foxundermoon.shell-format
+          github.vscode-pull-request-github
           golang.go
           hashicorp.terraform
           james-yu.latex-workshop
@@ -378,6 +382,7 @@ in {
         "files.trimTrailingWhitespace" = true;
         "git.autofetch" = true;
         "git.enableSmartCommit" = true;
+        "git.mergeEditor" = true;
         "gitlens.codeLens.enabled" = false;
         "gitlens.statusBar.enabled" = false;
         "go.buildTags" = "integration";
@@ -581,6 +586,10 @@ in {
             criteria.app_id = "mpv";
           }
           {
+            command = "inhibit_idle fullscreen";
+            criteria.app_id = "teams";
+          }
+          {
             command = "title_format \"%title :: %shell\"";
             criteria.shell = "xwayland";
           }
@@ -639,9 +648,12 @@ in {
       sessionVariables = {
         EDITOR = "nano";
       };
+      initExtra = ''
+        export PATH=$PATH:$(go env GOPATH)/bin
+      '';
       shellAliases = {
         cat = "bat -pp";
-        discord = "chromium --app=\"https://discord.com/login\" > /dev/null 2>&1 &";
+        discord = "swaymsg exec 'chromium --app=https://discord.com/login'";
         k = "kubectl";
         ls = "exa --git -L 3";
       };
