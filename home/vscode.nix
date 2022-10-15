@@ -134,6 +134,14 @@
         key = "numpad_subtract";
         command = "workbench.action.navigateForward";
       }
+      {
+        key = "ctrl+q";
+        command = "workbench.action.closeWindow";
+      }
+      {
+        key = "ctrl+shift+q";
+        command = "workbench.action.quit";
+      }
     ];
   };
 }
