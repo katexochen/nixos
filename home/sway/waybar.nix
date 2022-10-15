@@ -77,7 +77,7 @@
             portable = "";
             default = ["" "" ""];
           };
-          # "on-click" = "pavucontrol";
+          "on-click" = "${pkgs.pavucontrol}/bin/pavucontrol";
         };
 
         "sway/window" = {

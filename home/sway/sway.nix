@@ -154,6 +154,14 @@
           command = "title_format \"%title :: %shell\"";
           criteria.shell = "xwayland";
         }
+        {
+          criteria.app_id = "pavucontrol";
+          command = "floating enable";
+        }
+        {
+          criteria.app_id = "pavucontrol";
+          command = "resize set 800 600";
+        }
       ];
 
       startup = [

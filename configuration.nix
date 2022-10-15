@@ -150,6 +150,7 @@ in {
     home.packages = with pkgs; [
       mpv
       nixpkgs-fmt
+      pavucontrol
       spotify
       teams
 
