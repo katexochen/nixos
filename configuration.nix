@@ -39,6 +39,9 @@ in {
   # Pick only one of the below networking options.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   networking.hostName = "nixos"; # Define your hostname.
+  networking.extraHosts = ''
+    127.0.0.1    license.confidential.cloud
+  '';
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
