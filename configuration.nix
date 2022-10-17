@@ -165,6 +165,7 @@ in {
       gotools
 
       # Cloud
+      awscli2
       azure-cli
       azure-storage-azcopy
       google-cloud-sdk
