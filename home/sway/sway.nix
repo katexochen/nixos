@@ -112,6 +112,7 @@
         # Shortcuts for applications
         "${mod}+c" = "exec ${pkgs.rofi}/bin/rofi -show calc -modi calc -no-show-mathc -no-sort";
         "${mod}+p" = "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g- screenshot-$(date +%Y%m%d-%H%M%S).png";
+        "${mod}+Shift+p" = "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g- - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
         "${mod}+i" = "exec ${pkgs.mako}/bin/makoctl dismiss";
         "${mod}+Shift+i" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
         "${mod}+l" = "exec ${pkgs.swaylock}/bin/swaylock -i /home/katexochen/nixos/wallpaper/pastel.png";
