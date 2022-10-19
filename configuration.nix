@@ -200,6 +200,7 @@ in {
       swaylock
       swayidle
       xwayland
+      xdg-utils
       kanshi
       grim
       slurp
