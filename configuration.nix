@@ -255,6 +255,9 @@ in {
         golang = {
           symbol = "[  ](regular)";
         };
+        aws.disabled = true;
+        azure.disabled = true;
+        gcloud.disabled = true;
       };
     };
 
