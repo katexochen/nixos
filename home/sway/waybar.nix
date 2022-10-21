@@ -19,7 +19,8 @@
         modules-right = [
           "tray"
           "pulseaudio"
-          "network"
+          "network#wifi"
+          "network#speed"
           "cpu"
           "memory"
           "sway/language"
@@ -51,14 +52,17 @@
           };
         };
 
-        "network" = {
+        "network#speed" = {
           interval = 2;
-          format-wifi = "{essid} ({signalStrength}%) ";
-          format-ethernet = "{ipaddr}/{cidr} ";
           tooltip-format = "{ifname} via {gwaddr} ";
-          format-linked = "{ifname} (No IP) ";
-          format-disconnected = "Disconnected ⚠";
-          format-alt = " {bandwidthDownBytes}  {bandwidthUpBytes}";
+          format = " {bandwidthDownBytes}  {bandwidthUpBytes}";
+        };
+
+        "network#wifi" = {
+          interval = 10;
+          format-wifi = "{essid} ({signalStrength}%) ";
+          format = "";
+          tooltip = false;
         };
 
         "pulseaudio" = {
