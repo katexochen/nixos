@@ -131,6 +131,9 @@ in {
       ./home/chromium.nix
       ./home/git.nix
       ./home/vscode.nix
+      ./home/teams.nix
+      ./home/discord.nix
+      ./home/spotify.nix
       ./home/sway/sway.nix
       ./home/sway/waybar.nix
       ./home/sway/mako.nix
@@ -151,8 +154,6 @@ in {
       mpv
       nixpkgs-fmt
       pavucontrol
-      spotify
-      teams
 
       # Development
       cmake
@@ -242,7 +243,6 @@ in {
       '';
       shellAliases = {
         cat = "bat -pp";
-        discord = "swaymsg exec 'chromium --app=https://discord.com/login'";
         k = "kubectl";
         ls = "exa --git -L 3";
       };
