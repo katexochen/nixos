@@ -12,6 +12,7 @@ in {
   imports = [
     ./hardware-configuration.nix
     (import "${home-manager}/nixos")
+    ./home/sway/greetd.nix
   ];
 
   nix.nixPath = [
