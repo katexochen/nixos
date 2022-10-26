@@ -33,6 +33,7 @@ in {
       preLVM = true;
     };
   };
+  boot.supportedFilesystems = ["ntfs"];
 
   # Use latest kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -88,6 +89,8 @@ in {
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
 
   services.pipewire = {
     enable = true;
@@ -135,10 +138,9 @@ in {
       ./home/teams.nix
       ./home/discord.nix
       ./home/spotify.nix
-      ./home/sway/sway.nix
-      ./home/sway/waybar.nix
-      ./home/sway/mako.nix
+      ./home/sway
       ./home/k9s.nix
+      ./home/shell
     ];
 
     home.stateVersion = "22.05";
@@ -210,65 +212,6 @@ in {
       wf-recorder
       pamixer
     ];
-
-    programs.alacritty = {
-      enable = true;
-      settings = {
-        selection.save_to_clipboard = true;
-        window = {
-          padding = {
-            x = 20;
-            y = 20;
-          };
-          opacity = 0.8;
-        };
-        font = {
-          size = 12;
-        };
-      };
-    };
-
-    programs.bash = {
-      enable = true;
-      historyIgnore = [
-        "cd"
-        "exit"
-        "ls"
-        "shutdown"
-      ];
-      sessionVariables = {
-        EDITOR = "nano";
-      };
-      initExtra = ''
-        export PATH=$PATH:$(go env GOPATH)/bin
-      '';
-      shellAliases = {
-        cat = "bat -pp";
-        k = "kubectl";
-        ls = "exa --git -L 3";
-      };
-    };
-
-    programs.starship = {
-      enable = true;
-      enableBashIntegration = true;
-      settings = {
-        golang = {
-          symbol = "[  ](regular)";
-        };
-        aws.disabled = true;
-        azure.disabled = true;
-        gcloud.disabled = true;
-      };
-    };
-
-    programs.rofi = {
-      enable = true;
-      package = pkgs.rofi-wayland;
-      plugins = with pkgs; [
-        rofi-calc
-      ];
-    };
   };
 
   # Hardware Support for Wayland Sway
