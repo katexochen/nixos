@@ -7,7 +7,7 @@
   lib,
   ...
 }: let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
 in {
   imports = [
     ./hardware-configuration.nix
@@ -285,7 +285,6 @@ in {
       enable = true;
       wlr.enable = true;
       extraPortals = with pkgs; [xdg-desktop-portal-gtk];
-      gtkUsePortal = true;
     };
   };
 
@@ -300,8 +299,10 @@ in {
   # Automatic updates
   system.autoUpgrade = {
     #   enable = true;
-    channel = "https://nixos.org/channels/nixos-22.05";
+    channel = "https://nixos.org/channels/nixos-unstable";
   };
+
+  nix.settings.experimental-features = "nix-command flakes";
 
   # Automatic garbage collection
   nix.gc = {
