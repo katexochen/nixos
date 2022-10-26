@@ -138,6 +138,7 @@ in {
       ./home/sway/sway.nix
       ./home/sway/waybar.nix
       ./home/sway/mako.nix
+      ./home/k9s.nix
     ];
 
     home.stateVersion = "22.05";
@@ -171,7 +172,6 @@ in {
       azure-cli
       azure-storage-azcopy
       google-cloud-sdk
-      k9s
       kubectl
       terraform
 
