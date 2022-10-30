@@ -144,16 +144,12 @@
 
       window.commands = [
         {
+          criteria.class = ".*";
           command = "inhibit_idle fullscreen";
-          criteria.app_id = "mpv";
         }
         {
-          command = "inhibit_idle fullscreen";
-          criteria.app_id = "teams";
-        }
-        {
-          command = "title_format \"%title :: %shell\"";
           criteria.shell = "xwayland";
+          command = "title_format \"%title :: %shell\"";
         }
         {
           criteria.app_id = "pavucontrol";
@@ -162,6 +158,13 @@
         {
           criteria.app_id = "pavucontrol";
           command = "resize set 800 600";
+        }
+        {
+          # Chromium inhibits sway shortcuts for some reason when using application
+          # mode (--app=), this fixes that.
+          # See: https://www.reddit.com/r/swaywm/comments/vkgfza
+          criteria.app_id = "^chrome-.*-.*$";
+          command = "shortcuts_inhibitor disable";
         }
       ];
 
