@@ -101,6 +101,7 @@
         };
       };
     };
-    style = /home/katexochen/nixos/waybar-style.css;
   };
+
+  xdg.configFile."waybar/style.css".source = ./waybar-style.css;
 }

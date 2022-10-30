@@ -19,6 +19,13 @@ window#waybar.hidden {
 	background: transparent;
 }
 
+/* fix for font color issue, see https: //github.com/Alexays/Waybar/issues/1741#issuecomment-1288336263 */
+label:disabled,
+button:disabled {
+	color: inherit;
+	background-image: none;
+}
+
 #mode,
 #window,
 #workspaces button {
