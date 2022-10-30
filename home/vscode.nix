@@ -50,8 +50,8 @@
         {
           name = "copilot";
           publisher = "GitHub";
-          version = "1.49.6911";
-          sha256 = "sha256-1wuUFvlet+BtXQtTXZbigfqh9hsAA4Yqr0yCA8CVw5o=";
+          version = "1.56.7152";
+          sha256 = "00v8q0w0wx0ddynjckaqy22rddp744z5d2a1sc2j7zsqqm6jyqgm";
         }
       ];
     userSettings = {
