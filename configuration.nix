@@ -165,7 +165,7 @@ in {
       gcc
       gh
       gnumake
-      go_1_18
+      go
       gopls
       gotools
 
@@ -185,7 +185,6 @@ in {
       file
       htop
       jq
-      killall
       ripgrep
       unzip
       wget

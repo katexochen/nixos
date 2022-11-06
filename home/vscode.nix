@@ -16,6 +16,7 @@
         jnoortheen.nix-ide
         kamadorueda.alejandra
         ms-vscode.cpptools
+        ms-vsliveshare.vsliveshare
         redhat.vscode-yaml
         streetsidesoftware.code-spell-checker
         timonwong.shellcheck
