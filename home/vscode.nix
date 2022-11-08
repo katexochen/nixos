@@ -120,6 +120,13 @@
           "strings" = true;
         };
       };
+
+      "github.copilot.enable" = {
+        "*" = true;
+        "yaml" = true;
+        "plaintext" = false;
+        "markdown" = false;
+      };
     };
     keybindings = [
       {
