@@ -1,13 +1,6 @@
 {pkgs, ...}: {
   programs.k9s = {
     enable = true;
-    settings = {
-      k9s = {
-        logger = {
-          textWrap = true;
-        };
-      };
-    };
     skin = {
       # https://github.com/derailed/k9s/blob/master/skins/transparent.yml
       # Preserve your terminal session background color

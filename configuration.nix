@@ -160,7 +160,6 @@ in {
       pavucontrol
 
       # Development
-      cmake
       docker
       gcc
       gh
