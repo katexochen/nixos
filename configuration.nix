@@ -37,6 +37,13 @@ in {
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.extraModulePackages = [config.boot.kernelPackages.v4l2loopback];
+  boot.kernelModules = ["v4l2loopback"];
+  boot.extraModprobeConfig = ''
+    options v4l2loopback exclusive_caps=1
+  '';
+
+  programs.adb.enable = true;
 
   # Pick only one of the below networking options.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -121,6 +128,7 @@ in {
       "lp" # Enable use of printers.
       "scanner" # Enable use of scanners.
       "docker" # Access to the docker socket.
+      "adbusers"
     ];
   };
 
@@ -141,6 +149,7 @@ in {
       ./home/sway
       ./home/k9s.nix
       ./home/shell
+      ./home/droidcam.nix
     ];
 
     home.stateVersion = "22.05";
