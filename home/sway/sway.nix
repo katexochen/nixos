@@ -122,6 +122,7 @@ in {
 
         # XF86 keys
         "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer -t";
+        "XF86AudioMicMute" = "exec ${pkgs.pamixer}/bin/pamixer --default-source -t";
         "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer -i 5";
         "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer -d 5";
         "XF86Calculator" = "exec ${finalPkgBin "rofi"} -show calc -modi calc -no-show-mathc -no-sort";
