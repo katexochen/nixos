@@ -59,7 +59,11 @@ in {
     };
 
     aliases = {
-      sl = "log --pretty=format:'%Cred%h  %Creset%<(40)%s %Cgreen%<(12)%cr %Cblue%an%Creset%C(yellow)%d%Creset' --abbrev-commit";
+      sl = "log --pretty=format:'%Cred%h  %Creset%<(50,trunc)%s %Cgreen%<(12,trunc)%cr %Cblue%an%Creset%C(yellow)%d%Creset' --abbrev-commit";
+      b = "rev-parse --abbrev-ref HEAD";
+      bs-no-remote = "!git branch --format '%(refname:short) %(upstream)' | awk '{if (!$2) print $1;}'";
+      bs-mine = "!git branch --sort=-committerdate --format='%(authorname) %09 %(refname:short)' | grep Paul | cut -f2";
+      bs-wip = "log --all --grep='wip' --first-parent --date-order --author='Paul Meyer' --max-count=15 --pretty='format: %d    %cr    %C(bold)%s'";
     };
 
     # TODO: HM next ver
