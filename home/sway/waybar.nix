@@ -21,6 +21,7 @@
           "pulseaudio"
           "network#wifi"
           "network#speed"
+          "battery"
           "cpu"
           "memory"
           "sway/language"
@@ -82,6 +83,16 @@
             default = ["" "" ""];
           };
           "on-click" = "${pkgs.pavucontrol}/bin/pavucontrol";
+        };
+
+        "battery" = {
+          interval = 60;
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+          format = "{capacity}% {icon}";
+          format-icons = ["" "" "" "" ""];
         };
 
         "sway/window" = {

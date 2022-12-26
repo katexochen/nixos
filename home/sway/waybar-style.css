@@ -69,7 +69,7 @@ button:disabled {
 }
 
 #battery.charging {
-	background-color: rgba(76, 255, 73, 0.53);
+	background-color: rgba(108, 252, 106, 0.53);
 }
 
 #battery.critical:not(.charging),
