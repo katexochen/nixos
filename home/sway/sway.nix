@@ -147,6 +147,10 @@ in {
 
       window.commands = [
         {
+          criteria.app_id = ".*-floating";
+          command = "floating enable";
+        }
+        {
           criteria.class = ".*";
           command = "inhibit_idle fullscreen";
         }

@@ -222,11 +222,13 @@ in {
   };
 
   # Hardware Support for Wayland Sway
-  hardware = {
-    opengl = {
-      enable = true;
-      driSupport = true;
-    };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+  };
+
+  hardware.bluetooth = {
+    enable = true;
   };
 
   services.dbus.enable = true;

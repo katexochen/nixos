@@ -10,15 +10,15 @@
 
         modules-left = [
           "sway/workspaces"
-          "sway/mode"
-          "custom/media"
+          "sway/window"
         ];
         modules-center = [
-          "sway/window"
+          "sway/mode"
         ];
         modules-right = [
           "tray"
           "pulseaudio"
+          "bluetooth"
           "network#wifi"
           "network#speed"
           "battery"
@@ -64,6 +64,18 @@
           format-wifi = "{essid} ({signalStrength}%) ";
           format = "";
           tooltip = false;
+        };
+
+        "bluetooth" = {
+          format = "";
+          format-off = "";
+          format-disabled = "";
+          format-connected = " {num_connections}";
+          tooltip-format = "{controller_alias}\t{controller_address}";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+          on-click-right = "bash -c \"if rfkill list bluetooth|grep -q 'yes$';then rfkill unblock bluetooth;else rfkill block bluetooth;fi\"";
+          on-click = "swaymsg exec \"alacritty --class Alacritty-floating -e ${pkgs.bluetuith}/bin/bluetuith\"";
         };
 
         "pulseaudio" = {

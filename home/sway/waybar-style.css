@@ -38,6 +38,7 @@ button:disabled {
 
 #clock,
 #battery,
+#bluetooth,
 #cpu,
 #memory,
 #disk,
@@ -53,9 +54,15 @@ button:disabled {
 	padding: 0px 10px;
 	border-radius: 0px 0px 10px 10px;
 	background-color: rgba(245, 245, 245, 0.4);
-	/* background-color: rgba(149, 73, 255, 0.323); */
-	/* background-image: linear-gradient(to right, #8360c3, #2ebf91); */
-	/* background-attachment: fixed; */
+}
+
+#network {
+	min-width: 180px;
+}
+
+#bluetooth {
+	/* Use Nerd Font for bluetooth icons */
+	font-family: "DejaVu Sans", "FiraCode Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands";
 }
 
 /* If workspaces is the leftmost module, omit left margin */
