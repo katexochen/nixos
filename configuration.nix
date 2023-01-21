@@ -163,6 +163,12 @@ in {
 
     fonts.fontconfig.enable = true;
 
+    xdg.configFile."nixpkgs/config.nix".text = ''
+      {
+        allowUnfree = true;
+      }
+    '';
+
     home.packages = with pkgs; [
       mpv
       nixpkgs-fmt
