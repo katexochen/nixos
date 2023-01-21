@@ -175,6 +175,7 @@ in {
       pavucontrol
 
       # Development
+      dive
       docker
       gcc
       gh
@@ -182,6 +183,7 @@ in {
       go
       gopls
       gotools
+      shellcheck
 
       # Cloud
       awscli2
@@ -202,7 +204,7 @@ in {
       ripgrep
       unzip
       wget
-      yq
+      yq-go
 
       # Fonts
       font-awesome
