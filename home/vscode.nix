@@ -29,8 +29,8 @@
         {
           name = "theme-bluloco-light";
           publisher = "uloco";
-          version = "3.7.2";
-          sha256 = "sha256-3Od6NXmu/s6vx4KL0Hcmw/ZZ0eXLIov7Dx//3tHJ6Pw=";
+          version = "3.7.3";
+          sha256 = "170cv76chyjl3w20bbwvx9spc10sk3c9ha2l8kcr0lyrmm97bvpv";
         }
         {
           name = "vscode-emacs-minimum";
@@ -53,8 +53,8 @@
         {
           name = "copilot";
           publisher = "GitHub";
-          version = "1.56.7152";
-          sha256 = "00v8q0w0wx0ddynjckaqy22rddp744z5d2a1sc2j7zsqqm6jyqgm";
+          version = "1.70.8099";
+          sha256 = "0sqbj2cz40zzah9ggx2zyirnxylfp2w8lqmv0r2kdm02slrlnfgs";
         }
       ];
     userSettings = {
