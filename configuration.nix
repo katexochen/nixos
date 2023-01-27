@@ -175,6 +175,7 @@ in {
       pavucontrol
 
       # Development
+      bazel-buildtools
       dive
       docker
       gcc
