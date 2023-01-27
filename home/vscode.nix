@@ -30,7 +30,7 @@
           name = "theme-bluloco-light";
           publisher = "uloco";
           version = "3.7.3";
-          sha256 = "170cv76chyjl3w20bbwvx9spc10sk3c9ha2l8kcr0lyrmm97bvpv";
+          sha256 = "1il557x7c51ic9bjq7z431105m582kig9v2vpy3k2z3xhrbb0211";
         }
         {
           name = "vscode-emacs-minimum";
@@ -55,6 +55,12 @@
           publisher = "GitHub";
           version = "1.70.8099";
           sha256 = "0sqbj2cz40zzah9ggx2zyirnxylfp2w8lqmv0r2kdm02slrlnfgs";
+        }
+        {
+          name = "vscode-bazel";
+          publisher = "bazelbuild";
+          version = "0.7.0";
+          sha256 = "05wvih09184bsp4rv2m55z0sasra2qrvch5m3bkbrjq7rcqgibgx";
         }
       ];
     userSettings = {
