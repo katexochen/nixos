@@ -226,6 +226,8 @@ in {
       slurp
       wl-clipboard
       wf-recorder
+      wl-mirror
+      wdisplays
       pamixer
     ];
   };
