@@ -1,5 +1,5 @@
 {pgks, ...}: {
-  programs.mako = {
+  services.mako = {
     # test with notify-send.
     enable = true;
     defaultTimeout = 4500;
