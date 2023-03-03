@@ -177,21 +177,6 @@ in {
           command = "shortcuts_inhibitor disable";
         }
       ];
-
-      startup = [
-        {
-          # TODO: HM next ver
-          command = let
-            lockCmd = "${pkgs.swaylock}/bin/swaylock -f -i /home/katexochen/nixos/wallpaper/pastel.png";
-          in ''
-            ${pkgs.swayidle}/bin/swayidle \
-            timeout 300 '${lockCmd}' \
-            timeout 360 'swaymsg "output * dpms off"' \
-            resume 'swaymsg "output * dpms on"' \
-            before-sleep '${lockCmd}'
-          '';
-        }
-      ];
     };
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland

@@ -218,7 +218,6 @@ in {
 
       # Sway
       swaylock
-      swayidle
       xwayland
       xdg-utils
       kanshi
