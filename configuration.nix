@@ -225,10 +225,10 @@ in {
       grim
       slurp
       wl-clipboard
-      wf-recorder
       wl-mirror
       wdisplays
       pamixer
+      libnotify
     ];
   };
 
