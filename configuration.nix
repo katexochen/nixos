@@ -176,6 +176,7 @@ in {
 
       # Development
       bazel-buildtools
+      crane
       dive
       docker
       gcc
