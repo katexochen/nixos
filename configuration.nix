@@ -192,6 +192,7 @@ in {
       azure-storage-azcopy
       google-cloud-sdk
       kubectl
+      openstackclient
       terraform
 
       # CLI
