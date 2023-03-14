@@ -37,17 +37,12 @@ in {
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.extraModulePackages = [config.boot.kernelPackages.v4l2loopback];
-  boot.kernelModules = ["v4l2loopback"];
-  boot.extraModprobeConfig = ''
-    options v4l2loopback exclusive_caps=1
-  '';
 
   programs.adb.enable = true;
 
   # Pick only one of the below networking options.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nt14"; # Define your hostname.
   networking.extraHosts = ''
     127.0.0.1    license.confidential.cloud
   '';
@@ -129,6 +124,7 @@ in {
       "scanner" # Enable use of scanners.
       "docker" # Access to the docker socket.
       "adbusers"
+      "eduroam"
     ];
   };
 

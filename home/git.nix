@@ -1,9 +1,9 @@
 {pkgs, ...}: let
   userName = "Paul Meyer";
   userEmail = "49727155+katexochen@users.noreply.github.com";
-  siginigKeyPath = "/home/katexochen/.ssh/gitsign.pub";
+  #  siginigKeyPath = "/home/katexochen/.ssh/gitsign.pub";
 in {
-  home.file.".ssh/allowed_signers".text = "* ${builtins.readFile siginigKeyPath}";
+  #  home.file.".ssh/allowed_signers".text = "* ${builtins.readFile siginigKeyPath}";
 
   home.file.".config/git/hooks/commit-msg" = {
     executable = true;
@@ -42,17 +42,17 @@ in {
     userName = "${userName}";
     userEmail = "${userEmail}";
 
-    signing = {
-      signByDefault = true;
-      key = "";
-    };
+    #   signing = {
+    #    signByDefault = true;
+    #   key = "";
+    #   };
 
     extraConfig = {
-      commit.gpgsign = true;
-      tag.gpgsign = true;
-      gpg.format = "ssh";
-      gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
-      user.signingkey = "${siginigKeyPath}";
+      #    commit.gpgsign = true;
+      #   tag.gpgsign = true;
+      #   gpg.format = "ssh";
+      #   gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+      #   user.signingkey = "${siginigKeyPath}";
       core.hooksPath = "~/.config/git/hooks";
 
       init.defaultBranch = "main";
