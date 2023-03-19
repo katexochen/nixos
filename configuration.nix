@@ -2,23 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
+  inputs,
   config,
   pkgs,
   lib,
   ...
-}: let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-in {
+}: {
   imports = [
     ./hardware-configuration.nix
-    (import "${home-manager}/nixos")
+    inputs.home-manager.nixosModules.home-manager
     ./home/sway/greetd.nix
-  ];
-
-  nix.nixPath = [
-    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-    "nixos-config=/home/katexochen/nixos/configuration.nix"
-    "/nix/var/nix/profiles/per-user/root/channels"
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -80,12 +73,12 @@ in {
     us-custom = {
       description = "US custom layout";
       languages = ["eng"];
-      symbolsFile = /home/katexochen/nixos/symbols/us-custom;
+      symbolsFile = pkgs.copyPathToStore ./symbols/us-custom;
     };
     de-custom = {
       description = "DE custom layout";
       languages = ["ger"];
-      symbolsFile = /home/katexochen/nixos/symbols/de-custom;
+      symbolsFile = pkgs.copyPathToStore ./symbols/de-custom;
     };
   };
 
@@ -256,12 +249,6 @@ in {
     text = "auth include login";
   };
 
-  # Automatic updates
-  system.autoUpgrade = {
-    #   enable = true;
-    channel = "https://nixos.org/channels/nixos-unstable";
-  };
-
   nix.settings.experimental-features = "nix-command flakes";
 
   # Automatic garbage collection
@@ -271,18 +258,10 @@ in {
     options = "--delete-older-than 20d";
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
+  # system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
