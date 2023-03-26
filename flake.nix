@@ -37,6 +37,14 @@
         ];
         specialArgs = {inherit inputs outputs;};
       };
+
+      nt5 = lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./hosts/nt5/configuration.nix
+        ];
+        specialArgs = {inherit inputs outputs;};
+      };
     };
   };
 }

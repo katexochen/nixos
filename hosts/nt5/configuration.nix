@@ -2,38 +2,20 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
+  inputs,
   config,
   pkgs,
   lib,
   ...
-}: let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-in {
+}: {
   imports = [
+    inputs.home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
-    (import "${home-manager}/nixos")
-    ./home/sway/greetd.nix
-  ];
 
-  nix.nixPath = [
-    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-    "nixos-config=/home/katexochen/nixos/configuration.nix"
-    "/nix/var/nix/profiles/per-user/root/channels"
+    ../../modules/nix
+    ../../modules/system
+    ../../home/sway/greetd.nix
   ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot = {
-    enable = true;
-    configurationLimit = 30;
-  };
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices = {
-    crypted = {
-      device = "/dev/disk/by-label/crypted";
-      preLVM = true;
-    };
-  };
-  boot.supportedFilesystems = ["ntfs"];
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -47,7 +29,7 @@ in {
 
   # Pick only one of the below networking options.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nt5"; # Define your hostname.
   networking.extraHosts = ''
     127.0.0.1    license.confidential.cloud
   '';
@@ -85,12 +67,12 @@ in {
     us-custom = {
       description = "US custom layout";
       languages = ["eng"];
-      symbolsFile = /home/katexochen/nixos/symbols/us-custom;
+      symbolsFile = pkgs.copyPathToStore ../../symbols/us-custom;
     };
     de-custom = {
       description = "DE custom layout";
       languages = ["ger"];
-      symbolsFile = /home/katexochen/nixos/symbols/de-custom;
+      symbolsFile = pkgs.copyPathToStore ../../symbols/de-custom;
     };
   };
 
@@ -113,9 +95,6 @@ in {
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  # Enable unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.katexochen = {
@@ -140,16 +119,7 @@ in {
 
   home-manager.users.katexochen = {pkgs, ...}: {
     imports = [
-      ./home/chromium.nix
-      ./home/git.nix
-      ./home/vscode.nix
-      ./home/teams.nix
-      ./home/discord.nix
-      ./home/spotify.nix
-      ./home/sway
-      ./home/k9s.nix
-      ./home/shell
-      ./home/droidcam.nix
+      ../../home
     ];
 
     home.stateVersion = "22.05";
@@ -161,82 +131,31 @@ in {
       GOPRIVATE = "github.com/edgelesssys";
     };
 
-    fonts.fontconfig.enable = true;
-
     xdg.configFile."nixpkgs/config.nix".text = ''
       {
         allowUnfree = true;
       }
     '';
-
-    home.packages = with pkgs; [
-      mpv
-      nixpkgs-fmt
-      pavucontrol
-
-      # Development
-      bazel-buildtools
-      crane
-      dive
-      docker
-      gcc
-      gh
-      gnumake
-      go
-      gopls
-      gotools
-      shellcheck
-
-      # Cloud
-      awscli2
-      azure-cli
-      azure-storage-azcopy
-      google-cloud-sdk
-      kubectl
-      openstackclient
-      terraform
-
-      # CLI
-      bat
-      curl
-      exa
-      fd
-      file
-      htop
-      jq
-      ripgrep
-      unzip
-      wget
-      yq-go
-
-      # Fonts
-      font-awesome
-      dejavu_fonts
-      noto-fonts-emoji
-      (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
-      source-code-pro
-      helvetica-neue-lt-std
-      ubuntu_font_family
-
-      # Sway
-      swaylock
-      xwayland
-      xdg-utils
-      kanshi
-      grim
-      slurp
-      wl-clipboard
-      wl-mirror
-      wdisplays
-      pamixer
-      libnotify
-    ];
   };
 
   # Hardware Support for Wayland Sway
   hardware.opengl = {
     enable = true;
     driSupport = true;
+  };
+
+  fonts.fontconfig = {
+    enable = true;
+    antialias = true;
+    hinting = {
+      enable = true;
+      style = "hintfull"; # no difference
+      autohint = true; # no difference
+    };
+    subpixel = {
+      rgba = "rgb";
+      lcdfilter = "default"; # no difference
+    };
   };
 
   hardware.bluetooth = {
@@ -259,40 +178,4 @@ in {
   security.pam.services.swaylock = {
     text = "auth include login";
   };
-
-  # Automatic updates
-  system.autoUpgrade = {
-    #   enable = true;
-    channel = "https://nixos.org/channels/nixos-unstable";
-  };
-
-  nix.settings.experimental-features = "nix-command flakes";
-
-  # Automatic garbage collection
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 20d";
-  };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.05"; # Did you read the comment?
 }
