@@ -5,7 +5,6 @@
     ./system
   ];
 
-  # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   programs.adb.enable = true;

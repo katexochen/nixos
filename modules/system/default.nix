@@ -23,7 +23,7 @@
     supportedFilesystems = ["ntfs"];
 
     # tmpOnTmpfs = true;
-    # cleanTmpDir = true;
+    cleanTmpDir = true;
   };
 
   fileSystems."/" = {
