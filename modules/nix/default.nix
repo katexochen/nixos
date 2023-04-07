@@ -1,5 +1,11 @@
-{config, ...}: {
+{
+  config,
+  inputs,
+  ...
+}: {
   nix = {
+    registry.nixpkgs.flake = inputs.nixpkgs;
+
     gc = {
       automatic = true;
       dates = "weekly";
