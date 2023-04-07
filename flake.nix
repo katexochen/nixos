@@ -45,6 +45,13 @@
         ];
         specialArgs = {inherit inputs outputs;};
       };
+      nostro = lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./hosts/nostro/configuration.nix
+        ];
+        specialArgs = {inherit inputs outputs;};
+      };
     };
   };
 }
