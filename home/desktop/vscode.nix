@@ -143,6 +143,11 @@
         when = "terminal.active";
       }
       {
+        key = "ctrl+0";
+        command = "workbench.action.focusActiveEditorGroup";
+        when = "terminalFocus";
+      }
+      {
         key = "numpad_add";
         command = "workbench.action.navigateBack";
       }
