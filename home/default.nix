@@ -52,6 +52,7 @@
     unzip
     wget
     yq-go
+    zathura
 
     # Fonts
     font-awesome
