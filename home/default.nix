@@ -17,6 +17,7 @@
     mpv
     nixpkgs-fmt
     pavucontrol
+    texlive.combined.scheme-full
 
     # Development
     bazel-buildtools
