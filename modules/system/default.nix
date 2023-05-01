@@ -23,7 +23,7 @@
     supportedFilesystems = ["ntfs"];
 
     # tmpOnTmpfs = true;
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
   };
 
   fileSystems."/" = {
