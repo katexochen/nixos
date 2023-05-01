@@ -8,7 +8,6 @@
         # bbenoist.nix
         # brettm12345.nixfmt-vscode
         # davidanson.vscode-markdownlint
-        # github.copilot
         # github.github-vscode-theme
         eamodio.gitlens
         github.vscode-pull-request-github
@@ -22,6 +21,7 @@
         redhat.vscode-yaml
         streetsidesoftware.code-spell-checker
         timonwong.shellcheck
+        valentjn.vscode-ltex
         yzhang.markdown-all-in-one
         zxh404.vscode-proto3
       ]
@@ -100,7 +100,12 @@
       "gopls" = {"formatting.gofumpt" = true;};
       "java.saveActions.organizeImports" = true;
       "javascript.updateImportsOnFileMove.enabled" = "always";
+      "latex-workshop.bibtex-fields.sort.enabled" = true;
+      "latex-workshop.bibtex-format.sort.enabled" = true;
+      "latex-workshop.bibtex-format.trailingComma" = true;
       "latex-workshop.latex.recipe.default" = "lastUsed";
+      "latex-workshop.linting.chktex.enabled" = true;
+      "latex-workshop.linting.lacheck.enabled" = true;
       "latex-workshop.message.update.show" = false;
       "latex-workshop.view.pdf.viewer" = "tab";
       "liveServer.settings.donotShowInfoMsg" = true;
