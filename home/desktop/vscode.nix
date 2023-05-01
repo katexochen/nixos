@@ -53,8 +53,8 @@
         {
           name = "copilot";
           publisher = "GitHub";
-          version = "1.70.8099";
-          sha256 = "0sqbj2cz40zzah9ggx2zyirnxylfp2w8lqmv0r2kdm02slrlnfgs";
+          version = "1.84.51";
+          sha256 = "1w6ir3g1fh51k0ysa1kc1y4czij9x0iangfiw50566vnixzm7d96";
         }
         {
           name = "vscode-bazel";
