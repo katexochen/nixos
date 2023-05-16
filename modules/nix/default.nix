@@ -1,10 +1,12 @@
 {
   config,
   inputs,
+  lib,
   ...
 }: {
   nix = {
-    registry.nixpkgs.flake = inputs.nixpkgs;
+    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     gc = {
       automatic = true;
