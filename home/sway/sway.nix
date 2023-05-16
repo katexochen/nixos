@@ -118,7 +118,7 @@ in {
         "${mod}+Shift+p" = "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g- - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
         "${mod}+i" = "exec ${pkgs.mako}/bin/makoctl dismiss";
         "${mod}+Shift+i" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
-        "${mod}+l" = "exec ${pkgs.swaylock}/bin/swaylock -i /home/katexochen/nixos/wallpaper/pastel.png";
+        "${mod}+l" = "exec ${pkgs.swaylock}/bin/swaylock";
 
         # XF86 keys
         "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer -t";
