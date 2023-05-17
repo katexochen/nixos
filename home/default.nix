@@ -21,16 +21,19 @@
 
     # Development
     bazel-buildtools
+    cosign
     crane
     dive
     docker
     gcc
     gh
+    git-absorb
     gnumake
     go
     gopls
     gotools
     shellcheck
+    skopeo
 
     # Cloud
     awscli2
@@ -39,6 +42,7 @@
     (google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
     kubectl
     openstackclient
+    packer
     terraform
 
     # CLI
