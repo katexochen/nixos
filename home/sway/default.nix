@@ -7,11 +7,11 @@
     ./swayidle.nix
     ./swaylock.nix
     ./waybar.nix
+    ./kanshi.nix
   ];
 
   home.packages = with pkgs; [
     grim
-    kanshi
     libnotify
     pamixer
     slurp
