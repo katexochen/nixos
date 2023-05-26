@@ -14,6 +14,7 @@
   ];
 
   home.packages = with pkgs; [
+    diskonaut
     mpv
     nixpkgs-fmt
     pavucontrol
