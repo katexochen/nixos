@@ -6,11 +6,23 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.impermanence.nixosModule
     ./hardware-configuration.nix
     ../../modules
   ];
 
+  boot.supportedFilesystems = [ "btrfs" ];
+  hardware.enableAllFirmware = true;
+
   networking.hostName = "nostro";
+
+  my = {
+    # username = "katexochen";
+    modules = {
+      impermanence.enable = true;
+      fs.enable = false; # custom config in hardware-configuration.nix
+    };
+  };
 
   # Disable Nvidia stuff completely
   boot.extraModprobeConfig = ''

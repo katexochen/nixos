@@ -10,16 +10,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    } @ inputs:
+  outputs = { nixpkgs, ... } @ inputs:
     let
-      inherit (self) outputs;
-
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
@@ -36,7 +34,7 @@
           modules = [
             ./hosts/nt14/configuration.nix
           ];
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs; };
         };
 
         nt5 = lib.nixosSystem {
@@ -44,7 +42,7 @@
           modules = [
             ./hosts/nt5/configuration.nix
           ];
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs; };
         };
 
         nostro = lib.nixosSystem {
@@ -52,7 +50,7 @@
           modules = [
             ./hosts/nostro/configuration.nix
           ];
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { inherit inputs; };
         };
       };
 

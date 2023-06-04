@@ -3,6 +3,7 @@
     ./nix
     ./services
     ./system
+    ./impermanence
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -97,4 +98,8 @@
   security.pam.services.swaylock = {
     text = "auth include login";
   };
+
+  security.sudo.extraConfig = ''
+    Defaults lecture = never
+  '';
 }

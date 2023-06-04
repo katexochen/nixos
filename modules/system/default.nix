@@ -1,4 +1,10 @@
-_: {
+{ lib, ... }: {
+  imports = [
+    ./fs.nix
+  ];
+
+  my.modules.fs.enable = lib.mkDefault true;
+
   boot = {
     loader.systemd-boot = {
       enable = true;
@@ -6,32 +12,8 @@ _: {
     };
 
     loader.efi.canTouchEfiVariables = true;
-
-    initrd.luks.devices = {
-      crypted = {
-        device = "/dev/disk/by-label/crypted";
-        preLVM = true;
-      };
-    };
+    tmp.cleanOnBoot = true;
 
     supportedFilesystems = [ "ntfs" ];
-
-    # tmpOnTmpfs = true;
-    tmp.cleanOnBoot = true;
   };
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "ext4";
-    options = [ "noatime" ];
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
-    fsType = "vfat";
-  };
-
-  swapDevices = [
-    { device = "/dev/disk/by-label/swap"; }
-  ];
 }
