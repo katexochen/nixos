@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./shell
     ./sway
@@ -22,6 +17,7 @@
 
     # Development
     bazel-buildtools
+    cargo
     cosign
     crane
     dive
@@ -33,6 +29,8 @@
     go
     gopls
     gotools
+    rust-analyzer
+    rustc
     shellcheck
     skopeo
 
