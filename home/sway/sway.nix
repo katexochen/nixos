@@ -9,7 +9,7 @@ in {
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    systemdIntegration = true;
+    systemd.enable = true;
     config = {
       terminal = "${pkgs.alacritty}/bin/alacritty";
       menu = "${finalPkgBin "rofi"} -show drun -show-icons -pid";
