@@ -10,6 +10,7 @@
         # davidanson.vscode-markdownlint
         # github.github-vscode-theme
         eamodio.gitlens
+        github.vscode-github-actions
         github.vscode-pull-request-github
         golang.go
         hashicorp.terraform
@@ -19,6 +20,7 @@
         ms-vscode.cpptools
         ms-vsliveshare.vsliveshare
         redhat.vscode-yaml
+        rust-lang.rust-analyzer
         streetsidesoftware.code-spell-checker
         timonwong.shellcheck
         valentjn.vscode-ltex
@@ -61,6 +63,18 @@
           publisher = "bazelbuild";
           version = "0.7.0";
           sha256 = "05wvih09184bsp4rv2m55z0sasra2qrvch5m3bkbrjq7rcqgibgx";
+        }
+        {
+          name = "vscode-ansi";
+          publisher = "iliazeus";
+          version = "1.1.6";
+          sha256 = "sha256-ZPV8zd/GkXOGf6s8fz9ZPmC3i1jO0wFAqV0E67lW0do=";
+        }
+        {
+          name = "helm-intellisense";
+          publisher = "Tim-Koehler";
+          version = "0.14.3";
+          sha256 = "sha256-TcXn8n6mKEFpnP8dyv+nXBjsyfUfJNgdL9iSZwA5eo0=";
         }
       ];
     userSettings = {
@@ -110,6 +124,15 @@
       "latex-workshop.view.pdf.viewer" = "tab";
       "liveServer.settings.donotShowInfoMsg" = true;
       "liveshare.audio.joinCallBehavior" = "accept";
+      "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "${pkgs.nil}/bin/nil";
+      "nix.serverSettings" = {
+        "nil" = {
+          "formatting" = {
+            "command" = ["${pkgs.alejandra}/bin/alejandra"];
+          };
+        };
+      };
       "open-in-browser.default" = "firefox";
       "outline.showFields" = false;
       "python.languageServer" = "Pylance";
