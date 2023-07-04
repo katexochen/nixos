@@ -45,6 +45,7 @@
         ];
         specialArgs = {inherit inputs outputs;};
       };
+
       nostro = lib.nixosSystem {
         inherit system;
         modules = [
@@ -53,5 +54,7 @@
         specialArgs = {inherit inputs outputs;};
       };
     };
+
+    devShells."${system}".go = import ./shells/go.nix {inherit pkgs;};
   };
 }
