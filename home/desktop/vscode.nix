@@ -55,8 +55,8 @@
         {
           name = "copilot";
           publisher = "GitHub";
-          version = "1.84.51";
-          sha256 = "1w6ir3g1fh51k0ysa1kc1y4czij9x0iangfiw50566vnixzm7d96";
+          version = "1.96.257";
+          sha256 = "1hgj3847g3z3rh6s1kfqk0pjs7qv7li3njl6wfgzv65f6hkn27rp";
         }
         {
           name = "vscode-bazel";
@@ -75,6 +75,12 @@
           publisher = "Tim-Koehler";
           version = "0.14.3";
           sha256 = "sha256-TcXn8n6mKEFpnP8dyv+nXBjsyfUfJNgdL9iSZwA5eo0=";
+        }
+        {
+          name = "vscode-testscript";
+          publisher = "twpayne";
+          version = "0.0.3";
+          sha256 = "sha256-VP6lvdeWyqhaU0K2CffHlZGZnaIvhIPHkd+gemK8BNA=";
         }
       ];
     userSettings = {
