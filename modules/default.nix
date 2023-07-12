@@ -71,7 +71,6 @@
     antialias = true;
     hinting = {
       enable = true;
-      style = "hintfull"; # no difference
       autohint = true; # no difference
     };
     subpixel = {
