@@ -56,6 +56,7 @@ in {
       core.hooksPath = "~/.config/git/hooks";
 
       init.defaultBranch = "main";
+      push.autoSetupRemote = true;
     };
 
     aliases = {
@@ -64,6 +65,7 @@ in {
       bs-no-remote = "!git branch --format '%(refname:short) %(upstream)' | awk '{if (!$2) print $1;}'";
       bs-mine = "!git branch --sort=-committerdate --format='%(authorname) %09 %(refname:short)' | grep Paul | cut -f2";
       bs-wip = "log --all --grep='wip' --first-parent --date-order --author='Paul Meyer' --max-count=15 --pretty='format: %d    %cr    %C(bold)%s'";
+      add-fork = "!git remote add \${1%/*} https://github.com/\${1} && git fetch \${1%/*}; #"; # $1 is appended to the end, ignoring it with #
     };
 
     # TODO: HM next ver
