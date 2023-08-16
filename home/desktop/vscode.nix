@@ -16,7 +16,6 @@
         hashicorp.terraform
         james-yu.latex-workshop
         jnoortheen.nix-ide
-        kamadorueda.alejandra
         ms-vscode.cpptools
         ms-vsliveshare.vsliveshare
         redhat.vscode-yaml
@@ -131,11 +130,11 @@
       "liveServer.settings.donotShowInfoMsg" = true;
       "liveshare.audio.joinCallBehavior" = "accept";
       "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "${pkgs.nil}/bin/nil";
+      "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
       "nix.serverSettings" = {
-        "nil" = {
+        "nixd" = {
           "formatting" = {
-            "command" = ["${pkgs.alejandra}/bin/alejandra"];
+            "command" = ["${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"];
           };
         };
       };
