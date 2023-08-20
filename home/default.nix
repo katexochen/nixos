@@ -14,6 +14,7 @@
     nixpkgs-fmt
     pavucontrol
     texlive.combined.scheme-full
+    inkscape
 
     # Development
     bazel-buildtools
