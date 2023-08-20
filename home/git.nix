@@ -36,12 +36,20 @@ in
     };
 
     aliases = {
+      # Print a table like short log.
       sl = "log --pretty=format:'%Cred%h  %Creset%<(50,trunc)%s %Cgreen%<(12,trunc)%cr %Cblue%an%Creset%C(yellow)%d%Creset' --abbrev-commit";
+      # Print the name of the current branch.
       b = "rev-parse --abbrev-ref HEAD";
+      # List branches without a remote.
       bs-no-remote = "!git branch --format '%(refname:short) %(upstream)' | awk '{if (!$2) print $1;}'";
-      bs-mine = "!git branch --sort=-committerdate --format='%(authorname) %09 %(refname:short)' | grep Paul | cut -f2";
-      bs-wip = "log --all --grep='wip' --first-parent --date-order --author='Paul Meyer' --max-count=15 --pretty='format: %d    %cr    %C(bold)%s'";
+      # List my branches, sorted by last commit date.
+      bs-mine = "!git branch --sort=-committerdate --format='%(authorname) %09 %(refname:short)' | grep ${userName} | cut -f2";
+      # List my branches that contain wip commits.
+      bs-wip = "log --all --grep='wip' --first-parent --date-order --author='${userName}' --max-count=15 --pretty='format: %d    %cr    %C(bold)%s'";
+      # Add the fork of someone else as a remote.
       add-fork = "!git remote add \${1%/*} https://github.com/\${1} && git fetch \${1%/*}; #"; # $1 is appended to the end, ignoring it with #
+      # Add staged changes to the last commit.
+      oops = "commit --amend --no-edit";
     };
 
     hooks = {
