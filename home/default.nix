@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./shell
     ./sway
@@ -10,11 +10,12 @@
 
   home.packages = with pkgs; [
     diskonaut
+    inkscape
     mpv
+    nix-tree
     nixpkgs-fmt
     pavucontrol
     texlive.combined.scheme-full
-    inkscape
 
     # Development
     bazel-buildtools
@@ -39,7 +40,7 @@
     awscli2
     azure-cli
     azure-storage-azcopy
-    (google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
+    (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.gke-gcloud-auth-plugin ])
     kubectl
     openstackclient
     packer
@@ -63,7 +64,7 @@
     font-awesome
     dejavu_fonts
     noto-fonts-emoji
-    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     source-code-pro
     helvetica-neue-lt-std
     ubuntu_font_family
