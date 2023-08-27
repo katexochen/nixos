@@ -50,6 +50,10 @@ in
       add-fork = "!git remote add \${1%/*} https://github.com/\${1} && git fetch \${1%/*}; #"; # $1 is appended to the end, ignoring it with #
       # Add staged changes to the last commit.
       oops = "commit --amend --no-edit";
+      # Apply a patch from remote URL.
+      rapply = "!curl -fsSL \${1} | git apply -v --index; #";
+      # Deactivate global hooks in the current repository.
+      hooks-off = "config core.hooksPath /dev/null";
     };
 
     hooks = {
