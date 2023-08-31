@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.vscode = {
@@ -16,6 +16,8 @@
         hashicorp.terraform
         james-yu.latex-workshop
         jnoortheen.nix-ide
+        ms-python.python
+        ms-python.vscode-pylance
         ms-vscode.cpptools
         ms-vsliveshare.vsliveshare
         redhat.vscode-yaml
@@ -112,11 +114,11 @@
       "go.coverageOptions" = "showUncoveredCodeOnly";
       "go.coverOnSingleTest" = true;
       "go.coverOnSingleTestFile" = true;
-      "go.lintFlags" = ["--fast"];
+      "go.lintFlags" = [ "--fast" ];
       "go.lintTool" = "golangci-lint";
-      "go.testFlags" = ["-count=1" "-race" "-v"];
+      "go.testFlags" = [ "-count=1" "-race" "-v" ];
       "go.testTimeout" = "2m";
-      "gopls" = {"formatting.gofumpt" = true;};
+      "gopls" = { "formatting.gofumpt" = true; };
       "java.saveActions.organizeImports" = true;
       "javascript.updateImportsOnFileMove.enabled" = "always";
       "latex-workshop.bibtex-fields.sort.enabled" = true;
@@ -134,7 +136,7 @@
       "nix.serverSettings" = {
         "nixd" = {
           "formatting" = {
-            "command" = ["${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"];
+            "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
           };
         };
       };
