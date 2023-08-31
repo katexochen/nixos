@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./nix
     ./services
@@ -37,7 +37,7 @@
     useGlobalPkgs = true;
   };
 
-  home-manager.users.katexochen = {pkgs, ...}: {
+  home-manager.users.katexochen = { pkgs, ... }: {
     imports = [
       ../home
     ];
@@ -86,7 +86,7 @@
     portal = {
       enable = true;
       wlr.enable = true;
-      extraPortals = with pkgs; [xdg-desktop-portal-gtk];
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     };
   };
 

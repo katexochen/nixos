@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # puts systemd init logs on tty1
   # so that tuigreet and systemd logs don't clobber each other
   boot.kernelParams = [

@@ -1,4 +1,4 @@
-{pgks, ...}: {
+{ pgks, ... }: {
   services.mako = {
     # test with notify-send.
     enable = true;

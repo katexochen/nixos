@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   go_latest = pkgs.go.overrideAttrs (_: rec {
     version = "1.20.7";
     src = pkgs.fetchurl {
@@ -7,8 +8,8 @@
     };
   });
 in
-  pkgs.mkShell {
-    nativeBuildInputs = [
-      go_latest
-    ];
-  }
+pkgs.mkShell {
+  nativeBuildInputs = [
+    go_latest
+  ];
+}

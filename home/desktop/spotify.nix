@@ -1,11 +1,11 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config
+, pkgs
+, ...
+}:
+let
   spotifyScript = pkgs.writeShellApplication {
     name = "spotify";
-    runtimeInputs = [pkgs.chromium];
+    runtimeInputs = [ pkgs.chromium ];
     text = ''
       swaymsg exec 'chromium --app=https://open.spotify.com/'
     '';
@@ -19,6 +19,7 @@
     startupWMClass = "spotify";
     terminal = true;
   };
-in {
-  home.packages = [spotifyDeskopItem spotifyScript];
+in
+{
+  home.packages = [ spotifyDeskopItem spotifyScript ];
 }

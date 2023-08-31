@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   services.xserver = {
     layout = "us-custom,de-custom";
     xkbOptions = "ctrl:nocaps,grp:win_space_toggle";
@@ -15,12 +15,12 @@
     extraLayouts = {
       us-custom = {
         description = "US custom layout";
-        languages = ["eng"];
+        languages = [ "eng" ];
         symbolsFile = pkgs.copyPathToStore ../../symbols/us-custom;
       };
       de-custom = {
         description = "DE custom layout";
-        languages = ["ger"];
+        languages = [ "ger" ];
         symbolsFile = pkgs.copyPathToStore ../../symbols/de-custom;
       };
     };

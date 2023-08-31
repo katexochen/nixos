@@ -1,9 +1,8 @@
-{
-  config,
-  lib,
-  pkgs,
-  modulesPath,
-  ...
+{ config
+, lib
+, pkgs
+, modulesPath
+, ...
 }: {
   boot = {
     loader.systemd-boot = {
@@ -20,7 +19,7 @@
       };
     };
 
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = [ "ntfs" ];
 
     # tmpOnTmpfs = true;
     tmp.cleanOnBoot = true;
@@ -29,7 +28,7 @@
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "ext4";
-    options = ["noatime"];
+    options = [ "noatime" ];
   };
 
   fileSystems."/boot" = {
@@ -38,6 +37,6 @@
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-label/swap";}
+    { device = "/dev/disk/by-label/swap"; }
   ];
 }

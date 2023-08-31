@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.waybar = {
     enable = true;
     systemd.target = "sway-session.target";
@@ -92,7 +92,7 @@
             headset = "";
             phone = "";
             portable = "";
-            default = ["" "" ""];
+            default = [ "" "" "" ];
           };
           "on-click" = "${pkgs.pavucontrol}/bin/pavucontrol";
         };
@@ -104,7 +104,7 @@
             critical = 15;
           };
           format = "{capacity}% {icon}";
-          format-icons = ["" "" "" "" ""];
+          format-icons = [ "" "" "" "" "" ];
         };
 
         "sway/window" = {

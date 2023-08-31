@@ -1,11 +1,10 @@
-{
-  config,
-  inputs,
-  lib,
-  ...
+{ config
+, inputs
+, lib
+, ...
 }: {
   nix = {
-    registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
+    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     gc = {
@@ -14,7 +13,7 @@
       options = "--delete-older-than 20d";
     };
 
-    settings.experimental-features = "nix-command flakes";
+    settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
   # Enable unfree packages

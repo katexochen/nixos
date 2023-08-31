@@ -3,7 +3,8 @@ let
   dellp27R = "Dell Inc. DELL P2720D GN2ZS03";
   dellu27 = "Dell Inc. DELL U2717D J0XYN8AOA5ML";
   nt14 = "LG Display 0x06ED Unknown";
-in {
+in
+{
   services.kanshi = {
     enable = true;
     profiles = {

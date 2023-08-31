@@ -1,11 +1,11 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config
+, pkgs
+, ...
+}:
+let
   discordScript = pkgs.writeShellApplication {
     name = "discord";
-    runtimeInputs = [pkgs.chromium];
+    runtimeInputs = [ pkgs.chromium ];
     text = ''
       swaymsg exec 'chromium --app=https://discord.com/login'
     '';
@@ -19,6 +19,7 @@
     startupWMClass = "discord";
     terminal = true;
   };
-in {
-  home.packages = [discordDeskopItem discordScript];
+in
+{
+  home.packages = [ discordDeskopItem discordScript ];
 }
