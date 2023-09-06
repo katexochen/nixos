@@ -7,7 +7,7 @@ let
   commit-msg-hook = pkgs.writeShellApplication {
     name = "commit-msg-hook";
     runtimeInputs = with pkgs; [ git gnugrep ];
-    text = (builtins.readFile ./commit-msg.sh);
+    text = builtins.readFile ./commit-msg.sh;
   };
 in
 {

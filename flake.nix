@@ -13,11 +13,10 @@
   };
 
   outputs =
-    inputs @ { self
+    { self
     , nixpkgs
     , home-manager
-    , ...
-    }:
+    } @ inputs:
     let
       inherit (self) outputs;
 
@@ -28,7 +27,7 @@
         config.allowUnfree = true;
       };
 
-      lib = nixpkgs.lib;
+      inherit (nixpkgs) lib;
     in
     {
       nixosConfigurations = {
@@ -57,8 +56,39 @@
         };
       };
 
-      devShells."${system}".go = import ./shells/go.nix { inherit pkgs; };
+      devShells.${system} = {
+        go = import ./shells/go.nix { inherit pkgs; };
+      };
 
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixpkgs-fmt;
+      checks.${system} = {
+        lint = pkgs.runCommand "lint"
+          {
+            nativeBuildInputs = with pkgs; [
+              deadnix
+              nixpkgs-fmt
+              statix
+            ];
+          } ''
+          statix check ${./.}
+          deadnix --fail ${./.}
+          nixpkgs-fmt --check ${./.}
+          touch $out
+        '';
+      };
+
+      formatter.${system} = pkgs.writeShellApplication {
+        name = "normalise_nix";
+        runtimeInputs = with pkgs; [
+          deadnix
+          nixpkgs-fmt
+          statix
+        ];
+        text = ''
+          set -x
+          statix fix "$@"
+          deadnix --edit "$@"
+          nixpkgs-fmt "$@"
+        '';
+      };
     };
 }
