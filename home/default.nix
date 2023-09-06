@@ -12,10 +12,20 @@
     diskonaut
     inkscape
     mpv
-    nix-tree
-    nixpkgs-fmt
     pavucontrol
     texlive.combined.scheme-full
+
+    # Nix
+    deadnix
+    nix-index
+    nix-output-monitor
+    nix-tree
+    nix-update
+    nixpkgs-fmt
+    nixpkgs-hammering
+    nixpkgs-review
+    nurl
+    statix
 
     # Development
     bazel-buildtools
