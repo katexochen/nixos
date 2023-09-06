@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   services.pipewire = {
     enable = true;
     alsa.enable = true;

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   time.timeZone = "Europe/Berlin";
 
   i18n = {

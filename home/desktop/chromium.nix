@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   programs.chromium = {
     enable = true;
     commandLineArgs = [

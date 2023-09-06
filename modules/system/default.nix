@@ -1,9 +1,4 @@
-{ config
-, lib
-, pkgs
-, modulesPath
-, ...
-}: {
+_: {
   boot = {
     loader.systemd-boot = {
       enable = true;

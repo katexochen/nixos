@@ -1,4 +1,4 @@
-{ pgks, ... }: {
+_: {
   programs.starship = {
     enable = true;
     enableBashIntegration = true;

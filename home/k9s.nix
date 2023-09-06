@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+_: {
   programs.k9s = {
     enable = true;
     skin = {

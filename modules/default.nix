@@ -37,7 +37,7 @@
     useGlobalPkgs = true;
   };
 
-  home-manager.users.katexochen = { pkgs, ... }: {
+  home-manager.users.katexochen = { ... }: {
     imports = [
       ../home
     ];
