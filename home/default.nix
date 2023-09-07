@@ -59,7 +59,7 @@
     # CLI
     bat
     curl
-    exa
+    eza
     fd
     file
     htop

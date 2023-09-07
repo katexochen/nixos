@@ -24,7 +24,7 @@
     shellAliases = {
       cat = "${pkgs.bat}/bin/bat -pp";
       k = "${pkgs.kubectl}/bin/kubectl";
-      ls = "${pkgs.exa}/bin/exa --git -L 3";
+      ls = "${pkgs.eza}/bin/eza --git -L 3";
       temp = "cd $(mktemp -d)";
     };
   };
