@@ -25,7 +25,7 @@
       cat = "${pkgs.bat}/bin/bat -pp";
       k = "${pkgs.kubectl}/bin/kubectl";
       ls = "${pkgs.eza}/bin/eza --git -L 3";
-      temp = "cd $(mktemp -d)";
+      temp = "cd $(mktemp -d); bash; cd - > /dev/null";
     };
   };
 }
