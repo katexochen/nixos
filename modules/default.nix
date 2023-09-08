@@ -17,19 +17,23 @@
 
   virtualisation.docker.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.katexochen = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel" # Enable 'sudo' for user.
-      "video" # Access to webcam and other video devices.
-      "audio" # Access to soundcard and micro.
-      "networkmanager"
-      "lp" # Enable use of printers.
-      "scanner" # Enable use of scanners.
-      "docker" # Access to the docker socket.
-      "adbusers"
-    ];
+  users = {
+    mutableUsers = false;
+    users.root.passwordFile = "/persist/secrets/root";
+    users.katexochen = {
+      passwordFile = "/persist/secrets/katexochen";
+      isNormalUser = true;
+      extraGroups = [
+        "wheel" # Enable 'sudo' for user.
+        "video" # Access to webcam and other video devices.
+        "audio" # Access to soundcard and micro.
+        "networkmanager"
+        "lp" # Enable use of printers.
+        "scanner" # Enable use of scanners.
+        "docker" # Access to the docker socket.
+        "adbusers"
+      ];
+    };
   };
 
   home-manager = {

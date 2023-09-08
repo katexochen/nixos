@@ -25,9 +25,6 @@ in
       hideMounts = true;
       directories = [
         "/etc/NetworkManager/system-connections"
-        "/etc/passwd"
-        "/etc/shadow"
-        "/etc/group"
         "/var/lib/bluetooth"
         "/var/lib/systemd/backlight"
       ];
