@@ -12,6 +12,11 @@ let
     name = "persist";
     text = builtins.readFile ./persist.sh;
   };
+
+  mkpasswordfile = pkgs.writeShellApplication {
+    name = "mkpasswordfile";
+    text = ''mkpasswd -m sha-512 | sudo tee "$1" > /dev/null'';
+  };
 in
 {
   options.my.modules = {
@@ -82,6 +87,7 @@ in
     environment.systemPackages = [
       fs-diff
       persist
+      mkpasswordfile
     ];
   };
 }
