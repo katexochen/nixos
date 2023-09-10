@@ -13,7 +13,10 @@
       options = "--delete-older-than 20d";
     };
 
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
   };
 
   # Enable unfree packages
