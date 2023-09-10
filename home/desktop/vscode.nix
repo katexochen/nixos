@@ -5,6 +5,7 @@
     enable = true;
     enableExtensionUpdateCheck = true;
     enableUpdateCheck = false;
+    mutableExtensionsDir = false;
     extensions = with pkgs.vscode-extensions;
       [
         # bbenoist.nix
