@@ -2,6 +2,7 @@
   programs.waybar = {
     enable = true;
     systemd.target = "sway-session.target";
+    style = ./waybar-style.css;
     settings = {
       mainBar = {
         layer = "top";
@@ -126,6 +127,4 @@
       };
     };
   };
-
-  xdg.configFile."waybar/style.css".source = ./waybar-style.css;
 }
