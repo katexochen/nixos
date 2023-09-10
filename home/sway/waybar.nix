@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   programs.waybar = {
     enable = true;
     systemd.target = "sway-session.target";
@@ -64,6 +64,7 @@
           format-wifi = "{essid} ({signalStrength}%) ";
           format = "";
           tooltip = false;
+          on-click = "swaymsg exec \"${lib.getExe pkgs.alacritty} --class Alacritty-floating -e nmtui-connect\"";
         };
 
         "bluetooth" = {
@@ -75,7 +76,7 @@
           tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
           tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
           on-click-right = "bash -c \"if rfkill list bluetooth|grep -q 'yes$';then rfkill unblock bluetooth;else rfkill block bluetooth;fi\"";
-          on-click = "swaymsg exec \"alacritty --class Alacritty-floating -e ${pkgs.bluetuith}/bin/bluetuith\"";
+          on-click = "swaymsg exec \"${lib.getExe pkgs.alacritty} --class Alacritty-floating -e ${lib.getExe pkgs.bluetuith}\"";
         };
 
         "pulseaudio" = {
@@ -94,7 +95,7 @@
             portable = "";
             default = [ "" "" "" ];
           };
-          "on-click" = "${pkgs.pavucontrol}/bin/pavucontrol";
+          "on-click" = "${lib.getExe pkgs.pavucontrol}";
         };
 
         "battery" = {
