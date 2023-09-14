@@ -83,8 +83,8 @@
         {
           name = "vscode-testscript";
           publisher = "twpayne";
-          version = "0.0.3";
-          sha256 = "sha256-VP6lvdeWyqhaU0K2CffHlZGZnaIvhIPHkd+gemK8BNA=";
+          version = "0.0.4";
+          sha256 = "sha256-KOmcJlmmdUkC+q0AQ/Q/CQAeRgQPr6nVO0uccUxHmsY=";
         }
       ];
     userSettings = {
