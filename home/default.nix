@@ -68,6 +68,7 @@
     fd
     file
     jq
+    ncdu
     ripgrep
     unzip
     wget
