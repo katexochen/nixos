@@ -15,6 +15,7 @@
     pavucontrol
     texlive.combined.scheme-full
     seashells
+    magic-wormhole
 
     # Nix
     cachix
