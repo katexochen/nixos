@@ -14,6 +14,7 @@
     mpv
     pavucontrol
     texlive.combined.scheme-full
+    seashells
 
     # Nix
     cachix
