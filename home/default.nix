@@ -28,6 +28,7 @@
     statix
 
     # Development
+    actionlint
     bazel-buildtools
     cargo
     cosign
