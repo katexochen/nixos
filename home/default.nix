@@ -16,6 +16,7 @@
     texlive.combined.scheme-full
 
     # Nix
+    cachix
     deadnix
     nix-index
     nix-output-monitor
