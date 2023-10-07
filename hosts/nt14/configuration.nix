@@ -2,6 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { inputs
+, lib
+, pkgs
 , ...
 }: {
   imports = [
@@ -10,6 +12,11 @@
     ./hardware-configuration.nix
     ../../modules
   ];
+
+  my.modules = {
+    fs.enable = false;
+    btrfs-luks.enable = true;
+  };
 
   networking.hostName = "nt14";
   services.xserver.libinput.enable = true;

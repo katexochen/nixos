@@ -1,9 +1,17 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  mkpasswordfile = pkgs.writeShellApplication {
+    name = "mkpasswordfile";
+    text = ''mkpasswd -m sha-512 | sudo tee "$1" > /dev/null'';
+  };
+in
+{
   imports = [
     ./nix
     ./services
     ./system
     ./impermanence
+    ./btrfs-luks.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -35,6 +43,10 @@
       ];
     };
   };
+
+  environment.systemPackages = [
+    mkpasswordfile
+  ];
 
   home-manager = {
     # As suggested by https://nix-community.github.io/home-manager/index.html#sec-install-nixos-module

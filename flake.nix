@@ -5,18 +5,26 @@
     nixpkgs = {
       url = "nixpkgs/nixos-unstable";
     };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     impermanence = {
       url = "github:nix-community/impermanence";
     };
   };
 
-  outputs = { nixpkgs, ... } @ inputs:
+  outputs =
+    { self
+    , nixpkgs
+    , home-manager
+    , disko
+    , impermanence
+    } @ inputs:
     let
       system = "x86_64-linux";
 
@@ -32,6 +40,7 @@
         nt14 = lib.nixosSystem {
           inherit system;
           modules = [
+            disko.nixosModules.disko
             ./hosts/nt14/configuration.nix
           ];
           specialArgs = { inherit inputs; };
@@ -40,6 +49,7 @@
         nt5 = lib.nixosSystem {
           inherit system;
           modules = [
+            disko.nixosModules.disko
             ./hosts/nt5/configuration.nix
           ];
           specialArgs = { inherit inputs; };
@@ -48,6 +58,7 @@
         nostro = lib.nixosSystem {
           inherit system;
           modules = [
+            disko.nixosModules.disko
             ./hosts/nostro/configuration.nix
           ];
           specialArgs = { inherit inputs; };
