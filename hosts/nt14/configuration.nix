@@ -14,7 +14,6 @@
   ];
 
   my.modules = {
-    fs.enable = false;
     btrfs-luks.enable = true;
     impermanence.enable = true;
   };

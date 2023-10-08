@@ -20,7 +20,6 @@
     # username = "katexochen";
     modules = {
       impermanence.enable = true;
-      fs.enable = false; # custom config in hardware-configuration.nix
     };
   };
 

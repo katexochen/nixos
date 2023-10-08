@@ -3,8 +3,6 @@
     ./fs.nix
   ];
 
-  my.modules.fs.enable = lib.mkDefault true;
-
   boot = {
     loader.systemd-boot = {
       enable = true;

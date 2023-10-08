@@ -12,6 +12,8 @@
     ../../modules
   ];
 
+  my.modules.fs.enable = true;
+
   networking.hostName = "nt5";
 
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
