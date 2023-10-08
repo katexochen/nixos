@@ -1,7 +1,5 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-{ inputs
+{ config
+, inputs
 , lib
 , pkgs
 , ...
@@ -9,7 +7,6 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModule
-    ./hardware-configuration.nix
     ../../modules
   ];
 
@@ -20,6 +17,21 @@
       btrfs-luks.enable = true;
       impermanence.enable = true;
     };
+  };
+
+  boot = {
+    initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
+    initrd.kernelModules = [ "dm-snapshot" ];
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+  };
+
+  networking.useDHCP = lib.mkDefault true;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
+  hardware = {
+    enableRedistributableFirmware = true;
+    cpu.amd.updateMicrocode = true;
   };
 
   services.xserver.libinput.enable = true;
