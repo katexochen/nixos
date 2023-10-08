@@ -27,9 +27,9 @@ in
 
   users = {
     mutableUsers = false;
-    users.root.passwordFile = "/persist/secrets/root";
+    users.root.hashedPasswordFile = "/persist/secrets/root";
     users.katexochen = {
-      passwordFile = "/persist/secrets/katexochen";
+      hashedPasswordFile = "/persist/secrets/katexochen";
       isNormalUser = true;
       extraGroups = [
         "wheel" # Enable 'sudo' for user.
