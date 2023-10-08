@@ -14,10 +14,9 @@
   boot.supportedFilesystems = [ "btrfs" ];
   hardware.enableAllFirmware = true;
 
-  networking.hostName = "nostro";
-
   my = {
-    # username = "katexochen";
+    user = "katexochen";
+    host = "nostro";
     modules = {
       impermanence.enable = true;
     };

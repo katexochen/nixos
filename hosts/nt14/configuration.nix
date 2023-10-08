@@ -13,11 +13,14 @@
     ../../modules
   ];
 
-  my.modules = {
-    btrfs-luks.enable = true;
-    impermanence.enable = true;
+  my = {
+    user = "katexochen";
+    host = "nt14";
+    modules = {
+      btrfs-luks.enable = true;
+      impermanence.enable = true;
+    };
   };
 
-  networking.hostName = "nt14";
   services.xserver.libinput.enable = true;
 }

@@ -12,9 +12,11 @@
     ../../modules
   ];
 
-  my.modules.fs.enable = true;
-
-  networking.hostName = "nt5";
+  my = {
+    user = "katexochen";
+    host = "nt5";
+    modules.fs.enable = true;
+  };
 
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
   boot.kernelModules = [ "v4l2loopback" ];

@@ -11,6 +11,7 @@ in
     ./services
     ./system
     ./impermanence
+    ./main.nix
     ./btrfs-luks.nix
   ];
 
