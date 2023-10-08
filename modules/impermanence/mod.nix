@@ -31,16 +31,15 @@ in
 
     # From https://github.com/talyz/presentations/blob/master/impermanence-nixcon-2023/impermanence.org
     boot.initrd.postDeviceCommands = pkgs.lib.mkAfter ''
+      echo "impermanence: Starting backup and cleanup procedure"
       mkdir /btrfs_tmp
-
-      # Mount the actual Btrfs root, where the subvolumes will be located.
       mount /dev/mapper/crypted /btrfs_tmp
-
 
       if [[ -e /btrfs_tmp/@ ]]; then
           mkdir -p /btrfs_tmp/old_@s
           timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/@)" "+%Y-%m-%-d_%H:%M:%S")
           mv /btrfs_tmp/@ "/btrfs_tmp/old_@s/$timestamp"
+          echo "impermanence: Old root subvolume moved to /btrfs_tmp/old_@s/$timestamp"
       fi
 
       delete_subvolume_recursively() {
@@ -49,6 +48,7 @@ in
               delete_subvolume_recursively "/btrfs_tmp/$i"
           done
           btrfs subvolume delete "$1"
+          echo "impermanence: Deleted subvolume $1"
       }
 
       for i in $(find /btrfs_tmp/old_@s/ -maxdepth 1 -mtime +30); do
@@ -56,7 +56,11 @@ in
       done
 
       btrfs subvolume create /btrfs_tmp/@
+      echo "impermanence: Created new root subvolume at /btrfs_tmp/@"
+
       umount /btrfs_tmp
+
+      echo "impermanence: Done"
     '';
   };
 }
