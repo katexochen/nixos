@@ -99,6 +99,8 @@ in
 
   hardware.bluetooth.enable = true;
 
+  services.fwupd.enable = true;
+
   services.dbus.enable = true;
   xdg = {
     portal = {
