@@ -60,11 +60,11 @@
 
     # CLI
     bat
+    btop
     curl
     eza
     fd
     file
-    htop
     jq
     ripgrep
     unzip
