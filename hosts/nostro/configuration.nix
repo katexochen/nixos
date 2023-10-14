@@ -1,17 +1,16 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ inputs
+{ lib
+, inputs
 , ...
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModule
-    ./hardware-configuration.nix
     ../../modules
   ];
 
-  boot.supportedFilesystems = [ "btrfs" ];
   hardware.enableAllFirmware = true;
 
   my = {
@@ -19,7 +18,25 @@
     host = "nostro";
     modules = {
       impermanence.enable = true;
+      btrfs-luks.enable = true;
     };
+  };
+
+  boot = {
+    initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod" ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+  };
+
+  networking.useDHCP = lib.mkDefault true;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+
+  hardware = {
+    enableRedistributableFirmware = true;
+    cpu.intel.updateMicrocode = true;
   };
 
   # Disable Nvidia stuff completely
