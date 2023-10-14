@@ -19,6 +19,9 @@ in
 
   programs.adb.enable = true;
 
+  zramSwap.enable = true;
+  services.earlyoom.enable = true;
+
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   networking.extraHosts = ''
     127.0.0.1    license.confidential.cloud
