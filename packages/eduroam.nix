@@ -1,8 +1,10 @@
 { lib
+, writeShellApplication
+, writeTextFile
 , networkmanager
 }:
 let
-  rub-eduroam-cert = lib.writeTextFile {
+  rub-eduroam-cert = writeTextFile {
     name = "rub-eduroam-cert";
     text = ''
           -----BEGIN CERTIFICATE-----
@@ -31,8 +33,8 @@ let
     '';
   };
 in
-lib.writeShellApplication {
-  name = "nm-rub-eduroam-setup";
+writeShellApplication {
+  name = "nm-setup-rub-eduroam";
   runtimeInputs = [ networkmanager ];
   text = ''
     set -euo pipefail

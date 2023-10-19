@@ -4,6 +4,8 @@ let
     name = "mkpasswordfile";
     text = ''mkpasswd -m sha-512 | sudo tee "$1" > /dev/null'';
   };
+
+  mypkgs = import ../packages { inherit pkgs; };
 in
 {
   imports = [
@@ -50,7 +52,9 @@ in
 
   environment.systemPackages = [
     mkpasswordfile
-  ];
+  ] ++ (with mypkgs; [
+    nm-setup-rub-eduroam
+  ]);
 
   home-manager = {
     # As suggested by https://nix-community.github.io/home-manager/index.html#sec-install-nixos-module
