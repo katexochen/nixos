@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   programs.bash = {
     enable = true;
     historyControl = [
@@ -26,6 +26,9 @@
       k = "${pkgs.kubectl}/bin/kubectl";
       ls = "${pkgs.eza}/bin/eza --git -L 3";
       temp = "cd $(mktemp -d); bash; cd - > /dev/null";
+      # https://docs.cachix.org/pushing#pushing-flake-inputs
+      # nix build .#foo --json | build2cachix | cachix push bar
+      build2cachix = "${lib.getExe pkgs.jq} -r '.[].outputs | to_entries[].value'";
     };
   };
 }
