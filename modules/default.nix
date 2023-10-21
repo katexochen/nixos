@@ -15,6 +15,7 @@ in
     ./impermanence
     ./main.nix
     ./btrfs-luks.nix
+    ./remote-builder.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

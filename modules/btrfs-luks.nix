@@ -7,14 +7,12 @@ let
   cfg = config.my.modules.btrfs-luks;
 in
 {
-  options.my.modules = {
-    btrfs-luks = {
-      enable = lib.mkEnableOption (lib.mkDoc "btrfs-luks");
-      disk = lib.mkOption {
-        type = lib.types.str;
-        default = "/dev/nvme0n1";
-        description = "Disk to install to";
-      };
+  options.my.modules.btrfs-luks = {
+    enable = lib.mkEnableOption (lib.mkDoc "btrfs-luks");
+    disk = lib.mkOption {
+      type = lib.types.str;
+      default = "/dev/nvme0n1";
+      description = "Disk to install to";
     };
   };
 

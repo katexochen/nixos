@@ -1,12 +1,14 @@
-{ config, lib, pkgs }:
+{ config, lib, pkgs, ... }:
 let
-  cfg = config.my.modules.remoteBuilders;
-
+  cfg = config.my.modules.remote-bulder;
 in
 {
-  options.my.modules.remoteBuilders = {
-    enable = lib.mkEnableOption (lib.mkDoc "remote builders");
-
+  options.my.modules.remote-bulder = {
+    enable = lib.mkOption {
+      default = true;
+      description = lib.mkDoc "remote builder";
+      type = lib.types.bool;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -27,7 +29,7 @@ in
 
     programs.ssh.extraConfig = ''
       Host builder
-              HostName 18.224.246.43
+              HostName 18.193.70.168
               ConnectTimeout 2
               IdentitiesOnly yes
               IdentityFile /root/.ssh/remote_builder
