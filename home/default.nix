@@ -64,6 +64,7 @@
     bat
     btop
     curl
+    diskonaut
     eza
     fd
     file
