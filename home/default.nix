@@ -86,6 +86,5 @@
     ubuntu_font_family
 
     droidcam
-    zoom-us
   ];
 }
