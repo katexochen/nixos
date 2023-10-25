@@ -9,28 +9,20 @@ let
 in
 {
   imports = [
-    ./nix
     ./services
     ./system
     ./impermanence
     ./main.nix
     ./btrfs-luks.nix
     ./remote-builder.nix
+    ./graphical.nix
   ];
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   programs.adb.enable = true;
-
-  zramSwap.enable = true;
-  services.earlyoom.enable = true;
 
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   networking.extraHosts = ''
     127.0.0.1    license.confidential.cloud
   '';
-
-  virtualisation.docker.enable = true;
 
   users = {
     mutableUsers = false;
@@ -86,47 +78,8 @@ in
     '';
   };
 
-  # Hardware Support for Wayland Sway
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-  };
-
-  fonts.fontconfig = {
-    enable = true;
-    antialias = true;
-    hinting = {
-      enable = true;
-      autohint = true; # no difference
-    };
-    subpixel = {
-      rgba = "rgb";
-      lcdfilter = "default"; # no difference
-    };
-  };
-
   hardware.bluetooth.enable = true;
-
-  services.fwupd.enable = true;
-
-  services.dbus.enable = true;
-  xdg = {
-    portal = {
-      enable = true;
-      wlr.enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-    };
-  };
 
   # Needed to store VS Code auth tokens.
   services.gnome.gnome-keyring.enable = true;
-
-  # Allow swaylock to unlock the computer for us
-  security.pam.services.swaylock = {
-    text = "auth include login";
-  };
-
-  security.sudo.extraConfig = ''
-    Defaults lecture = never
-  '';
 }
