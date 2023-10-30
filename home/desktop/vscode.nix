@@ -21,6 +21,7 @@
         jnoortheen.nix-ide
         ms-python.python
         ms-python.vscode-pylance
+        ms-vscode-remote.remote-ssh
         ms-vscode.cpptools
         ms-vsliveshare.vsliveshare
         redhat.vscode-yaml
