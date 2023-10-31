@@ -20,6 +20,7 @@ in
   config = {
     networking.hostName = cfg.host;
 
+    nixpkgs.config.allowUnfree = true;
     nix = {
       registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
       nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
@@ -34,10 +35,16 @@ in
       };
     };
 
-    nixpkgs.config.allowUnfree = true;
-    system.stateVersion = "22.05";
+    boot = {
+      kernelPackages = pkgs.linuxPackages_latest;
+      loader.systemd-boot = {
+        enable = true;
+        configurationLimit = 30;
+      };
+      loader.efi.canTouchEfiVariables = true;
+      tmp.cleanOnBoot = true;
+    };
 
-    boot.kernelPackages = pkgs.linuxPackages_latest;
     zramSwap.enable = true;
 
     services = {
@@ -51,5 +58,7 @@ in
     security.sudo.extraConfig = ''
       Defaults lecture = never
     '';
+
+    system.stateVersion = "22.05";
   };
 }

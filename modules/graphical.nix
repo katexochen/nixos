@@ -5,6 +5,8 @@
     driSupport = true;
   };
 
+  boot.supportedFilesystems = [ "ntfs" ];
+
   xdg = {
     portal = {
       enable = true;
