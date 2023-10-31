@@ -10,7 +10,6 @@ in
 {
   imports = [
     ./services
-    ./system
     ./impermanence
     ./main.nix
     ./btrfs-luks.nix

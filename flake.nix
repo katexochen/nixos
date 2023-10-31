@@ -46,15 +46,6 @@
           specialArgs = { inherit inputs; };
         };
 
-        nt5 = lib.nixosSystem {
-          inherit system;
-          modules = [
-            disko.nixosModules.disko
-            ./hosts/nt5/configuration.nix
-          ];
-          specialArgs = { inherit inputs; };
-        };
-
         nostro = lib.nixosSystem {
           inherit system;
           modules = [
