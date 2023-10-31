@@ -45,12 +45,35 @@ in
       tmp.cleanOnBoot = true;
     };
 
+    console.useXkbConfig = true;
     zramSwap.enable = true;
 
     services = {
       earlyoom.enable = true;
       fwupd.enable = true;
       dbus.enable = true;
+      xserver.xkb = {
+        layout = "us-custom,de-custom";
+        options = "ctrl:nocaps,grp:win_space_toggle";
+      };
+      xserver.extraLayouts = {
+        # Custom keyboard layout
+        # https://nixos.org/manual/nixos/stable/#custom-xkb-layouts
+        # https://discourse.nixos.org/t/5269
+        # On change, run the following and logout:
+        # gsettings reset org.gnome.desktop.input-sources xkb-options
+        # gsettings reset org.gnome.desktop.input-sources sources
+        us-custom = {
+          description = "US custom layout";
+          languages = [ "eng" ];
+          symbolsFile = pkgs.copyPathToStore ../symbols/us-custom;
+        };
+        de-custom = {
+          description = "DE custom layout";
+          languages = [ "ger" ];
+          symbolsFile = pkgs.copyPathToStore ../symbols/de-custom;
+        };
+      };
     };
 
     virtualisation.docker.enable = true;
@@ -58,6 +81,17 @@ in
     security.sudo.extraConfig = ''
       Defaults lecture = never
     '';
+
+    time.timeZone = "Europe/Berlin";
+    i18n = {
+      defaultLocale = "en_US.UTF-8";
+      extraLocaleSettings = {
+        LC_TIME = "de_DE.UTF-8";
+        LC_MEASUREMENTS = "de_DE.UTF-8";
+        LC_MONETARY = "de_DE.UTF-8";
+        LC_COLLATE = "C.UTF-8";
+      };
+    };
 
     system.stateVersion = "22.05";
   };

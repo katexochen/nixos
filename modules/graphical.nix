@@ -5,7 +5,14 @@
     driSupport = true;
   };
 
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot = {
+    supportedFilesystems = [ "ntfs" ];
+    # puts systemd init logs on tty1
+    # so that tuigreet and systemd logs don't clobber each other
+    kernelParams = [
+      "console=tty1"
+    ];
+  };
 
   xdg = {
     portal = {
@@ -18,6 +25,29 @@
   # Allow swaylock to unlock the computer for us
   security.pam.services.swaylock = {
     text = "auth include login";
+  };
+
+  services = {
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
+    };
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      pulse.enable = true;
+    };
+    greetd = {
+      enable = true;
+      vt = 2;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r --time --asterisks --cmd ${pkgs.sway}/bin/sway";
+        };
+      };
+    };
   };
 
   fonts.fontconfig = {

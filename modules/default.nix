@@ -9,7 +9,6 @@ let
 in
 {
   imports = [
-    ./services
     ./impermanence
     ./main.nix
     ./btrfs-luks.nix
