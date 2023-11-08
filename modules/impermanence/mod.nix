@@ -17,6 +17,7 @@ in
         "/etc/NetworkManager/system-connections"
         "/var/lib/bluetooth"
         "/var/lib/systemd/backlight"
+        "/root/.ssh"
       ];
       files = [
         "/etc/adjtime"
