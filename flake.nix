@@ -36,6 +36,16 @@
       inherit (nixpkgs) lib;
     in
     {
+      packages.x86_64-linux = {
+        go = pkgs.go.overrideAttrs (_: rec {
+          version = "1.21.4";
+          src = pkgs.fetchurl {
+            url = "https://go.dev/dl/go${version}.src.tar.gz";
+            hash = "sha256-R7Jqg9K2WjwcG8rOJztpvuSaentRaKdgTe09JqN714c=";
+          };
+        });
+      };
+
       nixosConfigurations = {
         nt14 = lib.nixosSystem {
           inherit system;
@@ -57,7 +67,7 @@
       };
 
       devShells.${system} = {
-        go = import ./shells/go.nix { inherit pkgs; };
+        go = pkgs.mkShell { nativeBuildInputs = [ self.packages.x86_64-linux.go ]; };
       };
 
       checks.${system} = {
