@@ -13,6 +13,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    srvos = {
+      url = "github:numtide/srvos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     impermanence = {
       url = "github:nix-community/impermanence";
     };
@@ -24,6 +28,7 @@
     , home-manager
     , disko
     , impermanence
+    , srvos
     } @ inputs:
     let
       system = "x86_64-linux";
@@ -31,6 +36,10 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+      };
+
+      authorizedKeys = {
+        katexochen = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDcTVEfgXMnzE6iRJM8KWsrPHCXIgxqQNMfU+RmPM25g katexochen@remoteBuilder";
       };
 
       inherit (nixpkgs) lib;
@@ -61,6 +70,22 @@
           modules = [
             disko.nixosModules.disko
             ./hosts/nostro/configuration.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
+
+        aws-builder = lib.nixosSystem {
+          inherit system;
+          modules = [
+            disko.nixosModules.disko
+            # srvos.nixosModules.hardware-amazon # not compatible with disko
+            srvos.nixosModules.server
+            srvos.nixosModules.roles-nix-remote-builder
+            ./hosts/aws-builder/configuration.nix
+            {
+              users.users.root.openssh.authorizedKeys.keys = lib.attrValues authorizedKeys;
+              roles.nix-remote-builder.schedulerPublicKeys = lib.attrValues authorizedKeys;
+            }
           ];
           specialArgs = { inherit inputs; };
         };
