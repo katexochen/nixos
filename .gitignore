@@ -1,2 +1,7 @@
 result
 result-*
+.terraform
+*.tfstate
+*.tfstate.backup
+*.lock.hcl
+*.tfvars
