@@ -19,7 +19,7 @@ in
   config = lib.mkIf cfg.enable {
     disko.devices = (pkgs.callPackage ./disko/btrfs-luks.nix {
       inherit lib;
-      disk = cfg.disk;
+      inherit (cfg) disk;
     }).disko.devices;
 
     fileSystems."/persist".neededForBoot = true;

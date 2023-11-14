@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   fs-diff = pkgs.writeShellApplication {
     name = "fs-diff";

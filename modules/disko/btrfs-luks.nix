@@ -9,7 +9,7 @@ in
   disko.devices = {
     disk = lib.genAttrs [ disk ] (device: {
       name = lib.replaceStrings [ "/" ] [ "-" ] device;
-      device = device;
+      inherit device;
       type = "disk";
       content = {
         type = "gpt";
