@@ -6,7 +6,7 @@ let
   rub-eduroam-cert = writeTextFile {
     name = "rub-eduroam-cert";
     text = ''
-          -----BEGIN CERTIFICATE-----
+      -----BEGIN CERTIFICATE-----
       MIIDwzCCAqugAwIBAgIBATANBgkqhkiG9w0BAQsFADCBgjELMAkGA1UEBhMCREUx
       KzApBgNVBAoMIlQtU3lzdGVtcyBFbnRlcnByaXNlIFNlcnZpY2VzIEdtYkgxHzAd
       BgNVBAsMFlQtU3lzdGVtcyBUcnVzdCBDZW50ZXIxJTAjBgNVBAMMHFQtVGVsZVNl
