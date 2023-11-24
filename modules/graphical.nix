@@ -44,7 +44,13 @@
       vt = 2;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet -r --time --asterisks --cmd ${pkgs.sway}/bin/sway";
+          command = ''
+            ${pkgs.greetd.tuigreet}/bin/tuigreet \
+              --remember \
+              --time \
+              --asterisks \
+              --cmd ${pkgs.sway}/bin/sway
+          '';
         };
       };
     };

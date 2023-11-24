@@ -17,6 +17,7 @@ in
         "/etc/NetworkManager/system-connections"
         "/var/lib/bluetooth"
         "/var/lib/systemd/backlight"
+        "/var/cache/tuigreet"
         "/root/.ssh"
       ];
       files = [
