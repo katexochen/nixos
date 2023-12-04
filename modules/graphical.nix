@@ -14,12 +14,11 @@
     ];
   };
 
-  xdg = {
-    portal = {
-      enable = true;
-      wlr.enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-    };
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    config.common.default = "*";
   };
 
   # Allow swaylock to unlock the computer for us
