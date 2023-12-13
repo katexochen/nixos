@@ -8,13 +8,8 @@
     mutableExtensionsDir = false;
     extensions = with pkgs.vscode-extensions;
       [
-        # bbenoist.nix
-        # brettm12345.nixfmt-vscode
-        # davidanson.vscode-markdownlint
-        # github.github-vscode-theme
         eamodio.gitlens
         github.vscode-github-actions
-        github.vscode-pull-request-github
         golang.go
         hashicorp.terraform
         james-yu.latex-workshop
@@ -23,11 +18,12 @@
         ms-python.vscode-pylance
         ms-vscode-remote.remote-ssh
         ms-vscode.cpptools
-        ms-vsliveshare.vsliveshare
         redhat.vscode-yaml
         rust-lang.rust-analyzer
+        skellock.just
         streetsidesoftware.code-spell-checker
         timonwong.shellcheck
+        tsandall.opa
         valentjn.vscode-ltex
         yzhang.markdown-all-in-one
         zxh404.vscode-proto3
