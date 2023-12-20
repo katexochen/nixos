@@ -21,6 +21,13 @@
     nixpkgs-fmt
   ];
 
+  programs.tmux = {
+    enable = true;
+    clock24 = true;
+    terminal = "screen-256color";
+    historyLimit = 10000;
+  };
+
   virtualisation.docker.enable = true;
 
   nix = {

@@ -71,6 +71,7 @@
     jq
     ncdu
     ripgrep
+    tmux
     unzip
     wget
     yq-go
