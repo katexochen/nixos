@@ -8,6 +8,8 @@
     ];
   };
 
+  zramSwap.enable = true;
+
   environment.systemPackages = with pkgs; [
     btop
     diskonaut
@@ -15,6 +17,8 @@
     starship
     go
     gotools
+    nixpkgs-review
+    nixpkgs-fmt
   ];
 
   virtualisation.docker.enable = true;
