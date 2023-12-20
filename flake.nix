@@ -117,6 +117,8 @@
           nixpkgs-fmt "$@"
         '';
       };
+
+      legacyPackages.${system} = pkgs;
     };
 
   nixConfig = {
