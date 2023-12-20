@@ -154,7 +154,6 @@
       "terminal.integrated.scrollback" = 10000;
       "vsintellicode.modify.editor.suggestSelection" = "automaticallyOverrodeDefaultValue";
       "window.menuBarVisibility" = "toggle";
-      "window.titleBarStyle" = "custom";
       "workbench.colorTheme" = "Bluloco Light";
       "yaml.completion" = true;
       "yaml.hover" = true;
