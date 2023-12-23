@@ -9,13 +9,9 @@
   ];
 
   home.packages = with pkgs; [
-    diskonaut
-    inkscape
     mpv
     pavucontrol
     texlive.combined.scheme-full
-    seashells
-    magic-wormhole
 
     # Nix
     cachix
@@ -32,7 +28,6 @@
 
     # Development
     actionlint
-    bazel-buildtools
     cargo
     cosign
     crane
@@ -69,8 +64,10 @@
     fd
     file
     jq
+    magic-wormhole-rs
     ncdu
     ripgrep
+    seashells
     tmux
     unzip
     wget
@@ -85,7 +82,5 @@
     source-code-pro
     helvetica-neue-lt-std
     ubuntu_font_family
-
-    droidcam
   ];
 }
