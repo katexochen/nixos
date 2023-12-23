@@ -29,25 +29,6 @@ resource "aws_key_pair" "ec2_key" {
   public_key = file(var.install_ssh_pub_path)
 }
 
-data "aws_ami" "amazon_linux" {
-  most_recent = true
-
-  filter {
-    name   = "owner-alias"
-    values = ["amazon"]
-  }
-
-  filter {
-    name   = "name"
-    values = ["al2023-ami-*"]
-  }
-
-  filter {
-    name   = "architecture"
-    values = ["x86_64"]
-  }
-}
-
 module "ec2_instance" {
   source = "terraform-aws-modules/ec2-instance/aws"
 
@@ -56,7 +37,7 @@ module "ec2_instance" {
   instance_type          = "c5.4xlarge"
   key_name               = aws_key_pair.ec2_key.key_name
   monitoring             = true
-  ami                    = data.aws_ami.amazon_linux.id
+  ami                    = "ami-04564c67876ffec56"
   vpc_security_group_ids = [aws_security_group.instance.id]
   root_block_device = [
     {
