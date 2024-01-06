@@ -17,6 +17,7 @@
     cachix
     deadnix
     nix-index
+    nix-init
     nix-output-monitor
     nix-tree
     nix-update
