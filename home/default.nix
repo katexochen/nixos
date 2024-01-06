@@ -25,6 +25,7 @@
     nixpkgs-hammering
     nixpkgs-review
     nurl
+    nvd
     statix
 
     # Development
