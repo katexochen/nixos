@@ -30,7 +30,6 @@
     # Development
     actionlint
     cargo
-    cosign
     crane
     dive
     docker
@@ -44,7 +43,6 @@
     rust-analyzer
     rustc
     shellcheck
-    skopeo
 
     # Cloud
     awscli2
