@@ -83,4 +83,11 @@
     helvetica-neue-lt-std
     ubuntu_font_family
   ];
+
+  programs = {
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+  };
 }
