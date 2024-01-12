@@ -14,6 +14,7 @@
         hashicorp.terraform
         james-yu.latex-workshop
         jnoortheen.nix-ide
+        mkhl.direnv
         ms-python.python
         ms-python.vscode-pylance
         ms-vscode-remote.remote-ssh
