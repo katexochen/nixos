@@ -20,29 +20,31 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     { self
     , nixpkgs
-    , home-manager
     , disko
-    , impermanence
     , srvos
+    , treefmt-nix
+    , ...
     } @ inputs:
     let
       system = "x86_64-linux";
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
+      pkgs = import nixpkgs { inherit system; };
+      inherit (nixpkgs) lib;
 
       authorizedKeys = {
         katexochen = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDcTVEfgXMnzE6iRJM8KWsrPHCXIgxqQNMfU+RmPM25g katexochen@remoteBuilder";
       };
 
-      inherit (nixpkgs) lib;
+      treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
     in
     {
       packages.x86_64-linux = import ./packages { inherit pkgs; };
@@ -88,35 +90,10 @@
       };
 
       checks.${system} = {
-        lint = pkgs.runCommand "lint"
-          {
-            nativeBuildInputs = with pkgs; [
-              deadnix
-              nixpkgs-fmt
-              statix
-            ];
-          } ''
-          statix check ${./.}
-          deadnix --fail ${./.}
-          nixpkgs-fmt --check ${./.}
-          touch $out
-        '';
+        formatting = treefmtEval.config.build.check self;
       };
 
-      formatter.${system} = pkgs.writeShellApplication {
-        name = "normalise_nix";
-        runtimeInputs = with pkgs; [
-          deadnix
-          nixpkgs-fmt
-          statix
-        ];
-        text = ''
-          set -x
-          statix fix "$@"
-          deadnix --edit "$@"
-          nixpkgs-fmt "$@"
-        '';
-      };
+      formatter.${system} = treefmtEval.config.build.wrapper;
 
       legacyPackages.${system} = pkgs;
     };
