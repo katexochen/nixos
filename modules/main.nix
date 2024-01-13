@@ -97,6 +97,11 @@ in
       PATH=$PATH:${lib.makeBinPath [ pkgs.nvd pkgs.nix ]}
       nvd diff $(ls -dv /nix/var/nix/profiles/system-*-link | tail -2)
     '';
+    # system.activationScripts.diff = ''
+    #   if [[ -e /run/current-system ]]; then
+    #     ${pkgs.nix}/bin/nix store diff-closures /run/current-system "$systemConfig"
+    #   fi
+    # '';
 
     system.stateVersion = "22.05";
   };
