@@ -55,23 +55,23 @@ in
       xserver.xkb = {
         layout = "us-custom,de-custom";
         options = "ctrl:nocaps,grp:win_space_toggle";
-      };
-      xserver.extraLayouts = {
-        # Custom keyboard layout
-        # https://nixos.org/manual/nixos/stable/#custom-xkb-layouts
-        # https://discourse.nixos.org/t/5269
-        # On change, run the following and logout:
-        # gsettings reset org.gnome.desktop.input-sources xkb-options
-        # gsettings reset org.gnome.desktop.input-sources sources
-        us-custom = {
-          description = "US custom layout";
-          languages = [ "eng" ];
-          symbolsFile = pkgs.copyPathToStore ../symbols/us-custom;
-        };
-        de-custom = {
-          description = "DE custom layout";
-          languages = [ "ger" ];
-          symbolsFile = pkgs.copyPathToStore ../symbols/de-custom;
+        extraLayouts = {
+          # Custom keyboard layout
+          # https://nixos.org/manual/nixos/stable/#custom-xkb-layouts
+          # https://discourse.nixos.org/t/5269
+          # On change, run the following and logout:
+          # gsettings reset org.gnome.desktop.input-sources xkb-options
+          # gsettings reset org.gnome.desktop.input-sources sources
+          us-custom = {
+            description = "US custom layout";
+            languages = [ "eng" ];
+            symbolsFile = pkgs.copyPathToStore ../symbols/us-custom;
+          };
+          de-custom = {
+            description = "DE custom layout";
+            languages = [ "ger" ];
+            symbolsFile = pkgs.copyPathToStore ../symbols/de-custom;
+          };
         };
       };
     };
