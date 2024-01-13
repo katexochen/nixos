@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # An example hook script to check the commit log message.
 # Called by "git commit" with one argument, the name of the file
@@ -14,12 +14,12 @@
 #
 
 SOB=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
-grep -qs "^$SOB" "$1" || echo -e "\n$SOB" >> "$1"
+grep -qs "^$SOB" "$1" || echo -e "\n$SOB" >>"$1"
 
 # This example catches duplicate Signed-off-by lines.
 
 test "" = "$(grep '^Signed-off-by: ' "$1" |
-        sort | uniq -c | sed -e '/^[   ]*1[    ]/d')" || {
-        echo >&2 Duplicate Signed-off-by lines.
-        exit 1
+  sort | uniq -c | sed -e '/^[   ]*1[    ]/d')" || {
+  echo >&2 Duplicate Signed-off-by lines.
+  exit 1
 }
