@@ -93,6 +93,11 @@ in
       };
     };
 
+    system.activationScripts.diff = ''
+      PATH=$PATH:${lib.makeBinPath [ pkgs.nvd pkgs.nix ]}
+      nvd diff $(ls -dv /nix/var/nix/profiles/system-*-link | tail -2)
+    '';
+
     system.stateVersion = "22.05";
   };
 }
