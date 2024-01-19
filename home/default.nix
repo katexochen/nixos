@@ -11,7 +11,6 @@
   home.packages = with pkgs; [
     mpv
     pavucontrol
-    texlive.combined.scheme-full
 
     # Nix
     cachix
