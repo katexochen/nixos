@@ -14,7 +14,6 @@
         github.copilot
         golang.go
         hashicorp.terraform
-        james-yu.latex-workshop
         jnoortheen.nix-ide
         mkhl.direnv
         ms-python.python
