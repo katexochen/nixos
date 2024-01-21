@@ -10,6 +10,8 @@
       [
         eamodio.gitlens
         github.vscode-github-actions
+        github.copilot-chat
+        github.copilot
         golang.go
         hashicorp.terraform
         james-yu.latex-workshop
@@ -53,18 +55,6 @@
           publisher = "quicktype";
           version = "12.0.46";
           sha256 = "sha256-NTZ0BujnA+COg5txOLXSZSp8TPD1kZNfZPjnvZUL9lc=";
-        }
-        {
-          name = "copilot";
-          publisher = "GitHub";
-          version = "1.96.257";
-          sha256 = "1hgj3847g3z3rh6s1kfqk0pjs7qv7li3njl6wfgzv65f6hkn27rp";
-        }
-        {
-          name = "copilot-chat";
-          publisher = "GitHub";
-          version = "0.11.2023110801";
-          sha256 = "sha256-x/ptkpxMXu2ZGjA6i7+6p2LGT6E/U+x81FsErg8+CV4=";
         }
         {
           name = "vscode-bazel";
