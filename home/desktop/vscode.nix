@@ -27,7 +27,6 @@
         streetsidesoftware.code-spell-checker
         timonwong.shellcheck
         tsandall.opa
-        valentjn.vscode-ltex
         yzhang.markdown-all-in-one
         zxh404.vscode-proto3
       ]
