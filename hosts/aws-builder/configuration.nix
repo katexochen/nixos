@@ -36,6 +36,8 @@
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
+      max-jobs = 2;
+      cores = 8;
     };
   };
 
