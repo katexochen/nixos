@@ -19,6 +19,7 @@ in
         "/var/lib/systemd/backlight"
         "/var/cache/tuigreet"
         "/root/.ssh"
+        "/root/.local/share/nix/"
       ];
       files = [
         "/etc/adjtime"
