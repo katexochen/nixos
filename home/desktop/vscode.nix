@@ -8,24 +8,31 @@
     mutableExtensionsDir = false;
     extensions = with pkgs.vscode-extensions;
       [
+        albymor.increment-selection
+        bazelbuild.vscode-bazel
         eamodio.gitlens
-        github.vscode-github-actions
-        github.copilot-chat
         github.copilot
+        github.copilot-chat
+        github.vscode-github-actions
         golang.go
         hashicorp.terraform
+        iliazeus.vscode-ansi
+        jamesyang999.vscode-emacs-minimum
         jnoortheen.nix-ide
         mkhl.direnv
         ms-python.python
         ms-python.vscode-pylance
         ms-vscode-remote.remote-ssh
         ms-vscode.cpptools
+        quicktype.quicktype
         redhat.vscode-yaml
         rust-lang.rust-analyzer
         skellock.just
         streetsidesoftware.code-spell-checker
+        tim-koehler.helm-intellisense
         timonwong.shellcheck
         tsandall.opa
+        twpayne.vscode-testscript
         yzhang.markdown-all-in-one
         zxh404.vscode-proto3
       ]
@@ -35,48 +42,6 @@
           publisher = "uloco";
           version = "3.7.3";
           sha256 = "1il557x7c51ic9bjq7z431105m582kig9v2vpy3k2z3xhrbb0211";
-        }
-        {
-          name = "vscode-emacs-minimum";
-          publisher = "jamesyang999";
-          version = "1.1.1";
-          sha256 = "sha256-qxnAhT2UGTQmPw9XmdBdx0F0NNLAaU1/ES9jiqiRrGI=";
-        }
-        {
-          name = "increment-selection";
-          publisher = "albymor";
-          version = "0.2.0";
-          sha256 = "sha256-iP4c0xLPiTsgD8Q8Kq9jP54HpdnBveKRY31Ro97ROJ8=";
-        }
-        {
-          name = "quicktype";
-          publisher = "quicktype";
-          version = "12.0.46";
-          sha256 = "sha256-NTZ0BujnA+COg5txOLXSZSp8TPD1kZNfZPjnvZUL9lc=";
-        }
-        {
-          name = "vscode-bazel";
-          publisher = "bazelbuild";
-          version = "0.7.0";
-          sha256 = "05wvih09184bsp4rv2m55z0sasra2qrvch5m3bkbrjq7rcqgibgx";
-        }
-        {
-          name = "vscode-ansi";
-          publisher = "iliazeus";
-          version = "1.1.6";
-          sha256 = "sha256-ZPV8zd/GkXOGf6s8fz9ZPmC3i1jO0wFAqV0E67lW0do=";
-        }
-        {
-          name = "helm-intellisense";
-          publisher = "Tim-Koehler";
-          version = "0.14.3";
-          sha256 = "sha256-TcXn8n6mKEFpnP8dyv+nXBjsyfUfJNgdL9iSZwA5eo0=";
-        }
-        {
-          name = "vscode-testscript";
-          publisher = "twpayne";
-          version = "0.0.4";
-          sha256 = "sha256-KOmcJlmmdUkC+q0AQ/Q/CQAeRgQPr6nVO0uccUxHmsY=";
         }
       ];
     userSettings = {
