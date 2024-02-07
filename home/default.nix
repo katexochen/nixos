@@ -61,6 +61,7 @@
     eza
     fd
     file
+    jless
     jq
     magic-wormhole-rs
     ncdu
