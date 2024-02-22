@@ -58,6 +58,7 @@
           interval = 2;
           tooltip-format = "{ifname} via {gwaddr} ";
           format = " {bandwidthDownBytes}  {bandwidthUpBytes}";
+          on-click = "swaymsg exec \"${lib.getExe pkgs.alacritty} --class Alacritty-floating -e nmtui-connect\"";
         };
 
         "network#wifi" = {
