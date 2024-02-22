@@ -9,12 +9,13 @@ nano /etc/nixos/configuration.nix
 nixos-rebuild test
 nix shell nixpkgs#git
 git clone https://github.com/katexochen/nixos
+cd nixos
 ```
 
 ### Partitioning
 
 ```sh
-nix run github:nix-community/disko -- -m disko modules/disko/btrfs-luks.nix --arg disks '"/dev/nvme0n1"'
+nix run github:nix-community/disko -- -m disko modules/disko/btrfs-luks.nix --arg disk '"/dev/nvme0n1"'
 mount | grep /mnt
 ```
 
