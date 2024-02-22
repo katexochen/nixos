@@ -30,7 +30,7 @@ in
       };
 
       output = {
-        "*".bg = "/home/katexochen/nixos/wallpaper/pastel.png fill";
+        "*".bg = "${../../wallpaper/pastel.png} fill";
       };
 
       keybindings =
