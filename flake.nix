@@ -59,6 +59,15 @@
           specialArgs = { inherit inputs; };
         };
 
+        np14s = lib.nixosSystem {
+          inherit system;
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/np14s/configuration.nix
+          ];
+          specialArgs = { inherit inputs; };
+        };
+
         nostro = lib.nixosSystem {
           inherit system;
           modules = [
