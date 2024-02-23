@@ -6,5 +6,9 @@ _: {
     backgroundColor = "#2e3440";
     ignoreTimeout = true;
     output = "*"; # TODO: test
+    extraConfig = ''
+      [mode=do-not-disturb]
+      invisible=1
+    '';
   };
 }

@@ -1,4 +1,5 @@
-{ config
+{ lib
+, config
 , pkgs
 , ...
 }:
@@ -131,6 +132,21 @@ in
           "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s +10%";
           "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s 10%-";
           "XF86Calculator" = "exec ${finalPkgBin "rofi"} -show calc -modi calc -no-show-mathc -no-sort";
+          "XF86Messenger" =
+            let
+              toggleNotifications = pkgs.writeShellApplication {
+                name = "mako-toggle-notifications";
+                runtimeInputs = [ pkgs.mako ];
+                text = ''
+                  if makoctl mode | grep -q do-not-disturb; then
+                    makoctl mode -r do-not-disturb
+                  else
+                    makoctl mode -a do-not-disturb
+                  fi
+                '';
+              };
+            in
+            "exec ${lib.getExe toggleNotifications}";
         };
 
       modes = {
