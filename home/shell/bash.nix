@@ -29,6 +29,7 @@
       # https://docs.cachix.org/pushing#pushing-flake-inputs
       # nix build .#foo --json | build2cachix | cachix push bar
       build2cachix = "${lib.getExe pkgs.jq} -r '.[].outputs | to_entries[].value'";
+      sha256result = "find result/ -type f -exec sha256sum {} + |  awk '{print $1}' | sort | sha256sum";
     };
   };
 }
