@@ -40,9 +40,10 @@
       pkgs = import nixpkgs { inherit system; };
       inherit (nixpkgs) lib;
 
-      authorizedKeys = {
-        katexochen = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDcTVEfgXMnzE6iRJM8KWsrPHCXIgxqQNMfU+RmPM25g katexochen@remoteBuilder";
-      };
+      authorizedKeys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDcTVEfgXMnzE6iRJM8KWsrPHCXIgxqQNMfU+RmPM25g katexochen@remoteBuilder"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAqa+JmCiwHtCNJAJ8IuHIOIMPBrjLl4vmGh86WkYs+ katexochen@np14s"
+      ];
 
       treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
     in
@@ -86,8 +87,9 @@
             srvos.nixosModules.roles-nix-remote-builder
             ./hosts/aws-builder/configuration.nix
             {
-              users.users.root.openssh.authorizedKeys.keys = lib.attrValues authorizedKeys;
-              roles.nix-remote-builder.schedulerPublicKeys = lib.attrValues authorizedKeys;
+              users.users.root.openssh.authorizedKeys.keys = authorizedKeys;
+              users.users.katexochen.openssh.authorizedKeys.keys = authorizedKeys;
+              roles.nix-remote-builder.schedulerPublicKeys = authorizedKeys;
             }
           ];
           specialArgs = { inherit inputs; };
