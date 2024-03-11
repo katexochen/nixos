@@ -30,9 +30,10 @@ in
         options = "--delete-older-than 20d";
       };
       settings = {
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = [ "nix-command" "flakes" "auto-allocate-uids" ];
         auto-optimise-store = true;
         trusted-users = [ "root" "@wheel" ];
+        auto-allocate-uids = true;
       };
     };
 
