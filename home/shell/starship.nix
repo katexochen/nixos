@@ -9,6 +9,7 @@ _: {
       aws.disabled = true;
       azure.disabled = true;
       gcloud.disabled = true;
+      opa.disabled = true;
     };
   };
 }
