@@ -16,6 +16,8 @@
     ];
     sessionVariables = {
       EDITOR = "nano";
+      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+      MANROFFOPT = "-c";
     };
     initExtra = ''
       export PATH=$PATH:$(go env GOPATH)/bin
