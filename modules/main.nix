@@ -21,6 +21,9 @@ in
     networking.hostName = cfg.host;
 
     nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.permittedInsecurePackages = [
+      "nix-2.16.2" # needed for nixd
+    ];
     nix = {
       registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
       nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
