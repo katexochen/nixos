@@ -54,6 +54,10 @@ in
       rapply = "!curl -fsSL \${1} | git apply -v --index; #";
       # Deactivate global hooks in the current repository.
       hooks-off = "config core.hooksPath /dev/null";
+      # Interactive rebase with autosquash.
+      asq = "!git rebase -i --autosquash HEAD~\${1}; #";
+      # Force push with lease.
+      force = "push --force-with-lease";
     };
 
     hooks = {
