@@ -76,7 +76,7 @@
     # Fonts
     font-awesome
     dejavu_fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
     source-code-pro
     helvetica-neue-lt-std

@@ -55,6 +55,7 @@
     };
   };
 
+  fonts.enableDefaultPackages = true;
   fonts.fontconfig = {
     enable = true;
     antialias = true;
