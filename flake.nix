@@ -94,6 +94,19 @@
           ];
           specialArgs = { inherit inputs; };
         };
+
+        installer = lib.nixosSystem {
+          inherit system;
+          modules = [
+            (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+            (nixpkgs + "/nixos/modules/installer/cd-dvd/channel.nix")
+            ({ pkgs, ... }: {
+              services.openssh.enable = true;
+              users.users.root.openssh.authorizedKeys.keys = authorizedKeys;
+              isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+            })
+          ];
+        };
       };
 
       devShells.${system} = {
