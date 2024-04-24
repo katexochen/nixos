@@ -24,6 +24,14 @@ in
           maxJobs = 6;
           speedFactor = 10;
         }
+        {
+          hostName = "m50-ganondorf";
+          system = "x86_64-linux";
+          protocol = "ssh-ng";
+          supportedFeatures = [ "nixos-test" "big-parallel" "kvm" "benchmark" ];
+          maxJobs = 12;
+          speedFactor = 50;
+        }
       ];
     };
 
@@ -34,6 +42,12 @@ in
               IdentitiesOnly yes
               IdentityFile /root/.ssh/remote_builder
               User nix-remote-builder
+      Host m50-ganondorf
+              HostName m50-ganondorf
+              ConnectTimeout 2
+              IdentitiesOnly yes
+              IdentityFile /root/.ssh/remote_builder
+              User katexochen
     '';
   };
 }
