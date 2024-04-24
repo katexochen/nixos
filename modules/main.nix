@@ -57,6 +57,7 @@ in
       earlyoom.enable = true;
       fwupd.enable = true;
       dbus.enable = true;
+      tailscale.enable = true;
       xserver.xkb = {
         layout = "us-custom,de-custom";
         options = "ctrl:nocaps,grp:win_space_toggle";

@@ -11,6 +11,7 @@
   home.packages = with pkgs; [
     mpv
     pavucontrol
+    tailscale
 
     # Nix
     cachix
