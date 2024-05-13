@@ -6,44 +6,36 @@
     enableExtensionUpdateCheck = true;
     enableUpdateCheck = false;
     mutableExtensionsDir = false;
-    extensions = with pkgs.vscode-extensions;
-      [
-        albymor.increment-selection
-        bazelbuild.vscode-bazel
-        eamodio.gitlens
-        github.copilot
-        github.copilot-chat
-        github.vscode-github-actions
-        golang.go
-        hashicorp.terraform
-        iliazeus.vscode-ansi
-        jamesyang999.vscode-emacs-minimum
-        jnoortheen.nix-ide
-        mkhl.direnv
-        ms-python.python
-        ms-python.vscode-pylance
-        ms-vscode-remote.remote-ssh
-        ms-vscode.cpptools
-        quicktype.quicktype
-        redhat.vscode-yaml
-        rust-lang.rust-analyzer
-        skellock.just
-        streetsidesoftware.code-spell-checker
-        tim-koehler.helm-intellisense
-        timonwong.shellcheck
-        tsandall.opa
-        twpayne.vscode-testscript
-        yzhang.markdown-all-in-one
-        zxh404.vscode-proto3
-      ]
-      ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "theme-bluloco-light";
-          publisher = "uloco";
-          version = "3.7.3";
-          sha256 = "1il557x7c51ic9bjq7z431105m582kig9v2vpy3k2z3xhrbb0211";
-        }
-      ];
+    extensions = with pkgs.vscode-extensions; [
+      albymor.increment-selection
+      bazelbuild.vscode-bazel
+      eamodio.gitlens
+      github.copilot
+      github.copilot-chat
+      github.vscode-github-actions
+      golang.go
+      hashicorp.terraform
+      iliazeus.vscode-ansi
+      jamesyang999.vscode-emacs-minimum
+      jnoortheen.nix-ide
+      mkhl.direnv
+      ms-python.python
+      ms-python.vscode-pylance
+      ms-vscode-remote.remote-ssh
+      ms-vscode.cpptools
+      quicktype.quicktype
+      redhat.vscode-yaml
+      rust-lang.rust-analyzer
+      skellock.just
+      streetsidesoftware.code-spell-checker
+      tim-koehler.helm-intellisense
+      timonwong.shellcheck
+      tsandall.opa
+      twpayne.vscode-testscript
+      uloco.theme-bluloco-light
+      yzhang.markdown-all-in-one
+      zxh404.vscode-proto3
+    ];
     userSettings = {
       "C_Cpp.clang_format_fallbackStyle" = "{ BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4 }";
       "C_Cpp.clang_format_style" = "{ BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4 }";
