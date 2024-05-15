@@ -7,31 +7,37 @@ in
 {
   services.kanshi = {
     enable = true;
-    profiles = {
-      office_nt5.outputs = [
-        {
-          criteria = dellp27L;
-          status = "enable";
-          position = "0,0";
-        }
-        {
-          criteria = dellp27R;
-          status = "enable";
-          position = "2560,0";
-        }
-      ];
-      home_nt14.outputs = [
-        {
-          criteria = dellu27;
-          status = "enable";
-          position = "0,0";
-        }
-        {
-          criteria = nt14;
-          status = "enable";
-          position = "2560,240";
-        }
-      ];
-    };
+    settings = [
+      {
+        profile.name = "office";
+        profile.outputs = [
+          {
+            criteria = dellp27L;
+            status = "enable";
+            position = "0,0";
+          }
+          {
+            criteria = dellp27R;
+            status = "enable";
+            position = "2560,0";
+          }
+        ];
+      }
+      {
+        profile.name = "home";
+        profile.outputs = [
+          {
+            criteria = dellu27;
+            status = "enable";
+            position = "0,0";
+          }
+          {
+            criteria = nt14;
+            status = "enable";
+            position = "2560,240";
+          }
+        ];
+      }
+    ];
   };
 }
