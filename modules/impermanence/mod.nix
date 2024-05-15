@@ -15,11 +15,12 @@ in
       hideMounts = true;
       directories = [
         "/etc/NetworkManager/system-connections"
+        "/root/.local/share/nix/"
+        "/root/.ssh"
+        "/var/cache/tuigreet"
         "/var/lib/bluetooth"
         "/var/lib/systemd/backlight"
-        "/var/cache/tuigreet"
-        "/root/.ssh"
-        "/root/.local/share/nix/"
+        "/var/lib/tailscale"
       ];
       files = [
         "/etc/adjtime"
