@@ -40,6 +40,7 @@ in
   environment.systemPackages = with mypkgs; [
     mkpasswordfile
     nm-setup-rub-eduroam
+    nodeshell
   ];
 
   home-manager = {
