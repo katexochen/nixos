@@ -6,6 +6,8 @@
 let
   finalPkg = name: "${config.programs.${name}.finalPackage}";
   finalPkgBin = name: "${finalPkg name}/bin/${name}";
+
+  cursor = { theme = "Adwaita"; size = 18; };
 in
 {
   wayland.windowManager.sway = {
@@ -205,6 +207,19 @@ in
       export _JAVA_AWT_WM_NONREPARENTING=1
       export MOZ_ENABLE_WAYLAND=1
       export NIXOS_OZONE_WL=1
+      export XCURSOR_THEME=${cursor.theme}
+      export XCURSOR_SIZE=${toString cursor.size}
     '';
+  };
+
+  home.pointerCursor = {
+    name = cursor.theme;
+    package = pkgs.gnome.adwaita-icon-theme;
+    size = cursor.size;
+  };
+
+  gtk.cursorTheme = {
+    name = cursor.theme;
+    size = cursor.size;
   };
 }
