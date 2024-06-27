@@ -20,17 +20,25 @@ in
           hostName = "builder";
           system = "x86_64-linux";
           protocol = "ssh-ng";
-          supportedFeatures = [ "nixos-test" "big-parallel" "kvm" ];
+          supportedFeatures = [ "nixos-test" "big-parallel" "kvm" "benchmark" ];
           maxJobs = 6;
           speedFactor = 10;
         }
         {
-          hostName = "m50-ganondorf";
+          hostName = "dell-3340-kirby";
           system = "x86_64-linux";
           protocol = "ssh-ng";
           supportedFeatures = [ "nixos-test" "big-parallel" "kvm" "benchmark" ];
-          maxJobs = 12;
-          speedFactor = 50;
+          maxJobs = 3;
+          speedFactor = 8;
+        }
+        {
+          hostName = "dell-3340-samus";
+          system = "x86_64-linux";
+          protocol = "ssh-ng";
+          supportedFeatures = [ "nixos-test" "big-parallel" "kvm" "benchmark" ];
+          maxJobs = 3;
+          speedFactor = 8;
         }
       ];
     };
@@ -42,8 +50,14 @@ in
               IdentitiesOnly yes
               IdentityFile /root/.ssh/remote_builder
               User nix-remote-builder
-      Host m50-ganondorf
-              HostName m50-ganondorf
+      Host dell-3340-kirby
+              HostName dell-3340-kirby
+              ConnectTimeout 2
+              IdentitiesOnly yes
+              IdentityFile /root/.ssh/remote_builder
+              User katexochen
+      Host dell-3340-samus
+              HostName dell-3340-samus
               ConnectTimeout 2
               IdentitiesOnly yes
               IdentityFile /root/.ssh/remote_builder
