@@ -34,7 +34,7 @@ module "ec2_instance" {
 
   name = "nix-builder-${local.uid}"
 
-  instance_type          = "c5.4xlarge"
+  instance_type          = "c5.9xlarge"
   key_name               = aws_key_pair.ec2_key.key_name
   monitoring             = true
   ami                    = "ami-04564c67876ffec56"

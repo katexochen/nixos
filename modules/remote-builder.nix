@@ -45,7 +45,7 @@ in
 
     programs.ssh.extraConfig = ''
       Host builder
-              HostName 3.72.71.168
+              HostName 52.28.181.82
               ConnectTimeout 2
               IdentitiesOnly yes
               IdentityFile /root/.ssh/remote_builder
