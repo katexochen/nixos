@@ -45,6 +45,7 @@ in
       };
       loader.efi.canTouchEfiVariables = true;
       tmp.cleanOnBoot = true;
+      binfmt.emulatedSystems = [ "aarch64-linux" ];
     };
 
     console.useXkbConfig = true;
