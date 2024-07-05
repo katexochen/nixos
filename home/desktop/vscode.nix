@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.vscode = {
@@ -88,7 +88,7 @@
       "nix.serverSettings" = {
         "nixd" = {
           "formatting" = {
-            "command" = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
+            "command" = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
           };
         };
       };
