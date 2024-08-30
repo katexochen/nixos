@@ -32,6 +32,7 @@
     actionlint
     cargo
     crane
+    diffoscope
     dive
     docker
     gcc
@@ -44,6 +45,8 @@
     rust-analyzer
     rustc
     shellcheck
+    vbindiff
+    xxd
 
     # Cloud
     awscli2
