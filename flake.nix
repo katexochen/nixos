@@ -78,14 +78,13 @@
           specialArgs = { inherit inputs; };
         };
 
-        aws-builder = lib.nixosSystem {
+        vm-builder = lib.nixosSystem {
           inherit system;
           modules = [
             disko.nixosModules.disko
-            # srvos.nixosModules.hardware-amazon # not compatible with disko
             srvos.nixosModules.server
             srvos.nixosModules.roles-nix-remote-builder
-            ./hosts/aws-builder/configuration.nix
+            ./hosts/vm-builder/configuration.nix
             {
               users.users.root.openssh.authorizedKeys.keys = authorizedKeys;
               users.users.katexochen.openssh.authorizedKeys.keys = authorizedKeys;

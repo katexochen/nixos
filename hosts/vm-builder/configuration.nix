@@ -1,8 +1,17 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 {
   users.users.katexochen = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [
+      "wheel"
+      "docker"
+    ];
   };
 
   zramSwap.enable = true;
@@ -15,7 +24,6 @@
     go
     gotools
     nixpkgs-review
-    nixpkgs-fmt
   ];
 
   programs.tmux = {
@@ -31,7 +39,10 @@
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
       # max-jobs = 6;
       # cores = 8;
@@ -41,22 +52,45 @@
   boot = {
     loader = {
       systemd-boot.enable = true;
-      timeout = 20;
+      timeout = 7;
     };
-    initrd.availableKernelModules = [ "nvme" ];
-    # TODO: correctly import ena module
-    # extraModulePackages = [ boot.kernelPackages.ena ];
+    initrd.kernelModules = [
+      "nvme"
+      "virtio_net"
+      "virtio_pci"
+      "virtio_mmio"
+      "virtio_blk"
+      "virtio_scsi"
+      "9p"
+      "9pnet_virtio"
+    ];
+    kernelModules = [
+      "virtio_pci"
+      "virtio_net"
+      "virtio_balloon"
+      "virtio_console"
+      "virtio_rng"
+      "virtio_gpu"
+    ];
   };
 
   systemd.network.enable = true;
   networking.useDHCP = true;
 
   # debugging
-  boot.kernelParams = [ "systemd.setenv=SYSTEMD_SULOGIN_FORCE=1" ];
-  services.getty.autologinUser = "root";
+  boot.kernelParams = [
+    "systemd.setenv=SYSTEMD_SULOGIN_FORCE=1"
+    "console=/dev/tty0"
+    "console=ttyS0"
+    "console=tty1"
+  ];
 
-  disko.devices.disk.nvme0n1 = {
-    device = "/dev/nvme0n1";
+  services.getty.autologinUser = "root";
+  services.udev.packages = [ pkgs.google-guest-configs ];
+  services.udev.path = [ pkgs.google-guest-configs ];
+
+  disko.devices.disk.sda = {
+    device = "/dev/sda";
     type = "disk";
     content = {
       type = "gpt";
@@ -81,11 +115,17 @@
               };
               "@home" = {
                 mountpoint = "/home";
-                mountOptions = [ "compress=zstd" ];
+                mountOptions = [
+                  "compress=zstd"
+                  "noatime"
+                ];
               };
               "@nix" = {
                 mountpoint = "/nix";
-                mountOptions = [ "compress=zstd" "noatime" ];
+                mountOptions = [
+                  "compress=zstd"
+                  "noatime"
+                ];
               };
             };
           };
@@ -93,4 +133,6 @@
       };
     };
   };
+
+  system.stateVersion = "24.10";
 }
