@@ -1,6 +1,6 @@
-{ pkgs
-, ...
-}: {
+{ lib, pkgs, ... }:
+
+{
   services.swayidle = {
     enable = true;
     timeouts = [
@@ -10,7 +10,7 @@
       }
       {
         timeout = 300;
-        command = "${pkgs.swaylock}/bin/swaylock";
+        command = "${lib.getExe pkgs.swaylock-cmd}";
       }
       {
         timeout = 360;
@@ -21,7 +21,7 @@
     events = [
       {
         event = "before-sleep";
-        command = "${pkgs.swaylock}/bin/swaylock";
+        command = "${lib.getExe pkgs.swaylock-cmd}";
       }
     ];
   };

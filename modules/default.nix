@@ -1,7 +1,5 @@
 { pkgs, ... }:
-let
-  mypkgs = import ../packages { inherit pkgs; };
-in
+
 {
   imports = [
     ./impermanence
@@ -37,10 +35,11 @@ in
     };
   };
 
-  environment.systemPackages = with mypkgs; [
+  environment.systemPackages = with pkgs; [
     mkpasswordfile
     nm-setup-rub-eduroam
     nodeshell
+    swaylock-cmd
   ];
 
   home-manager = {
@@ -49,28 +48,28 @@ in
     useGlobalPkgs = true;
   };
 
-  home-manager.users.katexochen = { ... }: {
-    imports = [
-      ../home
-    ];
+  home-manager.users.katexochen =
+    { ... }:
+    {
+      imports = [ ../home ];
 
-    home.stateVersion = "22.05";
-    home.enableNixpkgsReleaseCheck = true;
+      home.stateVersion = "22.05";
+      home.enableNixpkgsReleaseCheck = true;
 
-    home.sessionVariables = {
-      MOZ_ENABLE_WAYLAND = 1;
-      XDG_CURRENT_DESKTOP = "sway";
-      GOPRIVATE = "github.com/edgelesssys";
+      home.sessionVariables = {
+        MOZ_ENABLE_WAYLAND = 1;
+        XDG_CURRENT_DESKTOP = "sway";
+        GOPRIVATE = "github.com/edgelesssys";
+      };
+
+      fonts.fontconfig.enable = true;
+
+      xdg.configFile."nixpkgs/config.nix".text = ''
+        {
+          allowUnfree = true;
+        }
+      '';
     };
-
-    fonts.fontconfig.enable = true;
-
-    xdg.configFile."nixpkgs/config.nix".text = ''
-      {
-        allowUnfree = true;
-      }
-    '';
-  };
 
   hardware.bluetooth.enable = true;
 

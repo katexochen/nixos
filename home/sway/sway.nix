@@ -1,13 +1,17 @@
-{ lib
-, config
-, pkgs
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 let
   finalPkg = name: "${config.programs.${name}.finalPackage}";
   finalPkgBin = name: "${finalPkg name}/bin/${name}";
 
-  cursor = { theme = "Adwaita"; size = 18; };
+  cursor = {
+    theme = "Adwaita";
+    size = 18;
+  };
 in
 {
   wayland.windowManager.sway = {
@@ -18,7 +22,7 @@ in
     config = {
       terminal = "${pkgs.alacritty}/bin/alacritty";
       menu = "${finalPkgBin "rofi"} -show drun -show-icons -pid";
-      bars = [{ command = "${pkgs.waybar}/bin/waybar"; }];
+      bars = [ { command = "${pkgs.waybar}/bin/waybar"; } ];
 
       modifier = "Mod4";
       down = "m";
@@ -40,8 +44,7 @@ in
       keybindings =
         let
           mod = config.wayland.windowManager.sway.config.modifier;
-          inherit
-            (config.wayland.windowManager.sway.config)
+          inherit (config.wayland.windowManager.sway.config)
             left
             down
             up
@@ -125,7 +128,7 @@ in
           "${mod}+Shift+p" = "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g- - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
           "${mod}+i" = "exec ${pkgs.mako}/bin/makoctl dismiss";
           "${mod}+Shift+i" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
-          "${mod}+l" = "exec ${pkgs.swaylock}/bin/swaylock";
+          "${mod}+l" = "exec ${lib.getExe pkgs.swaylock-cmd}";
 
           # XF86 keys
           "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer -t";

@@ -6,9 +6,7 @@
     supportedFilesystems = [ "ntfs" ];
     # puts systemd init logs on tty1
     # so that tuigreet and systemd logs don't clobber each other
-    kernelParams = [
-      "console=tty1"
-    ];
+    kernelParams = [ "console=tty1" ];
   };
 
   xdg.portal = {
@@ -19,8 +17,13 @@
   };
 
   # Allow swaylock to unlock the computer for us
-  security.pam.services.swaylock = {
-    text = "auth include login";
+  security.pam.services = {
+    swaylock = {
+      text = "auth include login";
+    };
+    swaylock-plugin = {
+      text = "auth include login";
+    };
   };
 
   services = {
