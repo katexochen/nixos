@@ -23,6 +23,7 @@
       ms-python.vscode-pylance
       ms-vscode-remote.remote-ssh
       ms-vscode.cpptools
+      ms-vsliveshare.vsliveshare
       quicktype.quicktype
       redhat.vscode-yaml
       rust-lang.rust-analyzer

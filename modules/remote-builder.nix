@@ -20,32 +20,47 @@ in
           hostName = "builder";
           system = "x86_64-linux";
           protocol = "ssh-ng";
-          supportedFeatures = [ "nixos-test" "big-parallel" "kvm" "benchmark" ];
+          supportedFeatures = [
+            "nixos-test"
+            "big-parallel"
+            "kvm"
+            "benchmark"
+          ];
           maxJobs = 6;
-          speedFactor = 10;
+          speedFactor = 8;
         }
         {
           hostName = "dell-3340-kirby";
           system = "x86_64-linux";
           protocol = "ssh-ng";
-          supportedFeatures = [ "nixos-test" "big-parallel" "kvm" "benchmark" ];
+          supportedFeatures = [
+            "nixos-test"
+            "big-parallel"
+            "kvm"
+            "benchmark"
+          ];
           maxJobs = 3;
-          speedFactor = 8;
+          speedFactor = 4;
         }
         {
           hostName = "dell-3340-samus";
           system = "x86_64-linux";
           protocol = "ssh-ng";
-          supportedFeatures = [ "nixos-test" "big-parallel" "kvm" "benchmark" ];
+          supportedFeatures = [
+            "nixos-test"
+            "big-parallel"
+            "kvm"
+            "benchmark"
+          ];
           maxJobs = 3;
-          speedFactor = 8;
+          speedFactor = 4;
         }
       ];
     };
 
     programs.ssh.extraConfig = ''
       Host builder
-              HostName 34.159.193.142
+              HostName 34.107.14.252
               ConnectTimeout 2
               IdentitiesOnly yes
               IdentityFile /root/.ssh/remote_builder
