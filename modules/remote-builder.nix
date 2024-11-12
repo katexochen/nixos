@@ -27,7 +27,7 @@ in
             "benchmark"
           ];
           maxJobs = 6;
-          speedFactor = 8;
+          speedFactor = 12;
         }
         {
           hostName = "dell-3340-kirby";
@@ -60,11 +60,11 @@ in
 
     programs.ssh.extraConfig = ''
       Host builder
-              HostName 34.107.14.252
+              HostName 34.159.224.157
               ConnectTimeout 2
               IdentitiesOnly yes
               IdentityFile /root/.ssh/remote_builder
-              User nix-remote-builder
+              User katexochen
       Host dell-3340-kirby
               HostName dell-3340-kirby
               ConnectTimeout 2
