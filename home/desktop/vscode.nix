@@ -24,10 +24,10 @@
       ms-vscode-remote.remote-ssh
       ms-vscode.cpptools
       ms-vsliveshare.vsliveshare
+      nefrob.vscode-just-syntax
       quicktype.quicktype
       redhat.vscode-yaml
       rust-lang.rust-analyzer
-      skellock.just
       streetsidesoftware.code-spell-checker
       tim-koehler.helm-intellisense
       timonwong.shellcheck
