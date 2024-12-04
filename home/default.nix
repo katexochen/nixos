@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./shell
     ./sway
@@ -80,7 +81,8 @@
     font-awesome
     dejavu_fonts
     noto-fonts-color-emoji
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
     source-code-pro
     helvetica-neue-lt-std
     ubuntu_font_family
