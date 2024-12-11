@@ -1,12 +1,15 @@
 { pkgs, ... }:
 let
   userName = "Paul Meyer";
-  userEmail = "49727155+katexochen@users.noreply.github.com";
+  userEmail = "katexochen0@gmail.com";
   #  siginigKeyPath = "/home/katexochen/.ssh/gitsign.pub";
 
   commit-msg-hook = pkgs.writeShellApplication {
     name = "commit-msg-hook";
-    runtimeInputs = with pkgs; [ git gnugrep ];
+    runtimeInputs = with pkgs; [
+      git
+      gnugrep
+    ];
     text = builtins.readFile ./commit-msg.sh;
   };
 in
@@ -33,6 +36,13 @@ in
 
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
+      sendemail = {
+        smtpServer = "smtp.gmail.com";
+        smtpServerPort = 587;
+        smtpUser = userEmail;
+        smtpEncryption = "tls";
+      };
+      credentials.helper = "store";
     };
 
     aliases = {
