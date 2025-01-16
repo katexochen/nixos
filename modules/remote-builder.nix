@@ -77,6 +77,24 @@ in
               IdentitiesOnly yes
               IdentityFile /root/.ssh/remote_builder
               User katexochen
+      Host aarch64-build-box
+              HostName aarch64-build-box.nix-community.org
+              ConnectTimeout 2
+              IdentitiesOnly yes
+              IdentityFile /root/.ssh/remote_builder
+              User katexochen
+      Host build-box
+              HostName build-box.nix-community.org
+              ConnectTimeout 2
+              IdentitiesOnly yes
+              IdentityFile /root/.ssh/remote_builder
+              User katexochen
+      Host darwin-build-box
+              HostName darwin-build-box.nix-community.org
+              ConnectTimeout 2
+              IdentitiesOnly yes
+              IdentityFile /root/.ssh/remote_builder
+              User katexochen
     '';
   };
 }
