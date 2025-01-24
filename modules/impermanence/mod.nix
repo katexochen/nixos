@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.my.modules.impermanence;
@@ -19,6 +24,8 @@ in
         "/root/.ssh"
         "/var/cache/tuigreet"
         "/var/lib/bluetooth"
+        "/var/lib/NetworkManager"
+        "/var/lib/nixos"
         "/var/lib/systemd/backlight"
         "/var/lib/tailscale"
       ];
@@ -26,10 +33,6 @@ in
         "/etc/adjtime"
         "/etc/docker/key.json"
         "/etc/machine-id"
-        "/var/lib/NetworkManager/NetworkManager.state"
-        "/var/lib/NetworkManager/secret_key"
-        "/var/lib/NetworkManager/seen-bssids"
-        "/var/lib/NetworkManager/timestamps"
       ];
     };
 
