@@ -13,6 +13,7 @@
     mpv
     pavucontrol
     tailscale
+    signal-desktop
 
     # Nix
     cachix
@@ -43,6 +44,7 @@
     go
     gopls
     gotools
+    open-policy-agent
     rust-analyzer
     rustc
     shellcheck
