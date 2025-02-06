@@ -63,6 +63,7 @@
     bat
     btop
     curl
+    dust
     eza
     fd
     file
