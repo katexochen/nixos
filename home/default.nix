@@ -63,10 +63,10 @@
     bat
     btop
     curl
-    diskonaut
     eza
     fd
     file
+    gdu
     jless
     jq
     magic-wormhole-rs

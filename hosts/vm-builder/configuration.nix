@@ -18,12 +18,12 @@
 
   environment.systemPackages = with pkgs; [
     btop
-    diskonaut
+    gdu
     git
-    starship
     go
     gotools
     nixpkgs-review
+    starship
   ];
 
   programs.tmux = {
