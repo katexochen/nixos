@@ -1,8 +1,9 @@
-{ config
-, lib
-, inputs
-, pkgs
-, ...
+{
+  config,
+  lib,
+  inputs,
+  pkgs,
+  ...
 }:
 let
   cfg = config.my;
@@ -30,9 +31,16 @@ in
         options = "--delete-older-than 20d";
       };
       settings = {
-        experimental-features = [ "nix-command" "flakes" "auto-allocate-uids" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+          "auto-allocate-uids"
+        ];
         auto-optimise-store = true;
-        trusted-users = [ "root" "@wheel" ];
+        trusted-users = [
+          "root"
+          "@wheel"
+        ];
         auto-allocate-uids = true;
       };
     };
@@ -97,7 +105,12 @@ in
     };
 
     system.activationScripts.diff = ''
-      PATH=$PATH:${lib.makeBinPath [ pkgs.nvd pkgs.nix ]}
+      PATH=$PATH:${
+        lib.makeBinPath [
+          pkgs.nvd
+          pkgs.nix
+        ]
+      }
       nvd diff $(ls -dv /nix/var/nix/profiles/system-*-link | tail -2)
     '';
     # system.activationScripts.diff = ''

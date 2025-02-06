@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 let
   discordScript = pkgs.writeShellApplication {
@@ -20,5 +21,8 @@ let
   };
 in
 {
-  home.packages = [ discordDeskopItem discordScript ];
+  home.packages = [
+    discordDeskopItem
+    discordScript
+  ];
 }

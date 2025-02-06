@@ -1,4 +1,5 @@
-{ lib, pkgs, ... }: {
+{ lib, pkgs, ... }:
+{
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.vscode = {
@@ -44,7 +45,8 @@
       "diffEditor.ignoreTrimWhitespace" = false;
       "editor.acceptSuggestionOnEnter" = "off";
       "editor.bracketPairColorization.enabled" = false;
-      "editor.fontFamily" = "'Droid Sans Mono', 'monospace', monospace, 'Font Awesome 6 Free', 'Font Awesome 6 Brands', 'FiraCode Nerd Font'";
+      "editor.fontFamily" =
+        "'Droid Sans Mono', 'monospace', monospace, 'Font Awesome 6 Free', 'Font Awesome 6 Brands', 'FiraCode Nerd Font'";
       "editor.formatOnPaste" = true;
       "editor.formatOnSave" = true;
       "editor.inlineSuggest.enabled" = true;
@@ -69,9 +71,15 @@
       "go.coverOnSingleTestFile" = true;
       "go.lintFlags" = [ "--fast" ];
       "go.lintTool" = "golangci-lint";
-      "go.testFlags" = [ "-count=1" "-race" "-v" ];
+      "go.testFlags" = [
+        "-count=1"
+        "-race"
+        "-v"
+      ];
       "go.testTimeout" = "2m";
-      "gopls" = { "formatting.gofumpt" = true; };
+      "gopls" = {
+        "formatting.gofumpt" = true;
+      };
       "java.saveActions.organizeImports" = true;
       "javascript.updateImportsOnFileMove.enabled" = "always";
       "latex-workshop.bibtex-fields.sort.enabled" = true;

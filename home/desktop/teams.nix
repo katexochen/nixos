@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 let
   teamsScript = pkgs.writeShellApplication {
@@ -20,5 +21,8 @@ let
   };
 in
 {
-  home.packages = [ teamsDeskopItem teamsScript ];
+  home.packages = [
+    teamsDeskopItem
+    teamsScript
+  ];
 }

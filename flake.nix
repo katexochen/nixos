@@ -27,13 +27,14 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , disko
-    , srvos
-    , treefmt-nix
-    , ...
-    } @ inputs:
+    {
+      self,
+      nixpkgs,
+      disko,
+      srvos,
+      treefmt-nix,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
 

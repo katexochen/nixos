@@ -1,6 +1,7 @@
-{ writeShellApplication
-, writeTextFile
-, networkmanager
+{
+  writeShellApplication,
+  writeTextFile,
+  networkmanager,
 }:
 let
   rub-eduroam-cert = writeTextFile {

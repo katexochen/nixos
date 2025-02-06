@@ -123,9 +123,12 @@ in
           "${mod}+Shift+v" = ''mode "system:  [r]eboot  [p]oweroff  [e]xit"'';
 
           # Shortcuts for applications
-          "${mod}+c" = "exec ${finalPkgBin "rofi"} -show calc -modi calc -no-show-mathc -no-sort  -calc-command 'echo -n {result} | ${pkgs.wl-clipboard}/bin/wl-copy'";
-          "${mod}+p" = "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g- screenshot-$(date +%Y%m%d-%H%M%S).png";
-          "${mod}+Shift+p" = "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g- - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
+          "${mod}+c" =
+            "exec ${finalPkgBin "rofi"} -show calc -modi calc -no-show-mathc -no-sort  -calc-command 'echo -n {result} | ${pkgs.wl-clipboard}/bin/wl-copy'";
+          "${mod}+p" =
+            "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g- screenshot-$(date +%Y%m%d-%H%M%S).png";
+          "${mod}+Shift+p" =
+            "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g- - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
           "${mod}+i" = "exec ${pkgs.mako}/bin/makoctl dismiss";
           "${mod}+Shift+i" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
           "${mod}+l" = "exec ${lib.getExe pkgs.swaylock-cmd}";
@@ -218,11 +221,11 @@ in
   home.pointerCursor = {
     name = cursor.theme;
     package = pkgs.adwaita-icon-theme;
-    size = cursor.size;
+    inherit (cursor) size;
   };
 
   gtk.cursorTheme = {
     name = cursor.theme;
-    size = cursor.size;
+    inherit (cursor) size;
   };
 }

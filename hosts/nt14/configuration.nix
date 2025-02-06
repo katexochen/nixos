@@ -1,7 +1,9 @@
-{ inputs
-, lib
-, ...
-}: {
+{
+  inputs,
+  lib,
+  ...
+}:
+{
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModule
@@ -18,7 +20,12 @@
   };
 
   boot = {
-    initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
+    initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "usb_storage"
+      "sd_mod"
+    ];
     initrd.kernelModules = [ "dm-snapshot" ];
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];

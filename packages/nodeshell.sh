@@ -2,16 +2,16 @@
 
 set -euo pipefail
 
-if [[ -z "$1" ]]; then
-    echo "Usage: nodeshell <node>"
-    exit 1
+if [[ -z $1 ]]; then
+  echo "Usage: nodeshell <node>"
+  exit 1
 fi
 
 node=${1}
 nodeName=$(
-    kubectl get node "${node}" \
-        -o template \
-        --template='{{index .metadata.labels "kubernetes.io/hostname"}}'
+  kubectl get node "${node}" \
+    -o template \
+    --template='{{index .metadata.labels "kubernetes.io/hostname"}}'
 )
 nodeSelector='"nodeSelector": { "kubernetes.io/hostname": "'${nodeName:?}'" },'
 uuid=$(cat /proc/sys/kernel/random/uuid)

@@ -1,5 +1,6 @@
-{ pkgs
-, ...
+{
+  pkgs,
+  ...
 }:
 let
   spotifyScript = pkgs.writeShellApplication {
@@ -20,5 +21,8 @@ let
   };
 in
 {
-  home.packages = [ spotifyDeskopItem spotifyScript ];
+  home.packages = [
+    spotifyDeskopItem
+    spotifyScript
+  ];
 }

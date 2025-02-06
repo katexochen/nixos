@@ -1,9 +1,13 @@
-{ lib
-, disk
-, ...
+{
+  lib,
+  disk,
+  ...
 }:
 let
-  btrfMountOpts = [ "compress=zstd" "noatime" ];
+  btrfMountOpts = [
+    "compress=zstd"
+    "noatime"
+  ];
 in
 {
   disko.devices = {

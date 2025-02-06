@@ -1,5 +1,6 @@
-{ writeShellApplication
-, kubectl
+{
+  writeShellApplication,
+  kubectl,
 }:
 
 writeShellApplication {

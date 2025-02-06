@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   cfg = config.my.modules.btrfs-luks;
@@ -17,10 +18,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    disko.devices = (pkgs.callPackage ./disko/btrfs-luks.nix {
-      inherit lib;
-      inherit (cfg) disk;
-    }).disko.devices;
+    disko.devices =
+      (pkgs.callPackage ./disko/btrfs-luks.nix {
+        inherit lib;
+        inherit (cfg) disk;
+      }).disko.devices;
 
     fileSystems."/persist".neededForBoot = true;
   };

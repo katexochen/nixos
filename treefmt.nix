@@ -1,8 +1,7 @@
-_:
-{
+_: {
   projectRootFile = "flake.nix";
   programs = {
-    nixpkgs-fmt.enable = true;
+    nixfmt.enable = true;
     deadnix.enable = true;
     shellcheck.enable = true;
     shfmt.enable = true;
