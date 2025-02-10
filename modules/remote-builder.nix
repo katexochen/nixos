@@ -60,7 +60,7 @@ in
 
     programs.ssh.extraConfig = ''
       Host builder
-              HostName 34.159.30.158
+              HostName builder.aro.bz
               ConnectTimeout 2
               IdentitiesOnly yes
               IdentityFile /root/.ssh/remote_builder
