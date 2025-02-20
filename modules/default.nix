@@ -40,6 +40,7 @@
     nm-setup-rub-eduroam
     nodeshell
     swaylock-cmd
+    matrixc
   ];
 
   home-manager = {
