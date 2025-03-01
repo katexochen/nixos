@@ -8,55 +8,67 @@ in
 {
   services.kanshi = {
     enable = true;
-    profiles = {
-      office.outputs = [
-        {
-          criteria = p14s;
-          status = "enable";
-          position = "0,240";
-        }
-        {
-          criteria = dellp27L;
-          status = "enable";
-          position = "1920,0";
-        }
-        {
-          criteria = dellp27R;
-          status = "enable";
-          position = "4480,0";
-        }
-      ];
-      home.outputs = [
-        {
-          criteria = dellu27;
-          status = "enable";
-          position = "0,0";
-        }
-        {
-          criteria = p14s;
-          status = "enable";
-          position = "2560,240";
-        }
-      ];
-      undoced.outputs = [
-        {
-          criteria = p14s;
-          status = "enable";
-          position = "0,0";
-        }
-      ];
-      mobile-external.outputs = [
-        {
-          criteria = l14;
-          status = "enable";
-          position = "0,0";
-        }
-        {
-          criteria = p14s;
-          status = "enable";
-          position = "1920,0";
-        }
-      ];
-    };
+    settings = [
+      {
+        profile.name = "office";
+        profile.outputs = [
+          {
+            criteria = p14s;
+            status = "enable";
+            position = "0,240";
+          }
+          {
+            criteria = dellp27L;
+            status = "enable";
+            position = "1920,0";
+          }
+          {
+            criteria = dellp27R;
+            status = "enable";
+            position = "4480,0";
+          }
+        ];
+      }
+      {
+        profile.name = "home";
+        profile.outputs = [
+          {
+            criteria = dellu27;
+            status = "enable";
+            position = "0,0";
+          }
+          {
+            criteria = p14s;
+            status = "enable";
+            position = "2560,240";
+          }
+        ];
+      }
+      {
+        profile.name = "undoced";
+        profile.outputs = [
+          {
+            criteria = p14s;
+            status = "enable";
+            position = "0,0";
+          }
+        ];
+      }
+      {
+        profile.name = "mobile-external";
+        profile.outputs = [
+          {
+            criteria = l14;
+            status = "enable";
+            position = "0,0";
+          }
+          {
+            criteria = p14s;
+            status = "enable";
+            position = "1920,0";
+          }
+        ];
+      }
+    ];
   };
 }
