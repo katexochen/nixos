@@ -1,7 +1,5 @@
 { lib, pkgs, ... }:
 {
-  home.sessionVariables.NIXOS_OZONE_WL = "1";
-
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = false;
@@ -102,7 +100,6 @@
             };
           };
         };
-        "open-in-browser.default" = "firefox";
         "outline.showFields" = false;
         "python.languageServer" = "Pylance";
         "redhat.telemetry.enabled" = false;
@@ -110,6 +107,7 @@
         "terminal.integrated.scrollback" = 10000;
         "vsintellicode.modify.editor.suggestSelection" = "automaticallyOverrodeDefaultValue";
         "window.menuBarVisibility" = "toggle";
+        "window.titleBarStyle" = "native";
         "workbench.colorTheme" = "Bluloco Light";
         "yaml.completion" = true;
         "yaml.hover" = true;
@@ -128,9 +126,7 @@
 
         "github.copilot.enable" = {
           "*" = true;
-          "yaml" = true;
           "plaintext" = false;
-          "markdown" = false;
         };
       };
       keybindings = [
