@@ -53,7 +53,7 @@
         "editor.suggest.preview" = true;
         "editor.suggest.shareSuggestSelections" = true;
         "editor.suggestSelection" = "recentlyUsedByPrefix";
-        "enableTelemetry" = false;
+        "telemetry.telemetryLevel" = "error";
         "explorer.confirmDragAndDrop" = false;
         "extensions.ignoreRecommendations" = false;
         "files.insertFinalNewline" = true;
@@ -108,6 +108,7 @@
         "vsintellicode.modify.editor.suggestSelection" = "automaticallyOverrodeDefaultValue";
         "window.menuBarVisibility" = "toggle";
         "window.titleBarStyle" = "native";
+        "window.customTitleBarVisibility" = "never";
         "workbench.colorTheme" = "Bluloco Light";
         "yaml.completion" = true;
         "yaml.hover" = true;
@@ -123,10 +124,10 @@
             "strings" = true;
           };
         };
-
         "github.copilot.enable" = {
           "*" = true;
           "plaintext" = false;
+          "markdown" = true;
         };
       };
       keybindings = [
@@ -141,11 +142,11 @@
           when = "terminalFocus";
         }
         {
-          key = "numpad_add";
+          key = "alt+left";
           command = "workbench.action.navigateBack";
         }
         {
-          key = "numpad_subtract";
+          key = "alt+right";
           command = "workbench.action.navigateForward";
         }
         {
