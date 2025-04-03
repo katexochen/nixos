@@ -44,6 +44,7 @@
     go
     gopls
     gotools
+    mergiraf
     open-policy-agent
     rust-analyzer
     rustc
