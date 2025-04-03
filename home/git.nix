@@ -53,12 +53,12 @@ in
       # List branches without a remote.
       bs-no-remote = "!git branch --format '%(refname:short) %(upstream)' | awk '{if (!$2) print $1;}'";
       # List my branches, sorted by last commit date.
-      bs-mine = "!git branch --sort=-committerdate --format='%(authorname) %09 %(refname:short)' | grep ${userName} | cut -f2";
+      bs-mine = "!git branch --sort=-committerdate --format='%(authorname) %09 %(refname:short)' | grep '${userName}' | cut -f2";
       # List my branches that contain wip commits.
       bs-wip = "log --all --grep='wip' --first-parent --date-order --author='${userName}' --max-count=15 --pretty='format: %d    %cr    %C(bold)%s'";
       # Add the fork of someone else as a remote.
       add-fork = "!git remote add \${1%/*} https://github.com/\${1} && git fetch \${1%/*}; #"; # $1 is appended to the end, ignoring it with #
-      # Add staged changes to the last commit.
+      # Add changes to the last commit.
       oops = "commit --amend --no-edit";
       # Apply a patch from remote URL.
       rapply = "!curl -fsSL \${1} | git apply -v --index; #";
