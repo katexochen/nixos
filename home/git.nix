@@ -36,6 +36,10 @@ in
 
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
+      pull.ff = "only";
+      merge.conflictStyle = "zdiff3";
+      rebase.autoStash = true;
+      # rerere.enabled = true;
       sendemail = {
         smtpServer = "smtp.gmail.com";
         smtpServerPort = 587;
