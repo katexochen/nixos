@@ -83,6 +83,7 @@
 
     # Fonts
     font-awesome
+    google-fonts
     dejavu_fonts
     noto-fonts-color-emoji
     nerd-fonts.fira-code
