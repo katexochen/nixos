@@ -36,7 +36,7 @@ in
       ];
     };
 
-    boot.initrd.postDeviceCommands = pkgs.lib.mkAfter ''
+    boot.initrd.postResumeCommands = pkgs.lib.mkAfter ''
       echo "impermanence: Starting backup and cleanup procedure" >&2
       mkdir /btrfs_tmp
       mount /dev/mapper/crypted /btrfs_tmp
