@@ -1,10 +1,14 @@
-{ pkgs, ... }:
-with pkgs;
+{ pkgs }:
+
+# pkgs.lib.packagesFromDirectoryRecursive {
+#   inherit (pkgs) callPackage;
+#   directory = ./by-name;
+# }
+
 {
-  go_latest = callPackage ./go_latest.nix { };
-  matrixc = callPackage ./matrixc.nix { };
-  mkpasswordfile = callPackage ./mkpasswordfile.nix { };
-  nm-setup-rub-eduroam = callPackage ./eduroam.nix { };
-  nodeshell = callPackage ./nodeshell.nix { };
-  swaylock-cmd = callPackage ./swaylock-cmd.nix { };
+  matrixc = pkgs.callPackage ./by-name/matrixc.nix { };
+  swaylock-cmd = pkgs.callPackage ./by-name/swaylock-cmd.nix { };
+  mkpasswordfile = pkgs.callPackage ./by-name/mkpasswordfile.nix { };
+  nodeshell = pkgs.callPackage ./by-name/nodeshell.nix { };
+  nm-setup-rub-eduroam = pkgs.callPackage ./by-name/nm-setup-rub-eduroam.nix { };
 }

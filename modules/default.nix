@@ -7,7 +7,6 @@
     ./btrfs-luks.nix
     ./remote-builder.nix
     ./graphical.nix
-    ../overlays
   ];
   programs.adb.enable = true;
 

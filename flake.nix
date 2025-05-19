@@ -38,8 +38,17 @@
     let
       system = "x86_64-linux";
 
-      pkgs = import nixpkgs { inherit system; };
-      inherit (nixpkgs) lib;
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = builtins.attrValues self.outputs.overlays;
+      };
+
+      nixpkgsCfg = {
+        nixpkgs = {
+          overlays = builtins.attrValues self.outputs.overlays;
+          config.allowUnfree = true;
+        };
+      };
 
       authorizedKeys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDcTVEfgXMnzE6iRJM8KWsrPHCXIgxqQNMfU+RmPM25g katexochen@remoteBuilder"
@@ -49,39 +58,45 @@
       treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
     in
     {
-      packages.x86_64-linux = import ./packages { inherit pkgs; };
+      packages.x86_64-linux = import ./packages { pkgs = nixpkgs.legacyPackages.${system}; };
+
+      overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = {
-        nt14 = lib.nixosSystem {
+        nt14 = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            nixpkgsCfg
             disko.nixosModules.disko
             ./hosts/nt14/configuration.nix
           ];
           specialArgs = { inherit inputs; };
         };
 
-        np14s = lib.nixosSystem {
+        np14s = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            nixpkgsCfg
             disko.nixosModules.disko
             ./hosts/np14s/configuration.nix
           ];
           specialArgs = { inherit inputs; };
         };
 
-        nostro = lib.nixosSystem {
+        nostro = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            nixpkgsCfg
             disko.nixosModules.disko
             ./hosts/nostro/configuration.nix
           ];
           specialArgs = { inherit inputs; };
         };
 
-        vm-builder = lib.nixosSystem {
+        vm-builder = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            nixpkgsCfg
             disko.nixosModules.disko
             srvos.nixosModules.server
             srvos.nixosModules.roles-nix-remote-builder
@@ -95,9 +110,10 @@
           specialArgs = { inherit inputs; };
         };
 
-        installer = lib.nixosSystem {
+        installer = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
+            nixpkgsCfg
             (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
             (nixpkgs + "/nixos/modules/installer/cd-dvd/channel.nix")
             (_: {
@@ -109,17 +125,13 @@
         };
       };
 
-      devShells.${system} = {
-        go = pkgs.mkShell { nativeBuildInputs = [ self.packages.x86_64-linux.go_latest ]; };
-      };
-
       checks.${system} = {
         formatting = treefmtEval.config.build.check self;
       };
 
       formatter.${system} = treefmtEval.config.build.wrapper;
 
-      legacyPackages.${system} = pkgs;
+      legacyPackages.${system} = import ./packages { pkgs = nixpkgs.legacyPackages.${system}; };
     };
 
   nixConfig = {
