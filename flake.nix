@@ -83,16 +83,6 @@
           specialArgs = { inherit inputs; };
         };
 
-        nostro = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            nixpkgsCfg
-            disko.nixosModules.disko
-            ./hosts/nostro/configuration.nix
-          ];
-          specialArgs = { inherit inputs; };
-        };
-
         vm-builder = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
