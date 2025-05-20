@@ -10,7 +10,7 @@
     ];
     extensions = [
       { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
-      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # ublock origin
+      { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
       { id = "logpjaacgmcbpdkdchjiaagddngobkck"; } # shortkeys
     ];
   };
