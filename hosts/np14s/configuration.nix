@@ -34,6 +34,7 @@
     ];
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 
   networking.useDHCP = lib.mkDefault true;
