@@ -113,6 +113,20 @@
             })
           ];
         };
+
+        pi = nixpkgs.lib.nixosSystem {
+          system = "aarch64-linux";
+          modules = [
+            nixpkgsCfg
+            ./hosts/pi/configuration.nix
+            {
+              services.openssh.enable = true;
+              users.users.root.openssh.authorizedKeys.keys = authorizedKeys;
+              users.users.katexochen.openssh.authorizedKeys.keys = authorizedKeys;
+            }
+          ];
+          specialArgs = { inherit inputs; };
+        };
       };
 
       checks.${system} = {
