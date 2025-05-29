@@ -70,9 +70,33 @@
           })
           [
             "https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt" # AdGuard DNS filter
-            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_9.txt" # The Big List of Hacked Malware Web Sites
-            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_11.txt" # malicious url blocklist
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_24.txt" # 1Hosts (Lite)
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_27.txt" # OISD Blocklist Big
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_33.txt" # Steven Black's List
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_3.txt" # Peter Lowe's Blocklist
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_48.txt" # HaGeZi's Pro Blocklist
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt" # Dan Pollock's List
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_53.txt" # AWAvenue Ads Rule
             "https://adguardteam.github.io/HostlistsRegistry/assets/filter_59.txt" # AdGuard DNS Popup Hosts filter
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_39.txt" # Dandelion Sprout's Anti Push Notifications
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_47.txt" # HaGeZi's Gambling Blocklist
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_60.txt" # HaGeZi's Xiaomi Tracker Blocklist
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_61.txt" # HaGeZi's Samsung Tracker Blocklist
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_63.txt" # HaGeZi's Windows/Office Tracker Blocklist
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_6.txt" # Dandelion Sprout's Game Console Adblock List
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_7.txt" # Perflyst and Dandelion Sprout's Smart-TV Blocklist
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_10.txt" # Scam Blocklist by DurableNapkin
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_11.txt" # Malicious URL Blocklist (URLHaus)
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_12.txt" # Dandelion Sprout's Anti-Malware List
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_18.txt" # Phishing Army
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_30.txt" # Phishing URL Blocklist (PhishTank and OpenPhish)
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_42.txt" # ShadowWhisperer's Malware List
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_44.txt" # HaGeZi's Threat Intelligence Feeds
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_50.txt" # uBlock₀ filters – Badware risks
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_54.txt" # HaGeZi's DynDNS Blocklist
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_55.txt" # HaGeZi's Badware Hoster Blocklist
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_8.txt" # NoCoin Filter List
+            "https://adguardteam.github.io/HostlistsRegistry/assets/filter_9.txt" # The Big List of Hacked Malware Web Sites
           ];
     };
   };
