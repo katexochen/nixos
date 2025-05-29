@@ -1,10 +1,8 @@
 {
-  description = "Personal NixOS configuration";
-
   inputs = {
-    nixpkgs = {
-      url = "nixpkgs/nixos-unstable";
-    };
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    impermanence.url = "github:nix-community/impermanence";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,9 +14,6 @@
     srvos = {
       url = "github:numtide/srvos";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    impermanence = {
-      url = "github:nix-community/impermanence";
     };
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
