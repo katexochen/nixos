@@ -1,11 +1,9 @@
+_:
+
 {
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}:
-{
+
+  imports = [ ../common ];
+
   users.users.katexochen = {
     isNormalUser = true;
     extraGroups = [
@@ -16,13 +14,6 @@
 
   zramSwap.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    btop
-    gdu
-    git
-    go
-  ];
-
   programs = {
     tmux = {
       enable = true;
@@ -30,7 +21,6 @@
       terminal = "screen-256color";
       historyLimit = 10000;
     };
-    starship.enable = true;
   };
 
   services.adguardhome = {
@@ -98,20 +88,6 @@
             "https://adguardteam.github.io/HostlistsRegistry/assets/filter_8.txt" # NoCoin Filter List
             "https://adguardteam.github.io/HostlistsRegistry/assets/filter_9.txt" # The Big List of Hacked Malware Web Sites
           ];
-    };
-  };
-
-  virtualisation.docker.enable = true;
-
-  nix = {
-    registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
-    nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      auto-optimise-store = true;
     };
   };
 

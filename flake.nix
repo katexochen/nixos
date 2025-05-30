@@ -33,6 +33,8 @@
     let
       lib = import ./lib inputs;
 
+      inherit (self) outputs;
+
       system = "x86_64-linux";
 
       nixpkgsCfg = {
@@ -60,7 +62,7 @@
             disko.nixosModules.disko
             ./hosts/np14s/configuration.nix
           ];
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs outputs; };
         };
 
         vm-builder = nixpkgs.lib.nixosSystem {
@@ -77,7 +79,7 @@
               roles.nix-remote-builder.schedulerPublicKeys = authorizedKeys;
             }
           ];
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs outputs; };
         };
 
         installer = nixpkgs.lib.nixosSystem {
@@ -105,7 +107,7 @@
               users.users.katexochen.openssh.authorizedKeys.keys = authorizedKeys;
             }
           ];
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs outputs; };
         };
       };
 

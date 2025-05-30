@@ -3,8 +3,10 @@
   lib,
   ...
 }:
+
 {
   imports = [
+    ../common
     inputs.home-manager.nixosModules.home-manager
     inputs.impermanence.nixosModule
     ../../modules
@@ -18,6 +20,8 @@
       impermanence.enable = true;
     };
   };
+
+  time.timeZone = "Europe/Berlin";
 
   boot = {
     initrd.availableKernelModules = [

@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  inputs,
   pkgs,
   ...
 }:
@@ -20,30 +19,6 @@ in
 
   config = {
     networking.hostName = cfg.host;
-
-    nixpkgs.config.allowUnfree = true;
-    nix = {
-      registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
-      nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-      gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 20d";
-      };
-      settings = {
-        experimental-features = [
-          "nix-command"
-          "flakes"
-          "auto-allocate-uids"
-        ];
-        auto-optimise-store = true;
-        trusted-users = [
-          "root"
-          "@wheel"
-        ];
-        auto-allocate-uids = true;
-      };
-    };
 
     boot = {
       kernelPackages = pkgs.linuxPackages_latest;
@@ -92,17 +67,6 @@ in
     security.sudo.extraConfig = ''
       Defaults lecture = never
     '';
-
-    time.timeZone = "Europe/Berlin";
-    i18n = {
-      defaultLocale = "en_US.UTF-8";
-      extraLocaleSettings = {
-        LC_TIME = "de_DE.UTF-8";
-        LC_MEASUREMENTS = "de_DE.UTF-8";
-        LC_MONETARY = "de_DE.UTF-8";
-        LC_COLLATE = "C.UTF-8";
-      };
-    };
 
     system.activationScripts.diff = ''
       PATH=$PATH:${
