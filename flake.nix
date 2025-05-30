@@ -31,12 +31,9 @@
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
+      lib = import ./lib inputs;
 
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = builtins.attrValues self.outputs.overlays;
-      };
+      system = "x86_64-linux";
 
       nixpkgsCfg = {
         nixpkgs = {
@@ -50,11 +47,9 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAqa+JmCiwHtCNJAJ8IuHIOIMPBrjLl4vmGh86WkYs+ katexochen@np14s"
       ];
 
-      treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+      treefmtEval = lib.eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
     in
     {
-      packages.x86_64-linux = import ./packages { pkgs = nixpkgs.legacyPackages.${system}; };
-
       overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = {
@@ -124,13 +119,15 @@
         };
       };
 
-      checks.${system} = {
-        formatting = treefmtEval.config.build.check self;
-      };
+      checks = lib.eachSystem (pkgs: {
+        formatting = treefmtEval.${pkgs.system}.config.build.check self;
+      });
 
-      formatter.${system} = treefmtEval.config.build.wrapper;
+      formatter = lib.eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
 
-      legacyPackages.${system} = import ./packages { pkgs = nixpkgs.legacyPackages.${system}; };
+      packages = lib.eachSystem (pkgs: import ./packages { inherit pkgs; });
+
+      legacyPackages = lib.eachSystem (pkgs: import ./packages { inherit pkgs; });
     };
 
   nixConfig = {
