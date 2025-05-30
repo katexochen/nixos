@@ -53,16 +53,6 @@
       overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = {
-        nt14 = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            nixpkgsCfg
-            disko.nixosModules.disko
-            ./hosts/nt14/configuration.nix
-          ];
-          specialArgs = { inherit inputs; };
-        };
-
         np14s = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
