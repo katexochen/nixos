@@ -68,7 +68,5 @@
     #     ${pkgs.nix}/bin/nix store diff-closures /run/current-system "$systemConfig"
     #   fi
     # '';
-
-    system.stateVersion = "22.05";
   };
 }
