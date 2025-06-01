@@ -18,6 +18,7 @@
     modules = {
       btrfs-luks.enable = true;
       impermanence.enable = true;
+      use-remote-builders.enable = true;
     };
   };
 

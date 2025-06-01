@@ -1,11 +1,13 @@
 { config, lib, ... }:
+
 let
-  cfg = config.my.modules.remote-bulder;
+  cfg = config.my.modules.use-remote-builders;
 in
+
 {
-  options.my.modules.remote-bulder = {
+  options.my.modules.use-remote-builders = {
     enable = lib.mkOption {
-      default = true;
+      default = false;
       description = lib.mkDoc "remote builder";
       type = lib.types.bool;
     };
@@ -14,7 +16,6 @@ in
   config = lib.mkIf cfg.enable {
     nix = {
       distributedBuilds = true;
-      settings.builders-use-substitutes = true;
       buildMachines = [
         {
           hostName = "builder";

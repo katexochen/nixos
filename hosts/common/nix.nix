@@ -16,6 +16,7 @@
         "flakes"
         "auto-allocate-uids"
       ];
+      builders-use-substitutes = lib.mkDefault true;
       auto-optimise-store = lib.mkDefault true;
       auto-allocate-uids = lib.mkDefault true;
       warn-dirty = true;

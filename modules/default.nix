@@ -5,15 +5,9 @@
     ./impermanence
     ./main.nix
     ./btrfs-luks.nix
-    ./remote-builder.nix
     ./graphical.nix
   ];
-  programs.adb.enable = true;
-
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-  networking.extraHosts = ''
-    127.0.0.1    license.confidential.cloud
-  '';
 
   users = {
     mutableUsers = false;
