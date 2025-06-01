@@ -27,8 +27,8 @@
 
     gc = {
       automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than +3";
+      dates = lib.mkDefault "weekly";
+      options = lib.mkDefault "--delete-older-than +3";
     };
 
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;

@@ -37,13 +37,6 @@
 
       system = "x86_64-linux";
 
-      nixpkgsCfg = {
-        nixpkgs = {
-          overlays = builtins.attrValues self.outputs.overlays;
-          config.allowUnfree = true;
-        };
-      };
-
       authorizedKeys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDcTVEfgXMnzE6iRJM8KWsrPHCXIgxqQNMfU+RmPM25g katexochen@remoteBuilder"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAqa+JmCiwHtCNJAJ8IuHIOIMPBrjLl4vmGh86WkYs+ katexochen@np14s"
@@ -59,7 +52,6 @@
         np14s = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            nixpkgsCfg
             disko.nixosModules.disko
             ./hosts/np14s/configuration.nix
             self.outputs.nixosModules.common
@@ -70,7 +62,6 @@
         vm-builder = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            nixpkgsCfg
             disko.nixosModules.disko
             srvos.nixosModules.server
             srvos.nixosModules.roles-nix-remote-builder
@@ -88,7 +79,6 @@
         installer = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            nixpkgsCfg
             (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
             (nixpkgs + "/nixos/modules/installer/cd-dvd/channel.nix")
             (_: {
@@ -102,7 +92,6 @@
         pi = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           modules = [
-            nixpkgsCfg
             ./hosts/pi/configuration.nix
             {
               services.openssh.enable = true;

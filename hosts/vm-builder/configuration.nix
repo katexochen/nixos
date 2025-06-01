@@ -6,6 +6,8 @@
   ...
 }:
 {
+  imports = [ ../common ];
+
   my = {
     host = "vm-builder";
     role = "server";

@@ -14,13 +14,12 @@
 
   my = {
     host = "np14s";
+    role = "client";
     modules = {
       btrfs-luks.enable = true;
       impermanence.enable = true;
     };
   };
-
-  time.timeZone = "Europe/Berlin";
 
   boot = {
     initrd.availableKernelModules = [
