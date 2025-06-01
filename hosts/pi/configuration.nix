@@ -4,6 +4,11 @@ _:
 
   imports = [ ../common ];
 
+  my = {
+    host = "pi";
+    role = "server";
+  };
+
   users.users.katexochen = {
     isNormalUser = true;
     extraGroups = [
@@ -105,7 +110,6 @@ _:
   };
 
   networking = {
-    hostName = "pi";
     useDHCP = true;
     firewall = {
       enable = true;

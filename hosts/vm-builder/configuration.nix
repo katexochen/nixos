@@ -6,6 +6,11 @@
   ...
 }:
 {
+  my = {
+    host = "vm-builder";
+    role = "server";
+  };
+
   users.users.katexochen = {
     isNormalUser = true;
     extraGroups = [

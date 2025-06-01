@@ -13,7 +13,6 @@
   ];
 
   my = {
-    user = "katexochen";
     host = "np14s";
     modules = {
       btrfs-luks.enable = true;

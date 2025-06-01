@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 {
   i18n = {
@@ -12,5 +12,5 @@
     };
   };
   location.provider = "geoclue2";
-  time.timeZone = lib.mkDefault "UTC";
+  time.timeZone = lib.mkDefault (if (config.my.role == "client") then "Europe/Berlin" else "UTC");
 }

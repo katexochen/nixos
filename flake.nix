@@ -52,6 +52,7 @@
       treefmtEval = lib.eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
     in
     {
+      nixosModules.common = import ./modules/common.nix;
       overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = {
@@ -61,6 +62,7 @@
             nixpkgsCfg
             disko.nixosModules.disko
             ./hosts/np14s/configuration.nix
+            self.outputs.nixosModules.common
           ];
           specialArgs = { inherit inputs outputs; };
         };
@@ -78,6 +80,7 @@
               users.users.katexochen.openssh.authorizedKeys.keys = authorizedKeys;
               roles.nix-remote-builder.schedulerPublicKeys = authorizedKeys;
             }
+            self.outputs.nixosModules.common
           ];
           specialArgs = { inherit inputs outputs; };
         };
@@ -106,6 +109,7 @@
               users.users.root.openssh.authorizedKeys.keys = authorizedKeys;
               users.users.katexochen.openssh.authorizedKeys.keys = authorizedKeys;
             }
+            self.outputs.nixosModules.common
           ];
           specialArgs = { inherit inputs outputs; };
         };

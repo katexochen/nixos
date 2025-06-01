@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./my.nix
+  ];
+}
