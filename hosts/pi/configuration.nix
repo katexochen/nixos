@@ -129,6 +129,9 @@ _:
   security.sudo.wheelNeedsPassword = false;
 
   hardware.enableRedistributableFirmware = true;
-
+  hardware.raspberry-pi."3".leds = {
+    act.disable = true;
+    pwr.disable = true;
+  };
   system.stateVersion = "25.11";
 }
