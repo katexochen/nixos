@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
     impermanence.url = "github:nix-community/impermanence";
 
     home-manager = {
@@ -25,6 +26,7 @@
     {
       self,
       nixpkgs,
+      nixos-hardware,
       disko,
       srvos,
       treefmt-nix,
@@ -92,6 +94,7 @@
         pi = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           modules = [
+            nixos-hardware.nixosModules.raspberry-pi-3
             ./hosts/pi/configuration.nix
             {
               services.openssh.enable = true;
