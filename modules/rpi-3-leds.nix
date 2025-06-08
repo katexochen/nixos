@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.hardware.raspberry-pi."3".leds;
@@ -15,6 +20,7 @@ in
   options.hardware.raspberry-pi."3".leds = {
     act.disable = mkDisableOption ''activity LED'';
     pwr.disable = mkDisableOption ''power LED'';
+    eth.disable = mkDisableOption ''ethernet LEDs'';
   };
 
   config = lib.mkMerge [
@@ -79,6 +85,23 @@ in
             '';
           }
         ];
+      };
+    })
+    (lib.mkIf cfg.eth.disable {
+      # Note: RPi 3B has ethernet over USB (LAN9514), so the ethernet device isn't
+      # exposed via device tree and therefore eth leds cannot be disabled via such.
+      # Instead, we can use the lan951x-led-ctl utility to control the LEDs.
+      # The later RPi models (3B+ and 4) have the ethernet controller integrated
+      # into the SoC and can disable the LEDs via device tree.
+      systemd.services.disable-rpi-eth-leds = {
+        description = "Disable Raspberry Pi 3B Ethernet LEDs using lan951x-led-ctl";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          ExecStart = "${pkgs.lan951x-led-ctl}/bin/lan951x-led-ctl --fdx=0 --lnk=0 --spd=0";
+        };
       };
     })
   ];

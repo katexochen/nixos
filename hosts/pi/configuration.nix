@@ -132,6 +132,7 @@ _:
   hardware.raspberry-pi."3".leds = {
     act.disable = true;
     pwr.disable = true;
+    eth.disable = true;
   };
   system.stateVersion = "25.11";
 }
