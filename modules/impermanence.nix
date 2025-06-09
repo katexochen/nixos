@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 
@@ -9,6 +10,8 @@ let
   cfg = config.my.modules.impermanence;
 in
 {
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
+
   options.my.modules = {
     impermanence = {
       enable = lib.mkEnableOption (lib.mdDoc "impermanence");
@@ -35,6 +38,10 @@ in
         "/etc/machine-id"
       ];
     };
+
+    environment.systemPackages = [
+      pkgs.impermanence-persist
+    ];
 
     boot.initrd.postResumeCommands = pkgs.lib.mkAfter ''
       echo "impermanence: Starting backup and cleanup procedure" >&2

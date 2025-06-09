@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./impermanence
     ./main.nix
     ./btrfs-luks.nix
     ./graphical.nix
