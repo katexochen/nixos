@@ -14,4 +14,5 @@
   lan951x-led-ctl = pkgs.callPackage ./by-name/lan951x-led-ctl/package.nix { };
   impermanence-persist = pkgs.callPackage ./by-name/impermanence-persist/package.nix { };
   regovis = pkgs.callPackage ./by-name/regovis/package.nix { };
+  fetchWithOras = pkgs.callPackage ./by-name/fetchWithOras/package.nix { };
 }
