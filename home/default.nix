@@ -73,6 +73,7 @@
     jq
     magic-wormhole-rs
     ncdu
+    oras
     ripgrep
     seashells
     tmux
