@@ -6,7 +6,11 @@
     ./btrfs-luks.nix
     ./graphical.nix
   ];
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+
+  networking.networkmanager = {
+    enable = true;
+    wifi.backend = "iwd";
+  };
 
   users = {
     mutableUsers = false;
