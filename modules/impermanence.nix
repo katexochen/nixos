@@ -28,6 +28,7 @@ in
         "/var/cache/tuigreet"
         "/var/lib/bluetooth"
         "/var/lib/NetworkManager"
+        "/var/lib/iwd"
         "/var/lib/nixos"
         "/var/lib/systemd/backlight"
         "/var/lib/tailscale"
