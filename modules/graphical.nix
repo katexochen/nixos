@@ -16,14 +16,11 @@
     config.common.default = "*";
   };
 
-  # Allow swaylock to unlock the computer for us
   security.pam.services = {
-    swaylock = {
-      text = "auth include login";
-    };
-    swaylock-plugin = {
-      text = "auth include login";
-    };
+    swaylock.text = "auth include login";
+    swaylock-plugin.text = "auth include login";
+    greetd.enableGnomeKeyring = true;
+    login.enableGnomeKeyring = true;
   };
 
   services = {
