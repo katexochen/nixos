@@ -16,15 +16,13 @@
     config.common.default = "*";
   };
 
-  # Allow swaylock to unlock the computer for us
   security.pam.services = {
-    swaylock = {
-      text = "auth include login";
-    };
-    swaylock-plugin = {
-      text = "auth include login";
-    };
+    swaylock.text = "auth include login";
+    swaylock-plugin.text = "auth include login";
+    greetd.enableGnomeKeyring = true;
+    login.enableGnomeKeyring = true;
   };
+  environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID"; # Needed for gnome-keyring unlocking!
 
   services = {
     printing.enable = true;
