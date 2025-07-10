@@ -93,6 +93,7 @@
         "latex-workshop.view.pdf.viewer" = "tab";
         "liveServer.settings.donotShowInfoMsg" = true;
         "liveshare.audio.joinCallBehavior" = "accept";
+        "markdown.extension.tableFormatter.enabled" = false;
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
         "nix.serverSettings" = {
