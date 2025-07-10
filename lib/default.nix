@@ -3,8 +3,12 @@
   ...
 }:
 
+let
+  inherit (nixpkgs) lib;
+in
+
 {
-  eachSystem =
-    f:
-    nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (system: f nixpkgs.legacyPackages.${system});
+  eachSystem = f: lib.genAttrs lib.systems.flakeExposed (system: f nixpkgs.legacyPackages.${system});
+
+  filterDrvs = lib.filterAttrs (_name: attr: lib.isDerivation attr);
 }

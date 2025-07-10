@@ -113,7 +113,7 @@
 
       formatter = lib.eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
 
-      packages = lib.eachSystem (pkgs: import ./packages { inherit pkgs; });
+      packages = lib.eachSystem (pkgs: (lib.filterDrvs (import ./packages { inherit pkgs; })));
 
       legacyPackages = lib.eachSystem (pkgs: import ./packages { inherit pkgs; });
     };

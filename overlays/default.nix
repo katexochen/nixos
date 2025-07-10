@@ -7,5 +7,5 @@ _:
     # });
   };
 
-  additions = final: _prev: (import ../packages { inherit (final) pkgs; });
+  additions = _final: prev: (import ../packages { pkgs = prev; });
 }
