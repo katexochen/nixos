@@ -33,7 +33,6 @@
 
   environment.systemPackages = with pkgs; [
     mkpasswordfile
-    nm-setup-rub-eduroam
     nodeshell
     swaylock-cmd
     matrixc
