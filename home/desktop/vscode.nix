@@ -95,7 +95,7 @@
         "liveshare.audio.joinCallBehavior" = "accept";
         "markdown.extension.tableFormatter.enabled" = false;
         "nix.enableLanguageServer" = true;
-        "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
+        "nix.serverPath" = "${lib.getExe pkgs.nixd}";
         "nix.serverSettings" = {
           "nixd" = {
             "formatting" = {

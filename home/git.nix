@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 let
   userName = "Paul Meyer";
   userEmail = "katexochen0@gmail.com";
@@ -77,7 +77,7 @@ in
     };
 
     hooks = {
-      commit-msg = "${commit-msg-hook}/bin/commit-msg-hook";
+      commit-msg = "${lib.getExe commit-msg-hook}";
     };
 
     difftastic.enable = true;

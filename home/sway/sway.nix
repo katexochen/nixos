@@ -5,8 +5,7 @@
   ...
 }:
 let
-  finalPkg = name: "${config.programs.${name}.finalPackage}";
-  finalPkgBin = name: "${finalPkg name}/bin/${name}";
+  finalPkgExe = name: lib.getExe config.programs.${name}.finalPackage;
 
   cursor = {
     theme = "Adwaita";
@@ -20,9 +19,9 @@ in
     wrapperFeatures.gtk = true;
     systemd.enable = true;
     config = {
-      terminal = "${pkgs.alacritty}/bin/alacritty";
-      menu = "${finalPkgBin "rofi"} -show drun -show-icons -pid";
-      bars = [ { command = "${pkgs.waybar}/bin/waybar"; } ];
+      terminal = "${lib.getExe pkgs.alacritty}";
+      menu = "${finalPkgExe "rofi"} -show drun -show-icons -pid";
+      bars = [ { command = "${lib.getExe pkgs.waybar}"; } ];
 
       modifier = "Mod4";
       down = "m";
@@ -124,23 +123,23 @@ in
 
           # Shortcuts for applications
           "${mod}+c" =
-            "exec ${finalPkgBin "rofi"} -show calc -modi calc -no-show-mathc -no-sort  -calc-command 'echo -n {result} | ${pkgs.wl-clipboard}/bin/wl-copy'";
+            "exec ${finalPkgExe "rofi"} -show calc -modi calc -no-show-mathc -no-sort  -calc-command 'echo -n {result} | ${pkgs.wl-clipboard}/bin/wl-copy'";
           "${mod}+p" =
-            "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g- screenshot-$(date +%Y%m%d-%H%M%S).png";
+            "exec ${lib.getExe pkgs.slurp} | ${lib.getExe pkgs.grim} -g- screenshot-$(date +%Y%m%d-%H%M%S).png";
           "${mod}+Shift+p" =
-            "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g- - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
+            "exec ${lib.getExe pkgs.slurp} | ${lib.getExe pkgs.grim} -g- - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png";
           "${mod}+i" = "exec ${pkgs.mako}/bin/makoctl dismiss";
           "${mod}+Shift+i" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
           "${mod}+l" = "exec ${lib.getExe pkgs.swaylock-cmd}";
 
           # XF86 keys
-          "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer -t";
-          "XF86AudioMicMute" = "exec ${pkgs.pamixer}/bin/pamixer --default-source -t";
-          "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer -i 5";
-          "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer -d 5";
-          "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s +10%";
-          "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl s 10%-";
-          "XF86Calculator" = "exec ${finalPkgBin "rofi"} -show calc -modi calc -no-show-mathc -no-sort";
+          "XF86AudioMute" = "exec ${lib.getExe pkgs.pamixer} -t";
+          "XF86AudioMicMute" = "exec ${lib.getExe pkgs.pamixer} --default-source -t";
+          "XF86AudioRaiseVolume" = "exec ${lib.getExe pkgs.pamixer} -i 5";
+          "XF86AudioLowerVolume" = "exec ${lib.getExe pkgs.pamixer} -d 5";
+          "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} s +10%";
+          "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.brightnessctl} s 10%-";
+          "XF86Calculator" = "exec ${finalPkgExe "rofi"} -show calc -modi calc -no-show-mathc -no-sort";
           "XF86Messenger" =
             let
               toggleNotifications = pkgs.writeShellApplication {

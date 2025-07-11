@@ -100,7 +100,7 @@ in
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;
-          ExecStart = "${pkgs.lan951x-led-ctl}/bin/lan951x-led-ctl --fdx=0 --lnk=0 --spd=0";
+          ExecStart = "${lib.getExe pkgs.lan951x-led-ctl} --fdx=0 --lnk=0 --spd=0";
         };
       };
     })

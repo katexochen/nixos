@@ -25,9 +25,9 @@
       export PATH=$PATH:/home/katexochen/bin
     '';
     shellAliases = {
-      cat = "${pkgs.bat}/bin/bat -pp";
-      k = "${pkgs.kubectl}/bin/kubectl";
-      ls = "${pkgs.eza}/bin/eza --git -L 3";
+      cat = "${lib.getExe pkgs.bat} -pp";
+      k = "${lib.getExe pkgs.kubectl}";
+      ls = "${lib.getExe pkgs.eza} --git -L 3";
       temp = "cd $(mktemp -d); bash; cd - > /dev/null";
       # https://docs.cachix.org/pushing#pushing-flake-inputs
       # nix build .#foo --json | build2cachix | cachix push bar

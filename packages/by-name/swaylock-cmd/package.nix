@@ -21,6 +21,6 @@ in
 writeShellApplication {
   name = "swaylock-cmd";
   text = ''
-    ${lib.getExe swaylock-plugin} -f --command "${mpvpaper}/bin/mpvpaper --auto-pause -o 'loop --deinterlace=yes --no-audio' '*' '${spain-vid}'"
+    ${lib.getExe swaylock-plugin} -f --command "${lib.getExe mpvpaper} --auto-pause -o 'loop --deinterlace=yes --no-audio' '*' '${spain-vid}'"
   '';
 }
