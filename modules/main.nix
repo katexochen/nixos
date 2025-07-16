@@ -22,7 +22,10 @@
     services = {
       earlyoom.enable = true;
       fwupd.enable = true;
-      dbus.enable = true;
+      dbus = {
+        enable = true;
+        implementation = "broker";
+      };
       tailscale.enable = true;
       xserver.xkb = {
         layout = "us-custom,de-custom";
