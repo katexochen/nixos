@@ -23,6 +23,7 @@
     greetd-password.enableGnomeKeyring = true;
     login.enableGnomeKeyring = true;
   };
+  environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID";
 
   services = {
     printing.enable = true;
