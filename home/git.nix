@@ -73,7 +73,7 @@ in
       # Force push with lease.
       force = "push --force-with-lease";
       # Show history between two commits, including links to commits on GitHub.
-      ghhist = "!git log --no-merges --pretty=format:\"$(git config --get remote.upstream.url | git config --get remote.origin.url)/commit/%h %s\" $1^..$2 ; #";
+      ghhist = "!git log --no-merges --pretty=format:\"$(git config --get remote.upstream.url || git config --get remote.origin.url)/commit/%h %s\" $1^..$2 ; #";
     };
 
     hooks = {
