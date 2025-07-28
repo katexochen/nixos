@@ -65,6 +65,7 @@
           "https://dns.cloudflare.com/dns-query"
         ];
         upstream_mode = "fastest_addr";
+        upstream_timeout = "1s";
         filtering = {
           protection_enabled = true;
           filtering_enabled = true;
