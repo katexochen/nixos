@@ -45,7 +45,6 @@
       go
       gopls
       gotools
-      open-policy-agent
       regovis
       rust-analyzer
       rustc
