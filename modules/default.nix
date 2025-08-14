@@ -11,6 +11,7 @@
     enable = true;
     wifi.backend = "iwd";
   };
+  services.resolved.enable = true;
 
   users = {
     mutableUsers = false;
