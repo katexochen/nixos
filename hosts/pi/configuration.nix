@@ -45,7 +45,14 @@
       dns = {
         port = 53;
         bind_hosts = [ "0.0.0.0" ];
-        bootstrap_dns = [ "1.1.1.1" ];
+        bootstrap_dns = [
+          "9.9.9.9"
+          "2620:fe::11"
+          "8.8.8.8"
+          "2001:4860:4860::8888"
+          "1.1.1.1"
+          "2606:4700:4700::64"
+        ];
         local_ptr_upstreams = [ "192.168.178.1" ];
         upstream_dns = [
           "9.9.9.9"
@@ -73,6 +80,7 @@
           safesearch_enabled = false;
           safebrowsing_enabled = false;
         };
+        cache_optimistic = true;
       };
       filters =
         map
