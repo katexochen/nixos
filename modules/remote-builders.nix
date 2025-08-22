@@ -18,19 +18,6 @@ in
       distributedBuilds = true;
       buildMachines = [
         {
-          hostName = "builder";
-          system = "x86_64-linux";
-          protocol = "ssh-ng";
-          supportedFeatures = [
-            "nixos-test"
-            "big-parallel"
-            "kvm"
-            "benchmark"
-          ];
-          maxJobs = 6;
-          speedFactor = 12;
-        }
-        {
           hostName = "dell-3340-kirby";
           system = "x86_64-linux";
           protocol = "ssh-ng";
@@ -40,8 +27,8 @@ in
             "kvm"
             "benchmark"
           ];
-          maxJobs = 3;
-          speedFactor = 4;
+          maxJobs = 6;
+          speedFactor = 6;
         }
         {
           hostName = "dell-3340-samus";
@@ -53,19 +40,13 @@ in
             "kvm"
             "benchmark"
           ];
-          maxJobs = 3;
-          speedFactor = 4;
+          maxJobs = 6;
+          speedFactor = 6;
         }
       ];
     };
 
     programs.ssh.extraConfig = ''
-      Host builder
-              HostName builder.aro.bz
-              ConnectTimeout 2
-              IdentitiesOnly yes
-              IdentityFile /root/.ssh/remote_builder
-              User katexochen
       Host dell-3340-kirby
               HostName dell-3340-kirby
               ConnectTimeout 2
