@@ -54,6 +54,11 @@
           "2606:4700:4700::64"
         ];
         local_ptr_upstreams = [ "192.168.178.1" ];
+        use_private_ptr_resolvers = true;
+        private_networks = [
+          "192.168.178.0/24"
+          "fd64:6093:c007:1111::/64"
+        ];
         upstream_dns = [
           "9.9.9.9"
           "149.112.112.112"
