@@ -37,7 +37,7 @@ in
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
       pull.ff = "only";
-      merge.conflictStyle = "zdiff3";
+      # merge.conflictStyle = "zdiff3"; # zdiff3 is incompatible with mergiraf
       rebase.autoStash = true;
       # rerere.enabled = true;
       sendemail = {
