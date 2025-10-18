@@ -43,6 +43,31 @@ in
           maxJobs = 6;
           speedFactor = 6;
         }
+        {
+          hostName = "aarch64-build-box";
+          system = "aarch64-linux";
+          protocol = "ssh-ng";
+          supportedFeatures = [
+            "nixos-test"
+            "big-parallel"
+            "kvm"
+            "benchmark"
+          ];
+          maxJobs = 4;
+          speedFactor = 4;
+        }
+        {
+          hostName = "darwin-build-box";
+          system = "x86_64-darwin";
+          protocol = "ssh-ng";
+          supportedFeatures = [
+            "nixos-test"
+            "big-parallel"
+            "benchmark"
+          ];
+          maxJobs = 4;
+          speedFactor = 4;
+        }
       ];
     };
 
