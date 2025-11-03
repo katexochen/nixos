@@ -91,7 +91,7 @@
       nerd-fonts.droid-sans-mono
       source-code-pro
       helvetica-neue-lt-std
-      ubuntu_font_family
+      ubuntu-classic
     ])
     ++ (with pkgs.webapps; [
       discord
