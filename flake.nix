@@ -45,6 +45,15 @@
       ];
 
       treefmtEval = lib.eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
+
+      nixpkgsOverlayed =
+        system:
+        import nixpkgs {
+          inherit system;
+          overlays = [ self.overlays.modifications ];
+          config.allowUnfree = true;
+          config.nvidia.acceptLicense = true;
+        };
     in
     {
       nixosModules.common = import ./modules/common.nix;
@@ -115,7 +124,9 @@
 
       packages = lib.eachSystem (pkgs: (lib.filterDrvs (import ./packages { inherit pkgs; })));
 
-      legacyPackages = lib.eachSystem (pkgs: import ./packages { inherit pkgs; });
+      legacyPackages = lib.eachSystem (
+        pkgs: (import ./packages { inherit pkgs; }) // { nixpkgs = (nixpkgsOverlayed system); }
+      );
     };
 
   nixConfig = {
