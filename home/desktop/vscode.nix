@@ -176,6 +176,10 @@
           key = "ctrl+shift+q";
           command = "workbench.action.quit";
         }
+        {
+          key = "ctrl+alt+2";
+          command = "workbench.action.toggleAuxiliaryBar";
+        }
       ];
     };
   };
