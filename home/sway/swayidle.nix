@@ -18,11 +18,6 @@
         resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * dpms on'";
       }
     ];
-    events = [
-      {
-        event = "before-sleep";
-        command = "${lib.getExe pkgs.swaylock-cmd}";
-      }
-    ];
+    events."before-sleep" = "${lib.getExe pkgs.swaylock-cmd}";
   };
 }
