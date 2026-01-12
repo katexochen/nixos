@@ -24,16 +24,14 @@
       nix-output-monitor
       nix-tree
       nix-update
-      nixpkgs-fmt
-      nixpkgs-hammering
       nixpkgs-review
-      nurl
       nvd
       statix
 
       # Development
       actionlint
       cargo
+      clippy
       crane
       diffoscope
       dive
@@ -45,9 +43,11 @@
       go
       gopls
       gotools
+      python3
       regovis
       rust-analyzer
       rustc
+      rustfmt
       shellcheck
       vbindiff
       xxd
