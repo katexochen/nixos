@@ -22,6 +22,7 @@
     };
     initExtra = ''
       export PATH=$PATH:$(go env GOPATH)/bin
+      export PATH=$PATH:/home/katexochen/.cargo/bin
       export PATH=$PATH:/home/katexochen/bin
     '';
     shellAliases = {
