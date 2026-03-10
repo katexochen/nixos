@@ -5,5 +5,6 @@
     ./starship.nix
     ./alacritty.nix
     ./atuin.nix
+    ./yazi.nix
   ];
 }
