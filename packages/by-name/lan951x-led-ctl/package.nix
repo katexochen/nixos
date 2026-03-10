@@ -10,12 +10,12 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "lan951x-led-ctl";
-  version = "1.1-unstable-2024-01-22";
+  version = "1.1";
 
   src = fetchgit {
     url = "https://git.familie-radermacher.ch/linux/lan951x-led-ctl.git/";
-    rev = "96bfb76dc4cf262baa13be03202fd2813494b41b";
-    hash = "sha256-Z6CKox7G7WT8SLpZUhTb0urHPnFoxiyzX6VvjINHpsc=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-Atn4P2OwDa6Y8WiXzMr3ijHroKpq/GNg4Q63i7A4PeI=";
   };
 
   postPatch = ''
