@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
 
@@ -18,6 +18,7 @@
   };
 
   zramSwap.enable = true;
+  services.earlyoom.enable = true;
 
   programs = {
     tmux = {
@@ -25,6 +26,17 @@
       clock24 = true;
       terminal = "screen-256color";
       historyLimit = 10000;
+    };
+  };
+
+  services.speedtest-tracker = {
+    enable = true;
+    enableNginx = true;
+    settings = {
+      APP_KEY_FILE = toString (
+        pkgs.writeText "app-key" "base64:QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUE="
+      );
+      SPEEDTEST_SCHEDULE = "7 * * * *";
     };
   };
 
@@ -144,7 +156,10 @@
     firewall = {
       enable = true;
       allowedUDPPorts = [ config.services.adguardhome.settings.dns.port ];
-      allowedTCPPorts = [ config.services.adguardhome.settings.dns.port ];
+      allowedTCPPorts = [
+        config.services.adguardhome.settings.dns.port
+        80
+      ];
     };
   };
 
