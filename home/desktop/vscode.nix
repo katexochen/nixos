@@ -113,6 +113,7 @@
         "window.titleBarStyle" = "native";
         "window.customTitleBarVisibility" = "never";
         "workbench.colorTheme" = "Bluloco Light";
+        "workbench.editorAssociations"."git-rebase-todo" = "default";
         "yaml.completion" = true;
         "yaml.hover" = true;
 
