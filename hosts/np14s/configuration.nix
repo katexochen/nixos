@@ -41,6 +41,7 @@
 
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  services.resolved.enable = true;
 
   hardware = {
     enableRedistributableFirmware = true;
