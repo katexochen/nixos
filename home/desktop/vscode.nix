@@ -12,7 +12,6 @@
         albymor.increment-selection
         bazelbuild.vscode-bazel
         eamodio.gitlens
-        github.copilot
         github.copilot-chat
         github.vscode-github-actions
         golang.go
