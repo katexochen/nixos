@@ -48,6 +48,27 @@
     cpu.amd.updateMicrocode = true;
   };
 
+  services.btrbk.instances."ext-usb" = {
+    onCalendar = null;
+    settings = {
+      incremental = "yes";
+      stream_compress = "zstd";
+      snapshot_create = "ondemand";
+      snapshot_preserve_min = "20w";
+      snapshot_preserve = "12m";
+      target_preserve_min = "12w";
+      target_preserve = "12m";
+      subvolume."/mnt/work" = {
+        snapshot_dir = "/mnt/work/.btrbk";
+        target."/mnt/backup/work" = { };
+      };
+      subvolume."/mnt/private" = {
+        snapshot_dir = "/mnt/private/.btrbk";
+        target."/mnt/backup/private" = { };
+      };
+    };
+  };
+
   services.libinput.enable = true;
 
   system.stateVersion = "22.05";
