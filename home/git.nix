@@ -7,6 +7,8 @@ in
   programs.git = {
     enable = true;
 
+    signing.format = null;
+
     settings = {
       user.name = "${userName}";
       user.email = "${userEmail}";
@@ -69,5 +71,8 @@ in
   };
 
   programs.difftastic.enable = true;
-  programs.mergiraf.enable = true;
+  programs.mergiraf = {
+    enable = true;
+    enableGitIntegration = true;
+  };
 }
