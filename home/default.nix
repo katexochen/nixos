@@ -15,6 +15,7 @@
       pavucontrol
       tailscale
       signal-desktop
+      amp-cli
 
       # Nix
       cachix
