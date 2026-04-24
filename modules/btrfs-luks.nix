@@ -15,13 +15,18 @@ in
       default = "/dev/nvme0n1";
       description = "Disk to install to";
     };
+    luksName = lib.mkOption {
+      type = lib.types.str;
+      default = "crypted";
+      description = "Name for the LUKS container";
+    };
   };
 
   config = lib.mkIf cfg.enable {
     disko.devices =
       (pkgs.callPackage ./disko/btrfs-luks.nix {
         inherit lib;
-        inherit (cfg) disk;
+        inherit (cfg) disk luksName;
       }).disko.devices;
 
     fileSystems."/persist".neededForBoot = true;

@@ -1,6 +1,7 @@
 {
   lib,
   disk,
+  luksName ? "crypted",
   ...
 }:
 let
@@ -32,7 +33,7 @@ in
             size = "100%";
             content = {
               type = "luks";
-              name = "crypted";
+              name = luksName;
               extraOpenArgs = [ "--allow-discards" ];
               askPassword = true;
               content = {

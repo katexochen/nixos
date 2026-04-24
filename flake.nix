@@ -73,6 +73,16 @@
           specialArgs = { inherit inputs outputs; };
         };
 
+        np14s-portable = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/np14s-portable/configuration.nix
+            self.outputs.nixosModules.common
+          ];
+          specialArgs = { inherit inputs outputs; };
+        };
+
         vm-builder = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
