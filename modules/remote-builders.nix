@@ -18,32 +18,6 @@ in
       distributedBuilds = true;
       buildMachines = [
         {
-          hostName = "dell-3340-kirby";
-          system = "x86_64-linux";
-          protocol = "ssh-ng";
-          supportedFeatures = [
-            "nixos-test"
-            "big-parallel"
-            "kvm"
-            "benchmark"
-          ];
-          maxJobs = 6;
-          speedFactor = 6;
-        }
-        {
-          hostName = "dell-3340-samus";
-          system = "x86_64-linux";
-          protocol = "ssh-ng";
-          supportedFeatures = [
-            "nixos-test"
-            "big-parallel"
-            "kvm"
-            "benchmark"
-          ];
-          maxJobs = 6;
-          speedFactor = 6;
-        }
-        {
           hostName = "aarch64-build-box";
           system = "aarch64-linux";
           protocol = "ssh-ng";
