@@ -37,6 +37,7 @@
       diffoscope
       dive
       docker
+      claude-code
       gcc
       gh
       git-absorb
