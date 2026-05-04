@@ -8,6 +8,7 @@
 
 let
   cfg = config.my.modules.impermanence;
+  luksName = config.my.modules.btrfs-luks.luksName;
 in
 {
   imports = [ inputs.impermanence.nixosModules.impermanence ];
@@ -43,29 +44,37 @@ in
       pkgs.impermanence-persist
     ];
 
-    boot.initrd.postResumeCommands = pkgs.lib.mkAfter ''
-      echo "impermanence: Starting backup and cleanup procedure" >&2
-      mkdir /btrfs_tmp
-      mount /dev/mapper/crypted /btrfs_tmp
+    boot.initrd.systemd.services.impermanence-rollback = {
+      description = "Wipe BTRFS root subvolume to a pristine state";
+      wantedBy = [ "initrd.target" ];
+      after = [ "systemd-cryptsetup@${luksName}.service" ];
+      before = [ "sysroot.mount" ];
+      unitConfig.DefaultDependencies = "no";
+      serviceConfig.Type = "oneshot";
+      script = ''
+        echo "impermanence: Starting backup and cleanup procedure" >&2
+        mkdir -p /btrfs_tmp
+        mount /dev/mapper/${luksName} /btrfs_tmp
 
-      delete_subvolume_recursively() {
-        IFS=$'\n'
-        for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
-            delete_subvolume_recursively "/btrfs_tmp/$i"
-        done
-        btrfs subvolume delete "$1"
-        echo "impermanence: Deleted subvolume $1" >&2
-      }
+        delete_subvolume_recursively() {
+          IFS=$'\n'
+          for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+              delete_subvolume_recursively "/btrfs_tmp/$i"
+          done
+          btrfs subvolume delete "$1"
+          echo "impermanence: Deleted subvolume $1" >&2
+        }
 
-      if [[ -e /btrfs_tmp/@ ]]; then
-          delete_subvolume_recursively /btrfs_tmp/@
-      fi
+        if [[ -e /btrfs_tmp/@ ]]; then
+            delete_subvolume_recursively /btrfs_tmp/@
+        fi
 
-      btrfs subvolume create /btrfs_tmp/@
-      echo "impermanence: Created new root subvolume at /btrfs_tmp/@" >&2
+        btrfs subvolume create /btrfs_tmp/@
+        echo "impermanence: Created new root subvolume at /btrfs_tmp/@" >&2
 
-      umount /btrfs_tmp
-      echo "impermanence: Done" >&2
-    '';
+        umount /btrfs_tmp
+        echo "impermanence: Done" >&2
+      '';
+    };
   };
 }
