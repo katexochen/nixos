@@ -57,6 +57,8 @@
       Defaults lecture = never
     '';
 
+    system.etc.overlay.enable = true;
+
     system.activationScripts.diff = ''
       PATH=$PATH:${
         lib.makeBinPath [
