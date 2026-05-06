@@ -10,7 +10,7 @@
       enableExtensionUpdateCheck = true;
       extensions = with pkgs.vscode-extensions; [
         albymor.increment-selection
-        bazelbuild.vscode-bazel
+        anthropic.claude-code
         eamodio.gitlens
         github.copilot-chat
         github.vscode-github-actions
@@ -29,11 +29,9 @@
         quicktype.quicktype
         redhat.vscode-yaml
         rust-lang.rust-analyzer
-        sourcegraph.amp
         streetsidesoftware.code-spell-checker
         tim-koehler.helm-intellisense
         timonwong.shellcheck
-        tsandall.opa
         twpayne.vscode-testscript
         uloco.theme-bluloco-light
         yzhang.markdown-all-in-one
