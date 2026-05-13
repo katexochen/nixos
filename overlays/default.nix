@@ -8,10 +8,9 @@ _:
     btop = prev.btop.overrideAttrs (oldAttrs: {
       patches = oldAttrs.patches or [ ] ++ [
         (final.fetchpatch {
-          url = "https://github.com/aristocratos/btop/commit/1771182c593debd9c5a65f050ef560bf449aab23.patch";
-          hash = "sha256-HepoGCO/Yl2uAfdTdqSWXmdID2zDsLbp+0ujjdk8JUw=";
+          url = "https://github.com/aristocratos/btop/commit/30b3868787b7f6c1b83a0e790a5e6ee6c28de28c.patch";
+          hash = "sha256-BeZL9aSp1C/nBXWl8of8SaPY2VzAkPiUE2cexsAiFRg=";
         })
-
       ];
     });
   };
