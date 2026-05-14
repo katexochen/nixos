@@ -19,6 +19,7 @@
         iliazeus.vscode-ansi
         jamesyang999.vscode-emacs-minimum
         jnoortheen.nix-ide
+        llvm-vs-code-extensions.vscode-clangd
         mkhl.direnv
         ms-python.python
         ms-python.vscode-pylance
@@ -38,8 +39,18 @@
         zxh404.vscode-proto3
       ];
       userSettings = {
-        "C_Cpp.clang_format_fallbackStyle" = "{ BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4 }";
-        "C_Cpp.clang_format_style" = "{ BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4 }";
+        "C_Cpp.intelliSenseEngine" = "disabled";
+        "C_Cpp.formatting" = "disabled";
+        "C_Cpp.enhancedColorization" = "disabled";
+        "C_Cpp.suggestSnippets" = false;
+        "clangd.path" = "${pkgs.clang-tools}/bin/clangd";
+        "clangd.arguments" = [
+          "--background-index"
+          "--clang-tidy"
+          "--header-insertion=never"
+          "--completion-style=detailed"
+          "--pch-storage=memory"
+        ];
         "cSpell.allowCompoundWords" = true;
         "diffEditor.ignoreTrimWhitespace" = false;
         "editor.acceptSuggestionOnEnter" = "off";

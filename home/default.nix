@@ -33,6 +33,7 @@
       actionlint
       cargo
       clippy
+      clang-tools
       crane
       diffoscope
       dive
