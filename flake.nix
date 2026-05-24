@@ -67,10 +67,6 @@
           hostname = "np14s";
         };
 
-        np14s-portable = mkHost {
-          hostname = "np14s-portable";
-        };
-
         vm-builder = mkHost {
           hostname = "vm-builder";
           withUser = false;
