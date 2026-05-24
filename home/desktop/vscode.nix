@@ -12,6 +12,7 @@
         albymor.increment-selection
         anthropic.claude-code
         eamodio.gitlens
+        editorconfig.editorconfig
         github.copilot-chat
         github.vscode-github-actions
         golang.go
