@@ -55,7 +55,7 @@ in
                 git
                 gnugrep
               ];
-              text = builtins.readFile ./assets/commit-msg.sh;
+              text = builtins.readFile ./commit-msg.sh;
             }
           );
         };

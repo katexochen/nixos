@@ -24,7 +24,7 @@ in
 
   config = lib.mkIf cfg.enable {
     disko.devices =
-      (pkgs.callPackage ./disko/btrfs-luks.nix {
+      (pkgs.callPackage ./disko.nix {
         inherit lib;
         inherit (cfg) disk luksName;
       }).disko.devices;

@@ -9,12 +9,12 @@
         us-custom = {
           description = "US custom layout";
           languages = [ "eng" ];
-          symbolsFile = pkgs.copyPathToStore ../symbols/us-custom;
+          symbolsFile = pkgs.copyPathToStore ./us-custom;
         };
         de-custom = {
           description = "DE custom layout";
           languages = [ "ger" ];
-          symbolsFile = pkgs.copyPathToStore ../symbols/de-custom;
+          symbolsFile = pkgs.copyPathToStore ./de-custom;
         };
       };
     };

@@ -9,7 +9,7 @@ in
     home-manager.users.${user}.programs.waybar = {
       enable = true;
       systemd.target = "sway-session.target";
-      style = ./assets/waybar-style.css;
+      style = ./style.css;
       settings = {
         mainBar = {
           layer = "top";
