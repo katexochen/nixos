@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   user = config.my.user;
@@ -30,6 +35,7 @@ in
             "network#wifi"
             "network#speed"
             "battery"
+            "power-profiles-daemon"
             "cpu"
             "memory"
             "sway/language"
@@ -125,6 +131,18 @@ in
               ""
               ""
             ];
+          };
+
+          "power-profiles-daemon" = {
+            format = "{icon}";
+            format-icons = {
+              balanced = "";
+              default = "";
+              performance = "";
+              power-saver = "";
+            };
+            tooltip = true;
+            tooltip-format = "Power profile: {profile}\nDriver: {driver}";
           };
 
           "sway/window" = {
