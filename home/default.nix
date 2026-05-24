@@ -16,6 +16,7 @@
       tailscale
       signal-desktop
       amp-cli
+      slack
 
       # Nix
       cachix
@@ -45,7 +46,7 @@
       gnumake
       go
       gopls
-      gotools
+      # gotools
       python3
       regovis
       rust-analyzer
