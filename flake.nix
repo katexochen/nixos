@@ -30,7 +30,6 @@
       self,
       nixpkgs,
       nixos-hardware,
-      disko,
       srvos,
       treefmt-nix,
       ...
@@ -39,6 +38,8 @@
       lib = import ./lib inputs;
 
       inherit (self) outputs;
+
+      mkHost = lib.mkHostWith outputs;
 
       system = "x86_64-linux";
 
@@ -59,45 +60,29 @@
         };
     in
     {
-      nixosModules.common = import ./modules/common.nix;
       overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = {
-        np14s = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            disko.nixosModules.disko
-            ./hosts/np14s/configuration.nix
-            self.outputs.nixosModules.common
-          ];
-          specialArgs = { inherit inputs outputs; };
+        np14s = mkHost {
+          hostname = "np14s";
         };
 
-        np14s-portable = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            disko.nixosModules.disko
-            ./hosts/np14s-portable/configuration.nix
-            self.outputs.nixosModules.common
-          ];
-          specialArgs = { inherit inputs outputs; };
+        np14s-portable = mkHost {
+          hostname = "np14s-portable";
         };
 
-        vm-builder = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            disko.nixosModules.disko
+        vm-builder = mkHost {
+          hostname = "vm-builder";
+          withUser = false;
+          extraModules = [
             srvos.nixosModules.server
             srvos.nixosModules.roles-nix-remote-builder
-            ./hosts/vm-builder/configuration.nix
             {
               users.users.root.openssh.authorizedKeys.keys = authorizedKeys;
               users.users.katexochen.openssh.authorizedKeys.keys = authorizedKeys;
               roles.nix-remote-builder.schedulerPublicKeys = authorizedKeys;
             }
-            self.outputs.nixosModules.common
           ];
-          specialArgs = { inherit inputs outputs; };
         };
 
         installer = nixpkgs.lib.nixosSystem {
@@ -113,19 +98,18 @@
           ];
         };
 
-        pi = nixpkgs.lib.nixosSystem {
+        pi = mkHost {
+          hostname = "pi";
           system = "aarch64-linux";
-          modules = [
+          withUser = false;
+          extraModules = [
             nixos-hardware.nixosModules.raspberry-pi-3
-            ./hosts/pi/configuration.nix
             {
               services.openssh.enable = true;
               users.users.root.openssh.authorizedKeys.keys = authorizedKeys;
               users.users.katexochen.openssh.authorizedKeys.keys = authorizedKeys;
             }
-            self.outputs.nixosModules.common
           ];
-          specialArgs = { inherit inputs outputs; };
         };
       };
 

@@ -1,70 +1,90 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+let
+  user = config.my.user;
+in
+
 {
-  hardware.graphics.enable = true;
+  config = lib.mkIf (config.my.role == "client") {
+    hardware.graphics.enable = true;
+    hardware.bluetooth.enable = true;
 
-  boot = {
-    supportedFilesystems = [ "ntfs" ];
-    # puts systemd init logs on tty1
-    # so that tuigreet and systemd logs don't clobber each other
-    kernelParams = [ "console=tty1" ];
-  };
-
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-    config.common.default = "*";
-  };
-
-  security.pam.services = {
-    swaylock.text = "auth include login";
-    swaylock-plugin.text = "auth include login";
-    greetd.enableGnomeKeyring = true;
-    greetd-password.enableGnomeKeyring = true;
-    login.enableGnomeKeyring = true;
-  };
-  environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID";
-
-  services = {
-    printing.enable = true;
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
+    boot = {
+      supportedFilesystems = [ "ntfs" ];
+      kernelParams = [ "console=tty1" ];
     };
-    pipewire = {
+
+    xdg.portal = {
       enable = true;
-      alsa.enable = true;
-      pulse.enable = true;
+      wlr.enable = true;
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      config.common.default = "*";
     };
-    greetd = {
-      enable = true;
-      useTextGreeter = true;
-      settings = {
-        default_session = {
-          command = ''
-            ${pkgs.tuigreet}/bin/tuigreet \
-              --remember \
-              --time \
-              --asterisks \
-              --cmd ${pkgs.sway}/bin/sway
-          '';
+
+    security.pam.services = {
+      greetd.enableGnomeKeyring = true;
+      greetd-password.enableGnomeKeyring = true;
+      login.enableGnomeKeyring = true;
+    };
+    environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID";
+
+    services = {
+      printing.enable = true;
+      avahi = {
+        enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
+      };
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        pulse.enable = true;
+      };
+      greetd = {
+        enable = true;
+        useTextGreeter = true;
+        settings = {
+          default_session = {
+            command = ''
+              ${pkgs.tuigreet}/bin/tuigreet \
+                --remember \
+                --time \
+                --asterisks \
+                --cmd ${pkgs.sway}/bin/sway
+            '';
+          };
         };
       };
+      gnome.gnome-keyring.enable = true;
     };
-  };
 
-  fonts.enableDefaultPackages = true;
-  fonts.fontconfig = {
-    enable = true;
-    antialias = true;
-    hinting = {
+    fonts.enableDefaultPackages = true;
+    fonts.fontconfig = {
       enable = true;
-      autohint = true; # no difference
+      antialias = true;
+      hinting = {
+        enable = true;
+        autohint = true;
+      };
+      subpixel = {
+        rgba = "rgb";
+        lcdfilter = "default";
+      };
     };
-    subpixel = {
-      rgba = "rgb";
-      lcdfilter = "default"; # no difference
+
+    environment.systemPackages = with pkgs; [
+      mkpasswordfile
+      nodeshell
+      swaylock-cmd
+      matrixc
+    ];
+
+    home-manager.users.${user} = {
+      home.sessionVariables = {
+        MOZ_ENABLE_WAYLAND = 1;
+        XDG_CURRENT_DESKTOP = "sway";
+        GOPRIVATE = "github.com/edgelesssys";
+      };
     };
   };
 }
