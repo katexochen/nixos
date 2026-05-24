@@ -59,7 +59,7 @@ in
 
           "memory" = {
             interval = 2;
-            format = "{}% ";
+            format = "{percentage}% ";
             tooltip-format = "{used:0.1f}G / {total:0.1f}G";
             states = {
               warning = 70;
@@ -70,7 +70,7 @@ in
           "network#speed" = {
             interval = 2;
             tooltip-format = "{ifname} via {gwaddr} ";
-            format = " {bandwidthDownBytes}  {bandwidthUpBytes}";
+            format = " {bandwidthDownBits}  {bandwidthUpBits}";
             on-click = "swaymsg exec \"${lib.getExe pkgs.alacritty} --class Alacritty-floating -e nmtui-connect\"";
           };
 
@@ -83,10 +83,10 @@ in
           };
 
           "bluetooth" = {
-            format = "";
-            format-off = "";
-            format-disabled = "";
-            format-connected = " {num_connections}";
+            format = "󰂯";
+            format-off = "󰂲";
+            format-disabled = "󰂲";
+            format-connected = " {num_connections}";
             tooltip-format = "{controller_alias}\t{controller_address}";
             tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
             tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
@@ -97,21 +97,21 @@ in
           "pulseaudio" = {
             scroll-step = 5;
             format = "{volume}% {icon} {format_source}";
-            format-bluetooth = "{volume}% {icon} {format_source}";
-            format-bluetooth-muted = " {icon} {format_source}";
-            format-muted = " {format_source}";
+            format-bluetooth = "{volume}% {icon}  {format_source}";
+            format-bluetooth-muted = "󰸈 {icon}  {format_source}";
+            format-muted = " {format_source}";
             format-source = "{volume}% ";
             format-source-muted = "";
             format-icons = {
               headphone = "";
-              hands-free = "";
-              headset = "";
+              hands-free = "";
+              headset = "󰋎";
               phone = "";
               portable = "";
               default = [
-                ""
-                ""
-                ""
+                " "
+                " "
+                " "
               ];
             };
             "on-click" = "${lib.getExe pkgs.pavucontrol}";
