@@ -13,7 +13,7 @@ in
   config = lib.mkIf (config.my.role == "client") {
     home-manager.users.${user}.programs.waybar = {
       enable = true;
-      systemd.target = "sway-session.target";
+      systemd.targets = [ "sway-session.target" ];
       style = ./style.css;
       settings = {
         mainBar = {
@@ -49,7 +49,7 @@ in
 
           "cpu" = {
             interval = 2;
-            format = "{usage}% ";
+            format = "{usage}% ";
             tooltip = false;
             states = {
               warning = 70;
@@ -59,7 +59,7 @@ in
 
           "memory" = {
             interval = 2;
-            format = "{}% ";
+            format = "{}% ";
             tooltip-format = "{used:0.1f}G / {total:0.1f}G";
             states = {
               warning = 70;
@@ -69,24 +69,24 @@ in
 
           "network#speed" = {
             interval = 2;
-            tooltip-format = "{ifname} via {gwaddr} ";
-            format = " {bandwidthDownBytes}  {bandwidthUpBytes}";
+            tooltip-format = "{ifname} via {gwaddr} ";
+            format = " {bandwidthDownBytes}  {bandwidthUpBytes}";
             on-click = "swaymsg exec \"${lib.getExe pkgs.alacritty} --class Alacritty-floating -e nmtui-connect\"";
           };
 
           "network#wifi" = {
             interval = 10;
-            format-wifi = "{essid} ({signalStrength}%) ";
+            format-wifi = "{essid} ({signalStrength}%) ";
             format = "";
             tooltip = false;
             on-click = "swaymsg exec \"${lib.getExe pkgs.alacritty} --class Alacritty-floating -e nmtui-connect\"";
           };
 
           "bluetooth" = {
-            format = "";
-            format-off = "";
-            format-disabled = "";
-            format-connected = " {num_connections}";
+            format = "";
+            format-off = "";
+            format-disabled = "";
+            format-connected = " {num_connections}";
             tooltip-format = "{controller_alias}\t{controller_address}";
             tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
             tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
@@ -97,21 +97,21 @@ in
           "pulseaudio" = {
             scroll-step = 5;
             format = "{volume}% {icon} {format_source}";
-            format-bluetooth = "{volume}% {icon} {format_source}";
-            format-bluetooth-muted = " {icon} {format_source}";
-            format-muted = " {format_source}";
-            format-source = "{volume}% ";
-            format-source-muted = "";
+            format-bluetooth = "{volume}% {icon} {format_source}";
+            format-bluetooth-muted = " {icon} {format_source}";
+            format-muted = " {format_source}";
+            format-source = "{volume}% ";
+            format-source-muted = "";
             format-icons = {
-              headphone = "";
-              hands-free = "";
-              headset = "";
-              phone = "";
-              portable = "";
+              headphone = "";
+              hands-free = "";
+              headset = "";
+              phone = "";
+              portable = "";
               default = [
-                ""
-                ""
-                ""
+                ""
+                ""
+                ""
               ];
             };
             "on-click" = "${lib.getExe pkgs.pavucontrol}";
@@ -125,11 +125,11 @@ in
             };
             format = "{capacity}% {icon}";
             format-icons = [
-              ""
-              ""
-              ""
-              ""
-              ""
+              ""
+              ""
+              ""
+              ""
+              ""
             ];
           };
 

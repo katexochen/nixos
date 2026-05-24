@@ -58,20 +58,6 @@ in
       gnome.gnome-keyring.enable = true;
     };
 
-    fonts.enableDefaultPackages = true;
-    fonts.fontconfig = {
-      enable = true;
-      antialias = true;
-      hinting = {
-        enable = true;
-        autohint = true;
-      };
-      subpixel = {
-        rgba = "rgb";
-        lcdfilter = "default";
-      };
-    };
-
     environment.systemPackages = with pkgs; [
       mkpasswordfile
       nodeshell

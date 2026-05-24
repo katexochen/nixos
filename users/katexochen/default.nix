@@ -36,8 +36,6 @@ in
         home.stateVersion = "22.05";
         home.enableNixpkgsReleaseCheck = true;
 
-        fonts.fontconfig.enable = true;
-
         xdg.configFile."nixpkgs/config.nix".text = ''
           {
             allowUnfree = true;
