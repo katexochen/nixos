@@ -10,6 +10,7 @@ in
       enable = true;
       settings = {
         selection.save_to_clipboard = true;
+        scrolling.history = 50000;
         window = {
           padding = {
             x = 20;

@@ -17,13 +17,15 @@ in
         show_preview = true;
         enter_accept = true;
         exit_mode = "return-query";
+        update_check = false;
         history_filter = [
           "^exit$"
           "^reboot$"
           "^shutdown$"
           "^poweroff$"
           "^systemctl (reboot|restart|poweroff)$"
-          "^ls?$"
+          "^ls?( .*)?$"
+          "^cd( .*)?$"
           "^clear$"
         ];
         prefers_reduced_motion = true;
