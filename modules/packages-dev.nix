@@ -15,7 +15,6 @@ in
       actionlint
       cargo
       clang-tools
-      claude-code
       clippy
       crane
       diffoscope
