@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   user = config.my.user;
@@ -12,85 +17,95 @@ in
 
 {
   config = lib.mkIf (config.my.role == "client") {
-    home-manager.users.${user}.services.kanshi = {
-      enable = true;
-      settings = [
-        {
-          profile.name = "home-1-ext";
-          profile.outputs = [
+    home-manager.users.${user} =
+      { lib, ... }:
+      {
+        home.activation.kanshiReload = lib.hm.dag.entryAfter [ "reloadSystemd" ] ''
+          if ${pkgs.systemd}/bin/systemctl --user --quiet is-active kanshi.service 2>/dev/null; then
+            $DRY_RUN_CMD ${pkgs.kanshi}/bin/kanshictl reload 2>/dev/null || true
+          fi
+        '';
+
+        services.kanshi = {
+          enable = true;
+          settings = [
             {
-              criteria = dellu2717;
-              status = "enable";
-              position = "0,0";
+              profile.name = "home-1-ext";
+              profile.outputs = [
+                {
+                  criteria = dellu2717;
+                  status = "enable";
+                  position = "0,0";
+                }
+                {
+                  criteria = p14s;
+                  status = "enable";
+                  position = "2560,240";
+                }
+              ];
             }
             {
-              criteria = p14s;
-              status = "enable";
-              position = "2560,240";
+              profile.name = "home-2-ext";
+              profile.outputs = [
+                {
+                  criteria = dellu2724;
+                  status = "enable";
+                  position = "0,0";
+                }
+                {
+                  criteria = dellu2717;
+                  status = "enable";
+                  position = "2560,0";
+                }
+                {
+                  criteria = p14s;
+                  status = "enable";
+                  position = "5120,240";
+                }
+              ];
+            }
+            {
+              profile.name = "undoced";
+              profile.outputs = [
+                {
+                  criteria = p14s;
+                  status = "enable";
+                  position = "0,0";
+                }
+              ];
+            }
+            {
+              profile.name = "mobile-external";
+              profile.outputs = [
+                {
+                  criteria = l14;
+                  status = "enable";
+                  position = "0,0";
+                }
+                {
+                  criteria = p14s;
+                  status = "enable";
+                  position = "1920,0";
+                }
+              ];
+            }
+            {
+              profile.name = "gf";
+              profile.outputs = [
+                {
+                  criteria = dellaw25;
+                  status = "enable";
+                  position = "0,0";
+                }
+                {
+                  criteria = p14s;
+                  status = "enable";
+                  position = "0,1080";
+                }
+              ];
             }
           ];
-        }
-        {
-          profile.name = "home-2-ext";
-          profile.outputs = [
-            {
-              criteria = dellu2724;
-              status = "enable";
-              position = "0,0";
-            }
-            {
-              criteria = dellu2717;
-              status = "enable";
-              position = "2560,0";
-            }
-            {
-              criteria = p14s;
-              status = "enable";
-              position = "5120,240";
-            }
-          ];
-        }
-        {
-          profile.name = "undoced";
-          profile.outputs = [
-            {
-              criteria = p14s;
-              status = "enable";
-              position = "0,0";
-            }
-          ];
-        }
-        {
-          profile.name = "mobile-external";
-          profile.outputs = [
-            {
-              criteria = l14;
-              status = "enable";
-              position = "0,0";
-            }
-            {
-              criteria = p14s;
-              status = "enable";
-              position = "1920,0";
-            }
-          ];
-        }
-        {
-          profile.name = "gf";
-          profile.outputs = [
-            {
-              criteria = dellaw25;
-              status = "enable";
-              position = "0,0";
-            }
-            {
-              criteria = p14s;
-              status = "enable";
-              position = "0,1080";
-            }
-          ];
-        }
-      ];
-    };
+        };
+      };
   };
 }
