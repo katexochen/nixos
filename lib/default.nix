@@ -12,7 +12,5 @@ in
 
   filterDrvs = lib.filterAttrs (_name: attr: lib.isDerivation attr);
 
-  mkHostWith =
-    outputs:
-    (import ./mkHost.nix { inherit inputs outputs; }).mkHost;
+  mkHostWith = outputs: (import ./mkHost.nix { inherit inputs outputs; }).mkHost;
 }

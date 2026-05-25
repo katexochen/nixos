@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   user = config.my.user;
@@ -59,9 +64,18 @@ in
         };
 
         open.prepend_rules = [
-          { mime = "video/*"; use = [ "play" ]; }
-          { mime = "application/pdf"; use = [ "pdf" ]; }
-          { mime = "image/*"; use = [ "image" ]; }
+          {
+            mime = "video/*";
+            use = [ "play" ];
+          }
+          {
+            mime = "application/pdf";
+            use = [ "pdf" ];
+          }
+          {
+            mime = "image/*";
+            use = [ "image" ];
+          }
         ];
       };
     };

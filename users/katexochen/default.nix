@@ -31,7 +31,7 @@ in
     useUserPackages = true;
     useGlobalPkgs = true;
     users.${user} =
-      { ... }:
+      _:
       {
         home.stateVersion = "22.05";
         home.enableNixpkgsReleaseCheck = true;

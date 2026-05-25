@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   user = config.my.user;
@@ -9,7 +14,7 @@ let
       name = "${drv.name}-json";
       src = drv;
       nativeBuildInputs = [ pkgs.yq-go ];
-      buildCommand = ''cat $src | yq -o json > $out'';
+      buildCommand = "cat $src | yq -o json > $out";
     };
 
   fromYAML = str: builtins.fromJSON (builtins.readFile (yamlToJson str));

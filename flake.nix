@@ -118,7 +118,7 @@
       packages = lib.eachSystem (pkgs: (lib.filterDrvs (import ./packages { inherit pkgs; })));
 
       legacyPackages = lib.eachSystem (
-        pkgs: (import ./packages { inherit pkgs; }) // { nixpkgs = (nixpkgsOverlayed system); }
+        pkgs: (import ./packages { inherit pkgs; }) // { nixpkgs = nixpkgsOverlayed system; }
       );
     };
 

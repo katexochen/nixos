@@ -100,7 +100,7 @@
         map
           (url: {
             enabled = true;
-            url = url;
+            inherit url;
           })
           [
             "https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt"

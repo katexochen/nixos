@@ -18,9 +18,9 @@ let
 in
 {
   options.hardware.raspberry-pi."3".leds = {
-    act.disable = mkDisableOption ''activity LED'';
-    pwr.disable = mkDisableOption ''power LED'';
-    eth.disable = mkDisableOption ''ethernet LEDs'';
+    act.disable = mkDisableOption "activity LED";
+    pwr.disable = mkDisableOption "power LED";
+    eth.disable = mkDisableOption "ethernet LEDs";
   };
 
   config = lib.mkMerge [
