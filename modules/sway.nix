@@ -26,7 +26,7 @@ in
           wrapperFeatures.gtk = true;
           systemd.enable = true;
           config = {
-            terminal = "${lib.getExe pkgs.alacritty}";
+            terminal = "${lib.getExe pkgs.ghostty}";
             menu = "${finalPkgExe "rofi"} -show drun -show-icons -pid";
             bars = [ { command = "${lib.getExe pkgs.waybar}"; } ];
 

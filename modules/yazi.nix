@@ -21,7 +21,6 @@ in
       };
 
       extraPackages = with pkgs; [
-        ueberzugpp
         ffmpeg
         poppler
         file
