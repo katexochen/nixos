@@ -5,27 +5,44 @@
   ...
 }:
 
-let
-  user = config.my.user;
-in
-
 {
   config = lib.mkIf (config.my.role == "client") {
-    home-manager.users.${user}.programs.chromium = {
+    environment.systemPackages = [
+      (pkgs.chromium.override { enableWideVine = true; })
+    ];
+
+    programs.chromium = {
       enable = true;
-      package = pkgs.chromium.override {
-        enableWideVine = true;
-      };
-      commandLineArgs = [
-        "--enable-features=UseOzonePlatform"
-        "--ozone-platform=wayland"
-        "--enable-features=WebRTCPipeWireCapturer"
-      ];
       extensions = [
-        { id = "nngceckbapebfimnlniiiahkandclblb"; } # bitwarden
-        { id = "ddkjiahejlhfcafbddmgiahcphecmpfh"; } # ublock origin lite
-        { id = "logpjaacgmcbpdkdchjiaagddngobkck"; } # shortkeys
+        "nngceckbapebfimnlniiiahkandclblb" # bitwarden
+        "ddkjiahejlhfcafbddmgiahcphecmpfh" # ublock origin lite
+        "logpjaacgmcbpdkdchjiaagddngobkck" # shortkeys
       ];
+      extraOpts = {
+        # Defer to Bitwarden
+        PasswordManagerEnabled = false;
+        AutofillAddressEnabled = false;
+        AutofillCreditCardEnabled = false;
+
+        # Privacy
+        MetricsReportingEnabled = false;
+        SearchSuggestEnabled = false;
+        UrlKeyedAnonymizedDataCollectionEnabled = false;
+
+        # Startup & UI
+        RestoreOnStartup = 1; # continue where you left off
+        ShowHomeButton = false;
+        BookmarkBarEnabled = false;
+        SpellcheckEnabled = true;
+        SpellcheckLanguage = [
+          "en-US"
+          "de"
+        ];
+
+        # UX
+        BackgroundModeEnabled = false;
+        DefaultBrowserSettingEnabled = false;
+      };
     };
   };
 }
