@@ -23,7 +23,6 @@ in
       docker
       gcc
       gh
-      git-absorb
       gnumake
       go
       gopls
