@@ -1,25 +1,23 @@
 #!/usr/bin/env bash
 
-# An example hook script to check the commit log message.
-# Called by "git commit" with one argument, the name of the file
-# that has the commit message.  The hook should exit with non-zero
-# status after issuing an appropriate message if it wants to stop the
-# commit.  The hook is allowed to edit the commit message file.
+# commit-msg hook: append a Signed-off-by trailer for the author.
 #
-# To enable this hook, rename this file to "commit-msg".
+# Uses `git interpret-trailers` so the signoff joins any existing footer block
+# (e.g. Co-authored-by:, Co-developed-by:) without an intervening blank line,
+# and so a signoff by the same author is not added twice.
 
-# Uncomment the below to add a Signed-off-by line to the message.
-# Doing this in a hook is a bad idea in general, but the prepare-commit-msg
-# hook is more suited to it.
-#
+SOB=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\(.*>\).*$/\1/p')
 
-SOB=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
-grep -qs "^$SOB" "$1" || echo -e "\n$SOB" >>"$1"
+git interpret-trailers --in-place \
+  --if-exists addIfDifferent \
+  --trailer "Signed-off-by: $SOB" \
+  "$1"
 
-# This example catches duplicate Signed-off-by lines.
-
-test "" = "$(grep '^Signed-off-by: ' "$1" |
-  sort | uniq -c | sed -e '/^[   ]*1[    ]/d')" || {
-  echo >&2 Duplicate Signed-off-by lines.
+# Safety net: reject the commit if multiple Signed-off-by lines share an email.
+duplicates=$(grep -i '^Signed-off-by: ' "$1" |
+  grep -oE '<[^>]+>' |
+  sort | uniq -d)
+if [ -n "$duplicates" ]; then
+  echo >&2 "Duplicate Signed-off-by lines for: $duplicates"
   exit 1
-}
+fi
