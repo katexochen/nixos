@@ -16,6 +16,10 @@ in
       enableBashIntegration = true;
       shellWrapperName = "y";
 
+      plugins = {
+        smart-enter = "${pkgs.yaziPlugins.smart-enter}";
+      };
+
       extraPackages = with pkgs; [
         ueberzugpp
         ffmpeg
@@ -56,7 +60,7 @@ in
           ];
           image = [
             {
-              run = ''swayimg "$@"'';
+              run = ''swayimg "$@" "$(dirname "$1")"'';
               orphan = true;
               for = "unix";
             }
@@ -75,6 +79,16 @@ in
           {
             mime = "image/*";
             use = [ "image" ];
+          }
+        ];
+      };
+
+      keymap = {
+        mgr.prepend_keymap = [
+          {
+            on = "<Enter>";
+            run = "plugin smart-enter";
+            desc = "Enter the child directory, or open the file";
           }
         ];
       };
