@@ -34,7 +34,6 @@ in
           fetch.prune = true; # drop refs/remotes/* for deleted upstream branches
           pull.ff = "only";
           push.autoSetupRemote = true;
-          push.followTags = true; # push annotated tags alongside commits
 
           rebase.updateRefs = true; # update stacked branches when rebasing
           rebase.autoStash = true;
