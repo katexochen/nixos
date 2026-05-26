@@ -46,18 +46,6 @@ in
     };
 
     programs.ssh.extraConfig = ''
-      Host dell-3340-kirby
-              HostName dell-3340-kirby
-              ConnectTimeout 2
-              IdentitiesOnly yes
-              IdentityFile /root/.ssh/remote_builder
-              User katexochen
-      Host dell-3340-samus
-              HostName dell-3340-samus
-              ConnectTimeout 2
-              IdentitiesOnly yes
-              IdentityFile /root/.ssh/remote_builder
-              User katexochen
       Host aarch64-build-box
               HostName aarch64-build-box.nix-community.org
               ConnectTimeout 2
