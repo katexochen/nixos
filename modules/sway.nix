@@ -28,7 +28,14 @@ in
           config = {
             terminal = "${lib.getExe pkgs.ghostty}";
             menu = "${finalPkgExe "rofi"} -show drun -show-icons -pid";
-            bars = [ { command = "${lib.getExe pkgs.waybar}"; } ];
+            bars = [ ];
+
+            startup = [
+              {
+                command = "${pkgs.kanshi}/bin/kanshictl reload || true";
+                always = true;
+              }
+            ];
 
             modifier = "Mod4";
             down = "m";

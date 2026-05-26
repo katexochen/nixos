@@ -13,7 +13,7 @@ in
   config = lib.mkIf (config.my.role == "client") {
     home-manager.users.${user}.programs.waybar = {
       enable = true;
-      systemd.targets = [ "sway-session.target" ];
+      systemd.enable = true;
       style = ./style.css;
       settings = {
         mainBar = {
