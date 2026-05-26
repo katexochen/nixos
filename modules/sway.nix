@@ -148,6 +148,11 @@ in
                 "XF86AudioMicMute" = "exec ${lib.getExe pkgs.pamixer} --default-source -t";
                 "XF86AudioRaiseVolume" = "exec ${lib.getExe pkgs.pamixer} -i 5";
                 "XF86AudioLowerVolume" = "exec ${lib.getExe pkgs.pamixer} -d 5";
+                "XF86AudioPlay" = "exec ${lib.getExe pkgs.playerctl} play-pause";
+                "XF86AudioPause" = "exec ${lib.getExe pkgs.playerctl} play-pause";
+                "XF86AudioNext" = "exec ${lib.getExe pkgs.playerctl} next";
+                "XF86AudioPrev" = "exec ${lib.getExe pkgs.playerctl} previous";
+                "XF86AudioStop" = "exec ${lib.getExe pkgs.playerctl} stop";
                 "XF86MonBrightnessUp" = "exec ${lib.getExe pkgs.brightnessctl} s +10%";
                 "XF86MonBrightnessDown" = "exec ${lib.getExe pkgs.brightnessctl} s 10%-";
                 "XF86Calculator" = "exec ${finalPkgExe "rofi"} -show calc -modi calc -no-show-mathc -no-sort";

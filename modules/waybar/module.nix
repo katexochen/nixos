@@ -30,6 +30,7 @@ in
           ];
           modules-right = [
             "tray"
+            "mpris"
             "pulseaudio"
             "bluetooth"
             "network#wifi"
@@ -41,6 +42,21 @@ in
             "sway/language"
             "clock"
           ];
+
+          "mpris" = {
+            format = "{status_icon} {dynamic}";
+            format-stopped = "";
+            dynamic-len = 40;
+            dynamic-order = [
+              "title"
+              "artist"
+            ];
+            status-icons = {
+              playing = "▶";
+              paused = "⏸";
+            };
+            tooltip-format = "{player} ({status})\n{dynamic}";
+          };
 
           "clock" = {
             tooltip-format = "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>";

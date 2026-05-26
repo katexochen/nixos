@@ -15,6 +15,7 @@ in
       (with pkgs; [
         mpv
         pavucontrol
+        playerctl
         tailscale
         signal-desktop
         amp-cli
