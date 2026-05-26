@@ -40,6 +40,16 @@ in
           sort_dir_first = true;
           scrolloff = 5;
           linemode = "mtime";
+          ratio = [
+            1
+            3
+            4
+          ];
+        };
+
+        preview = {
+          max_width = 4000;
+          max_height = 4000;
         };
 
         opener = {
