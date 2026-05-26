@@ -69,7 +69,7 @@ in
             "editor.acceptSuggestionOnEnter" = "off";
             "editor.bracketPairColorization.enabled" = false;
             "editor.fontFamily" =
-              "'Droid Sans Mono', 'monospace', monospace, 'Font Awesome 6 Free', 'Font Awesome 6 Brands', 'FiraCode Nerd Font'";
+              "'JetBrains Mono', 'JetBrainsMono Nerd Font', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace";
             "editor.formatOnPaste" = true;
             "editor.formatOnSave" = true;
             "editor.inlineSuggest.enabled" = true;

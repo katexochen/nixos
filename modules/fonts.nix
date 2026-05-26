@@ -14,9 +14,8 @@
         google-fonts
         dejavu_fonts
         noto-fonts-color-emoji
-        nerd-fonts.fira-code
-        nerd-fonts.droid-sans-mono
-        source-code-pro
+        jetbrains-mono
+        nerd-fonts.jetbrains-mono
         helvetica-neue-lt-std
         ubuntu-classic
       ];
@@ -24,12 +23,13 @@
         enable = true;
         defaultFonts = {
           monospace = [
-            "FiraCode Nerd Font Mono"
+            "JetBrains Mono"
+            "JetBrainsMono Nerd Font"
             "DejaVu Sans Mono"
           ];
           sansSerif = [
             "DejaVu Sans"
-            "FiraCode Nerd Font"
+            "JetBrainsMono Nerd Font"
           ];
           serif = [ "DejaVu Serif" ];
           emoji = [ "Noto Color Emoji" ];
