@@ -87,7 +87,7 @@ in
             interval = 2;
             tooltip-format = "{ifname} via {gwaddr} ";
             format = " {bandwidthDownBits}  {bandwidthUpBits}";
-            on-click = "swaymsg exec \"${lib.getExe pkgs.ghostty} --class=ghostty-floating -e nmtui-connect\"";
+            on-click = "swaymsg exec \"${lib.getExe pkgs.ghostty} --class=com.mitchellh.ghostty-floating -e nmtui-connect\"";
           };
 
           "network#wifi" = {
@@ -95,7 +95,7 @@ in
             format-wifi = "{essid} ({signalStrength}%) ";
             format = "";
             tooltip = false;
-            on-click = "swaymsg exec \"${lib.getExe pkgs.ghostty} --class=ghostty-floating -e nmtui-connect\"";
+            on-click = "swaymsg exec \"${lib.getExe pkgs.ghostty} --class=com.mitchellh.ghostty-floating -e nmtui-connect\"";
           };
 
           "bluetooth" = {
@@ -107,7 +107,7 @@ in
             tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
             tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
             on-click-right = "bash -c \"if rfkill list bluetooth|grep -q 'yes$';then rfkill unblock bluetooth;else rfkill block bluetooth;fi\"";
-            on-click = "swaymsg exec \"${lib.getExe pkgs.ghostty} --class=ghostty-floating -e ${lib.getExe pkgs.bluetuith}\"";
+            on-click = "swaymsg exec \"${lib.getExe pkgs.ghostty} --class=com.mitchellh.ghostty-floating -e ${lib.getExe pkgs.bluetuith}\"";
           };
 
           "pulseaudio" = {
