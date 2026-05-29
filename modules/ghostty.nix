@@ -10,6 +10,7 @@ in
       enable = true;
       enableBashIntegration = true;
       settings = {
+        shell-integration = "none";
         copy-on-select = "clipboard";
         scrollback-limit = 100000000;
         window-padding-x = 20;
