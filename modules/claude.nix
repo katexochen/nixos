@@ -119,12 +119,20 @@ in
               config.programs.claude-code.finalPackage
             ];
             text = ''
+              reads=()
+              add_dirs=()
+              for src in "$@"; do
+                reads+=(--read "$src")
+                add_dirs+=(--add-dir "$src")
+              done
+
               exec nono run \
                 --allow-cwd \
-                --read /nix/store \
+                --allow ~/.cache/nix \
+                "''${reads[@]}" \
                 --profile claude-code \
                 -- \
-                claude --dangerously-skip-permissions "$@"
+                claude --dangerously-skip-permissions "''${add_dirs[@]}"
             '';
           })
         ];
