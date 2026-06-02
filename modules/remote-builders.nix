@@ -18,6 +18,22 @@ in
       distributedBuilds = true;
       buildMachines = [
         {
+          hostName = "pylos";
+          system = "x86_64-linux";
+          protocol = "ssh-ng";
+          sshUser = "nix-remote-builder";
+          sshKey = "/root/.ssh/remote_builder";
+          publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUh4K2Q3Q2NTbzJOeHdEbVkwRnk1Ym1GTDVnYjIvWHhWOG5SSDZEa2JqdUYK";
+          supportedFeatures = [
+            "nixos-test"
+            "big-parallel"
+            "kvm"
+            "benchmark"
+          ];
+          maxJobs = 8;
+          speedFactor = 10;
+        }
+        {
           hostName = "aarch64-build-box";
           system = "aarch64-linux";
           protocol = "ssh-ng";
@@ -44,6 +60,8 @@ in
         }
       ];
     };
+
+    networking.hosts."142.132.219.56" = [ "pylos" ];
 
     programs.ssh.extraConfig = ''
       Host aarch64-build-box
