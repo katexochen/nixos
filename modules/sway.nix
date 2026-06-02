@@ -67,7 +67,7 @@ in
                   ;
               in
               {
-                "${mod}+Return" = "exec ${terminal}";
+                "${mod}+Return" = "exec ${terminal} --working-directory=$HOME";
                 "${mod}+Shift+q" = "kill";
                 "${mod}+d" = "exec ${menu}";
 
