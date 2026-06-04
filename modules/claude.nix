@@ -69,6 +69,7 @@ in
                 "Bash(nono profile guide)"
                 "Bash(nono profile validate *)"
                 "Bash(nono profile show *)"
+                "Read(/nix/store/**)"
               ];
               deny = [
                 "Read(./.env)"
@@ -119,17 +120,17 @@ in
               config.programs.claude-code.finalPackage
             ];
             text = ''
-              reads=()
+              writes=()
               add_dirs=()
               for src in "$@"; do
-                reads+=(--read "$src")
+                writes+=(--write "$src")
                 add_dirs+=(--add-dir "$src")
               done
 
               exec nono run \
                 --allow-cwd \
                 --allow ~/.cache/nix \
-                "''${reads[@]}" \
+                "''${writes[@]}" \
                 --profile claude-code \
                 -- \
                 claude --dangerously-skip-permissions "''${add_dirs[@]}"
