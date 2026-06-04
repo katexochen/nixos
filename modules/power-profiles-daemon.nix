@@ -14,7 +14,7 @@
       description = "Set power profile based on AC adapter state";
       after = [ "power-profiles-daemon.service" ];
       wants = [ "power-profiles-daemon.service" ];
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = [ "graphical.target" ];
       serviceConfig.Type = "oneshot";
       script = ''
         if [[ "$(cat /sys/class/power_supply/AC/online)" = "1" ]]; then
