@@ -50,13 +50,13 @@ in
         useTextGreeter = true;
         settings = {
           default_session = {
-            command = ''
-              ${pkgs.tuigreet}/bin/tuigreet \
-                --remember \
-                --time \
-                --asterisks \
-                --cmd ${pkgs.sway}/bin/sway
-            '';
+            command = lib.concatStringsSep " " [
+              "${pkgs.tuigreet}/bin/tuigreet"
+              "--remember"
+              "--time"
+              "--asterisks"
+              "--cmd ${pkgs.sway}/bin/sway"
+            ];
           };
         };
       };
