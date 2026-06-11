@@ -58,9 +58,11 @@ in
           settings = {
             theme = "auto";
             effortLevel = "max";
+            skipDangerousModePermissionPrompt = true;
             enabledPlugins = {
               "clangd-lsp@claude-plugins-official" = true;
               "rust-analyzer-lsp@claude-plugins-official" = true;
+              "nono@always-further" = true;
             };
             permissions = {
               defaultMode = "acceptEdits";
@@ -85,7 +87,6 @@ in
                 "Bash(rm -rf:*)"
               ];
             };
-
             hooks = {
               Notification = [
                 {
@@ -120,17 +121,16 @@ in
               config.programs.claude-code.finalPackage
             ];
             text = ''
-              writes=()
+              allows=(--allow ~/.cache/nix)
               add_dirs=()
               for src in "$@"; do
-                writes+=(--write "$src")
+                allows+=(--allow "$src")
                 add_dirs+=(--add-dir "$src")
               done
 
               exec nono run \
                 --allow-cwd \
-                --allow ~/.cache/nix \
-                "''${writes[@]}" \
+                "''${allows[@]}" \
                 --profile claude-code \
                 -- \
                 claude --dangerously-skip-permissions "''${add_dirs[@]}"
