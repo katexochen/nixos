@@ -57,8 +57,9 @@ in
 
           settings = {
             theme = "auto";
-            effortLevel = "max";
+            effortLevel = "xhigh";
             skipDangerousModePermissionPrompt = true;
+            feedbackSurveyRate = 0;
             enabledPlugins = {
               "clangd-lsp@claude-plugins-official" = true;
               "rust-analyzer-lsp@claude-plugins-official" = true;
