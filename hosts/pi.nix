@@ -37,6 +37,8 @@
     };
   };
 
+  services.resolved.enable = false;
+  services.tailscale.enable = false;
   services.adguardhome = {
     enable = true;
     openFirewall = true;
