@@ -90,12 +90,21 @@ in
     (lib.mkIf cfg.eth.disable {
       # Note: RPi 3B has ethernet over USB (LAN9514), so the ethernet device isn't
       # exposed via device tree and therefore eth leds cannot be disabled via such.
-      # Instead, we can use the lan951x-led-ctl utility to control the LEDs.
       # The later RPi models (3B+ and 4) have the ethernet controller integrated
       # into the SoC and can disable the LEDs via device tree.
+      #
+      # Instead, we use the lan951x-led-ctl utility, which talks to the USB device
+      # 0424:ec00 (the LAN951x ethernet function) directly via libusb and writes the
+      # chip's LED config register.
+      #
+      # smsc95xx driver rewrites the LED config to its defaults in its reset path,
+      # which runs when the interface is brought up (ndo_open), after device probe
+      # and after network.target. Order after network-online.target, which is only
+      # reached once the interface is up and addressed, strictly after the driver's reset.
       systemd.services.disable-rpi-eth-leds = {
         description = "Disable Raspberry Pi 3B Ethernet LEDs using lan951x-led-ctl";
-        after = [ "network.target" ];
+        wants = [ "network-online.target" ];
+        after = [ "network-online.target" ];
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {
           Type = "oneshot";
