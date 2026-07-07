@@ -9,6 +9,7 @@ let
   user = config.my.user;
   userName = "Paul Meyer";
   userEmail = "katexochen0@gmail.com";
+  tomlFormat = pkgs.formats.toml { };
 in
 
 {
@@ -97,7 +98,14 @@ in
         enableGitIntegration = true;
       };
 
-      home.packages = [ pkgs.git-absorb ];
+      home.packages = [
+        pkgs.git-absorb
+        pkgs.git-prole
+      ];
+
+      xdg.configFile."git-prole/config.toml".source = tomlFormat.generate "git-prole-config.toml" {
+        add.commands = [ "direnv allow" ];
+      };
     };
   };
 }
