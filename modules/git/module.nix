@@ -103,6 +103,10 @@ in
         pkgs.git-prole
       ];
 
+      # git prole convert                         # existing repo -> .git/ + sibling worktrees
+      # git prole clone https://github.com/o/r    # or clone fresh
+      # git prole add feat-x                      # from existing branch
+      # git prole add -b feat-x                   # create new branch feat-x
       xdg.configFile."git-prole/config.toml".source = tomlFormat.generate "git-prole-config.toml" {
         add.commands = [ "direnv allow" ];
       };
