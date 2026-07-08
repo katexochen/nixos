@@ -109,6 +109,7 @@ in
       # git prole add -b feat-x                   # create new branch feat-x
       xdg.configFile."git-prole/config.toml".source = tomlFormat.generate "git-prole-config.toml" {
         add.commands = [ "direnv allow" ];
+        add.track = false;
       };
     };
   };

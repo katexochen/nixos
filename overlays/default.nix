@@ -13,6 +13,10 @@ _:
         })
       ];
     });
+
+    git-prole = prev.git-prole.overrideAttrs (oldAttrs: {
+      patches = oldAttrs.patches or [ ] ++ [ ./git-prole-add-track.patch ];
+    });
   };
 
   additions = _final: prev: (import ../packages { pkgs = prev; });

@@ -1,0 +1,138 @@
+diff --git a/config.toml b/config.toml
+index 5a5eca9..859988d 100644
+--- a/config.toml
++++ b/config.toml
+@@ -61,6 +61,12 @@ enable_gh = false
+ # See: `man 'gitignore(5)'`
+ copy_ignored = true
+
++# When `git prole add` creates a new branch from the default branch, the new
++# branch is set to track it (`git worktree add --track`). Set this to `false` to
++# start the new branch at the default branch without tracking it (`--no-track`),
++# so it can be pushed to a remote branch of the same name.
++track = true
++
+ # Commands to run when a new worktree is added.
+ commands = [
+     # "direnv allow",
+diff --git a/src/add.rs b/src/add.rs
+index aff72a5..1d88b83 100644
+--- a/src/add.rs
++++ b/src/add.rs
+@@ -135,12 +135,15 @@ impl<'a> WorktreePlan<'a> {
+                 branch,
+                 start,
+             } => {
+-                let track = matches!(start, StartPoint::Branch(_));
++                let track = match start {
++                    StartPoint::Branch(_) => Some(self.git.config.file.add.track()),
++                    StartPoint::Commitish(_) => None,
++                };
+
+                 (*force, track, Some(branch))
+             }
+             BranchStartPointPlan::Detach(_) | BranchStartPointPlan::Existing(_) => {
+-                (false, false, None)
++                (false, None, None)
+             }
+         };
+
+diff --git a/src/config.rs b/src/config.rs
+index ab11a7d..5326e72 100644
+--- a/src/config.rs
++++ b/src/config.rs
+@@ -140,6 +140,7 @@ impl CloneConfig {
+ pub struct AddConfig {
+     copy_untracked: Option<bool>,
+     copy_ignored: Option<bool>,
++    track: Option<bool>,
+     commands: Vec<ShellCommand>,
+     branch_replacements: Vec<BranchReplacement>,
+ }
+@@ -153,6 +154,10 @@ impl AddConfig {
+         self.copy_ignored.unwrap_or(true)
+     }
+
++    pub fn track(&self) -> bool {
++        self.track.unwrap_or(true)
++    }
++
+     pub fn commands(&self) -> &[ShellCommand] {
+         &self.commands
+     }
+@@ -260,6 +265,7 @@ mod tests {
+                 add: AddConfig {
+                     copy_untracked: None,
+                     copy_ignored: Some(true),
++                    track: Some(true),
+                     commands: vec![],
+                     branch_replacements: vec![],
+                 }
+@@ -278,6 +284,7 @@ mod tests {
+                 add: AddConfig {
+                     copy_untracked: None,
+                     copy_ignored: Some(empty_config.add.copy_ignored()),
++                    track: Some(empty_config.add.track()),
+                     commands: empty_config
+                         .add
+                         .commands()
+diff --git a/src/convert.rs b/src/convert.rs
+index b0eddac..893622b 100644
+--- a/src/convert.rs
++++ b/src/convert.rs
+@@ -541,7 +541,11 @@ where
+             git.worktree().add(
+                 &plan.destination(self),
+                 &AddWorktreeOpts {
+-                    track: plan.create_branch.is_some(),
++                    track: if plan.create_branch.is_some() {
++                        Some(true)
++                    } else {
++                        None
++                    },
+                     create_branch: plan.create_branch.as_ref(),
+                     start_point: Some(plan.start_point.qualified_branch_name()),
+                     ..Default::default()
+diff --git a/src/git/worktree/mod.rs b/src/git/worktree/mod.rs
+index 7c257fe..10dca4f 100644
+--- a/src/git/worktree/mod.rs
++++ b/src/git/worktree/mod.rs
+@@ -170,8 +170,14 @@ where
+             command.arg("--guess-remote");
+         }
+
+-        if options.track {
+-            command.arg("--track");
++        match options.track {
++            Some(true) => {
++                command.arg("--track");
++            }
++            Some(false) => {
++                command.arg("--no-track");
++            }
++            None => {}
+         }
+
+         command.arg(path.as_str());
+@@ -221,9 +227,9 @@ pub struct AddWorktreeOpts<'a> {
+     /// If true, use `--guess-remote`.
+     /// Default false.
+     pub guess_remote: bool,
+-    /// If true, use `--track`.
+-    /// Default false.
+-    pub track: bool,
++    /// `Some(true)` uses `--track`, `Some(false)` uses `--no-track`, `None` passes neither.
++    /// Default `None`.
++    pub track: Option<bool>,
+     /// The start point for the new worktree.
+     pub start_point: Option<&'a str>,
+     /// If true, use `--detach`.
+@@ -238,7 +244,7 @@ impl<'a> Default for AddWorktreeOpts<'a> {
+             create_branch: None,
+             checkout: true,
+             guess_remote: false,
+-            track: false,
++            track: None,
+             start_point: None,
+             detach: false,
+         }
