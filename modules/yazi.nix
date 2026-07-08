@@ -55,7 +55,7 @@ in
         opener = {
           play = [
             {
-              run = ''mpv "$@"'';
+              run = ''mpv --force-window=yes "$@"'';
               orphan = true;
               for = "unix";
             }
