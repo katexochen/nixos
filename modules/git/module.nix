@@ -35,6 +35,7 @@ in
           fetch.prune = true; # drop refs/remotes/* for deleted upstream branches
           pull.ff = "only";
           push.autoSetupRemote = true;
+          push.default = "current"; # needed for git prole workflow, where feature branch tracks main
 
           rebase.updateRefs = true; # update stacked branches when rebasing
           rebase.autoStash = true;
