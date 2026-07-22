@@ -25,22 +25,18 @@ in
             anthropic.claude-code
             eamodio.gitlens
             editorconfig.editorconfig
-            github.copilot-chat
             github.vscode-github-actions
             golang.go
             hashicorp.terraform
-            iliazeus.vscode-ansi
             jamesyang999.vscode-emacs-minimum
             jnoortheen.nix-ide
             llvm-vs-code-extensions.vscode-clangd
             mkhl.direnv
-            # ms-python.python
+            ms-python.python
             ms-python.vscode-pylance
             ms-vscode-remote.remote-ssh
             ms-vscode.cpptools
-            ms-vsliveshare.vsliveshare
             nefrob.vscode-just-syntax
-            quicktype.quicktype
             redhat.vscode-yaml
             rust-lang.rust-analyzer
             streetsidesoftware.code-spell-checker
@@ -79,14 +75,17 @@ in
             "editor.suggestSelection" = "recentlyUsedByPrefix";
             "telemetry.telemetryLevel" = "error";
             "explorer.confirmDragAndDrop" = false;
-            "extensions.ignoreRecommendations" = false;
+            "extensions.ignoreRecommendations" = true;
             "files.insertFinalNewline" = true;
             "files.trimFinalNewlines" = true;
             "files.trimTrailingWhitespace" = true;
             "git.autofetch" = true;
             "git.enableSmartCommit" = true;
             "git.mergeEditor" = true;
+            "git.openRepositoryInParentFolders" = "never";
             "gitlens.codeLens.enabled" = false;
+            "gitlens.showWelcomeOnInstall" = false;
+            "gitlens.showWhatsNewAfterUpgrades" = false;
             "gitlens.statusBar.enabled" = false;
             "go.buildTags" = "integration";
             "go.coverageOptions" = "showUncoveredCodeOnly";
@@ -100,6 +99,7 @@ in
               "-v"
             ];
             "go.testTimeout" = "2m";
+            "go.toolsManagement.checkForUpdates" = "off";
             "gopls" = {
               "formatting.gofumpt" = true;
             };
@@ -130,12 +130,17 @@ in
             "redhat.telemetry.enabled" = false;
             "terminal.integrated.allowChords" = false;
             "terminal.integrated.scrollback" = 10000;
+            "update.showReleaseNotes" = false;
             "vsintellicode.modify.editor.suggestSelection" = "automaticallyOverrodeDefaultValue";
             "window.menuBarVisibility" = "toggle";
             "window.titleBarStyle" = "native";
             "window.customTitleBarVisibility" = "never";
             "workbench.colorTheme" = "Bluloco Light";
             "workbench.editorAssociations"."git-rebase-todo" = "default";
+            "workbench.enableExperiments" = false;
+            "workbench.secondarySideBar.defaultVisibility" = "hidden";
+            "workbench.startupEditor" = "none";
+            "workbench.tips.enabled" = false;
             "yaml.completion" = true;
             "yaml.hover" = true;
 
