@@ -17,6 +17,13 @@ _:
     git-prole = prev.git-prole.overrideAttrs (oldAttrs: {
       patches = oldAttrs.patches or [ ] ++ [ ./git-prole-add-track.patch ];
     });
+
+    waybar = prev.waybar.overrideAttrs (oldAttrs: {
+      postPatch = (oldAttrs.postPatch or "") + ''
+        substituteInPlace src/modules/battery.cpp \
+          --replace-fail 'puts(status.c_str());' ""
+      '';
+    });
   };
 
   additions = _final: prev: (import ../packages { pkgs = prev; });
