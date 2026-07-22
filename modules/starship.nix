@@ -15,6 +15,10 @@ in
         azure.disabled = true;
         gcloud.disabled = true;
         opa.disabled = true;
+
+        directory.truncate_to_repo = false;
+        directory.truncation_length = 3;
+        directory.repo_root_style = "bold blue";
       };
     };
   };
