@@ -244,6 +244,7 @@ in
         ];
 
         home.pointerCursor = {
+          enable = true;
           name = cursor.theme;
           package = pkgs.adwaita-icon-theme;
           inherit (cursor) size;
