@@ -9,6 +9,7 @@ let
   user = config.my.user;
   userName = "Paul Meyer";
   userEmail = "katexochen0@gmail.com";
+  userEmailWork = "paul@amutable.com";
   tomlFormat = pkgs.formats.toml { };
 in
 
@@ -73,6 +74,8 @@ in
             rapply = "!curl -fsSL \${1} | git apply -v --index; #";
             hooks-off = "config core.hooksPath /dev/null";
             hooks-on = "config --unset core.hooksPath";
+            author-work = "config user.email ${userEmailWork}";
+            author-work-off = "config --unset user.email";
             asq = "!git rebase -i --autosquash HEAD~\${1}; #";
             force = "push --force-with-lease --force-if-includes";
             ghhist = "!git log --no-merges --pretty=format:\"$(git config --get remote.upstream.url || git config --get remote.origin.url)/commit/%h %s\" $1^..$2 ; #";
